@@ -13,9 +13,9 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->unique();
+            $table->string('title', 191)->unique();
             $table->string('featured_image');
             $table->timestamps();
         });
