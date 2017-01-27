@@ -7,14 +7,19 @@
 
 require('./bootstrap');
 
+
+// Global scope Vue Filters
+Vue.filter('fromNow', function (date) {
+    return moment(date).fromNow();
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('posts', require('./components/Posts.vue'));
-Vue.component('admin', require('./components/Admin.vue'));
+Vue.component('posts', require('./components/posts/Posts.vue'));
+Vue.component('admin', require('./components/admin/Admin.vue'));
 
 const app = new Vue({
     el: '#app'

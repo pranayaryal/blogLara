@@ -4,27 +4,43 @@
 
 <template>
     <div class="container">
-        <post v-for="post in posts" >
+        <post v-for="post in posts" :post="post">
     </div>
 </template>
 
 <script>
-import Post from './components/posts/Post.vue';
+import Post from './Post.vue';
 function postsInitialState() {
     return {
-        post: {
-            title: '',
-            featured_image: '',
-            content: '',
-            created_at: ''
-        }
-    }
+        posts: [
+            {
+                title: '',
+                featured_image: '',
+                content: '',
+                created_at: ''
+            },
+        ]
+    };
 }
 export default {
-    data() {
-        this.posts = postsInitialState()
+    data () {
+        return postsInitialState()
     },
-    props: {
+    mounted () {
+        this.prepareComponent()
+    },
+    methods: {
+        prepareComponent() {
+            this.getPosts()
+        },
+        getPosts() {
+            this.$http.get('/api/posts')
+                .then(response => {
+                    this.posts = response.data;
+                });
+        }
+    },
+    components: {
         post: Post
     }
 }
