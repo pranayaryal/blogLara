@@ -22,6 +22,7 @@ function postsInitialState() {
         ]
     };
 }
+
 export default {
     data () {
         return postsInitialState()
@@ -38,11 +39,11 @@ export default {
                 .then(response => {
                     this.posts = response.data;
                 });
-        }
+        },
+
     },
     components: {
         post: Post
     }
 }
-
 </script>

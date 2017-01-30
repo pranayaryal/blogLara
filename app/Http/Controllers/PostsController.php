@@ -23,4 +23,9 @@ class PostsController extends Controller
     {
         return $this->post->allPosts();
     }
+
+    public function save_post(Request $request)
+    {
+        return $this->post->createPost($request);
+    }
 }

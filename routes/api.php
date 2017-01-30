@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/posts', 'PostsController@posts')->middleware('guest');
+Route::post('/save-post', 'PostsController@save_post');

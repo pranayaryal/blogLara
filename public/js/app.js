@@ -27011,7 +27011,11 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 142 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 //
 //
@@ -27021,6 +27025,106 @@ module.exports = function spread(callback) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+function createFormInitialState() {
+    return {
+        createForm: {
+            title: '',
+            featured_image: 'http://satyr.io/1200x16:9',
+            content: '',
+            created_at: '',
+            updated_at: '',
+            errors: []
+        }
+    };
+}
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return createFormInitialState();
+    },
+
+    methods: {
+        store: function store() {
+            this.persistPost('post', '/api/save-post', this.createForm);
+        },
+        update: function update() {
+            this.persistPost('put', '/api/update-post', this.editForm);
+        },
+        persistPost: function persistPost(method, uri, form) {
+            form.errors = [];
+
+            this.$http[method](uri, form).then(function (response) {
+                form.id = '';
+                form.title = '';
+                form.featured_image = '';
+                form.content = '';
+                form.created_at = '';
+                form.updated_at = '';
+            }).catch(function (response) {
+                if (_typeof(response.data) === 'object') {
+                    form.errors = _.flatten(_.toArray(response.data));
+                } else {
+                    form.errors = ['Something went wrong. Please try again.'];
+                }
+            });
+        }
+    }
+};
 
 /***/ }),
 /* 143 */
@@ -27028,6 +27132,28 @@ module.exports = function spread(callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27097,6 +27223,7 @@ function postsInitialState() {
         }]
     };
 }
+
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return postsInitialState();
@@ -29568,7 +29695,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "\nimg[data-v-1c024146] {\n    display: block;\n    margin: 0 auto;\n    max-width: 100%;\n}\n.content[data-v-1c024146] {\n    margin: 0 auto;\n    max-width: 80%;\n}\n", ""]);
+exports.push([module.i, "\n.panel-heading h2[data-v-1c024146] {\n    margin: 0;\n}\nimg[data-v-1c024146] {\n    display: block;\n    margin: 0 auto;\n    max-width: 100%;\n}\n.content[data-v-1c024146] {\n    margin: 40px auto;\n    max-width: 80%;\n}\n@media (min-width: 768px) {\n.content[data-v-1c024146] {\n        max-width: 70%;\n}\n}\n@media (min-width: 992px) {\n.content[data-v-1c024146] {\n        max-width: 65%;\n}\n}\n@media (min-width: 1280px) {\n.content[data-v-1c024146] {\n        max-width: 60%;\n}\n}\n", ""]);
 
 // exports
 
@@ -47135,8 +47262,127 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
-},staticRenderFns: []}
+  return _c('div', {
+    staticClass: "container"
+  }, [(_vm.createForm.errors.length > 0) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._m(0), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', _vm._l((_vm.createForm.errors), function(error) {
+    return _c('li', [_vm._v("\n                " + _vm._s(error) + "\n            ")])
+  }))]) : _vm._e(), _vm._v(" "), _c('form', {
+    staticClass: "form-horizontal",
+    attrs: {
+      "role": "form"
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Title")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.createForm.title),
+      expression: "createForm.title"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "create-post-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.createForm.title)
+    },
+    on: {
+      "keyup": function($event) {
+        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+        _vm.store($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.createForm.title = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                    The name of your post. Ex.) How we kick ass\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Featured Image")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.createForm.featured_image),
+      expression: "createForm.featured_image"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "disabled": "",
+      "id": "create-post-title",
+      "type": "text",
+      "placeholder": "Todo"
+    },
+    domProps: {
+      "value": _vm.createForm.featured_image,
+      "value": _vm._s(_vm.createForm.featured_image)
+    },
+    on: {
+      "keyup": function($event) {
+        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+        _vm.store($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.createForm.featured_image = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Content")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.createForm.content),
+      expression: "createForm.content"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": _vm._s(_vm.createForm.content)
+    },
+    on: {
+      "keyup": function($event) {
+        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+        _vm.store($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.createForm.content = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                    Content of your post. Ex.) We began kicking ass by …\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7 col-md-offset-3"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.store
+    }
+  }, [_vm._v("\n                Create\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Whoops!")]), _vm._v(" Something went wrong!")])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

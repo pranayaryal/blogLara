@@ -1,4 +1,8 @@
 <style scoped>
+    .panel-heading h2 {
+        margin: 0;
+    }
+
     img {
         display: block;
         margin: 0 auto;
@@ -6,8 +10,26 @@
     }
 
     .content {
-        margin: 0 auto;
+        margin: 40px auto;
         max-width: 80%;
+    }
+
+    @media (min-width: 768px) {
+        .content {
+            max-width: 70%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .content {
+            max-width: 65%;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .content {
+            max-width: 60%;
+        }
     }
 </style>
 
