@@ -9,7 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+  
+    <!-- Fonts -->
+    <script type="text/javascript" src="//fast.fonts.net/jsapi/5808f658-748a-4b5a-92c6-6ceed19b070e.js"></script>
+   
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
