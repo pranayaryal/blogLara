@@ -1,5 +1,9 @@
 
-body { padding-top: 70px; }
+body { 
+	padding-top: 70px;
+	font-size: 18px;
+	line-height: 1.6;
+}
 
 h1,h2,h3,h4,h5,h6 {
     font-family: $font-family-serif;
@@ -12,7 +16,6 @@ h1,h2,h3,h4,h5,h6 {
 	span {
 		display:inline-block;
 	}
-	
 	.navbar-acorn {
 		margin-right:5px;
 		
@@ -22,12 +25,10 @@ h1,h2,h3,h4,h5,h6 {
 		}
 		
 	}
-	
 	.navbar-title {
 		color: black;
 		font-size: 22px;
 		vertical-align: top;
 		line-height: 27px;
 	}
-	
 }
