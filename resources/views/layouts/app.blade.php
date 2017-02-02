@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
 
@@ -55,8 +55,7 @@
                                 s2.3-3.9,3.8-4.1c1.4-0.3,3-0.2,3.6-1.3C22,16.7,20.2,14.7,16.6,12.7z"/>
                         </svg>
                         </span>
-                        	
-                        <span class="navbar-title">Digital</span>
+                       <span class="navbar-title">Digital</span>
                     </a>
                 </div>
 
