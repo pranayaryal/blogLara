@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/admin', function () {
     return view('posts.admin');
 });
+
+Route::get('profile', function ($id) {
+    return view('profile');
+});

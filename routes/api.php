@@ -17,5 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Posts
 Route::get('/posts', 'PostsController@posts')->middleware('guest');
-Route::post('/save-post', 'PostsController@save_post');
+Route::post('/save-post', 'PostsController@savePost');
+
+// Profile
+Route::post('/save-profile', 'ProfileController@saveProfile');
