@@ -25,8 +25,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -56,7 +56,7 @@
                         </svg>
                         </span>
                         	
-                        <span class="navbar-title">{{ config('app.name', 'Laravel') }}</span>
+                        <span class="navbar-title">Digital</span>
                     </a>
                 </div>
 
