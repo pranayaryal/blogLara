@@ -1,12 +1,20 @@
 
 body { 
-	padding-top: 70px;
+	padding-top: 160px;
 	font-size: 18px;
 	line-height: 1.6;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: $font-family-serif;
+}
+
+a {
+	
+	&:hover {
+		color: $brand-primary;
+		text-decoration: none;
+	}
 }
 
 .navbar-brand {
@@ -18,12 +26,10 @@ h1,h2,h3,h4,h5,h6 {
 	}
 	.navbar-acorn {
 		margin-right:5px;
-		
 		svg {
 			width: 23px;
 			height: 24px;
 		}
-		
 	}
 	.navbar-title {
 		color: black;
@@ -32,3 +38,61 @@ h1,h2,h3,h4,h5,h6 {
 		line-height: 27px;
 	}
 }
+
+.entries {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.entry {
+	margin-bottom: 120px;
+	
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+	
+.entry_header {
+	margin: 0 auto 30px;
+	max-width: 720px;
+}
+
+.entry_title {
+	margin: 0 0 15px;
+	font-size: 36px;
+	
+	a { 
+		color: black;
+	}
+}
+
+.entry_meta {
+	position: relative;
+	padding-left: 50px;
+	line-height: 1.1;
+	
+	.author_avatar {
+		background-color: $brand-primary;
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-radius: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 36px;
+		height: 36px;
+	}
+	.author_name, .entry_time {
+		display: block;
+	}
+	.author_name {
+		font-weight: bold;
+		font-size: 16px;
+	}
+	.entry_date {
+		font-size: 13px;
+	}
+}
+
+.entry_image { }
