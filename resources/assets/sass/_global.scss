@@ -70,7 +70,6 @@ img {
 	transform : translate3d(0, 0, 0);
 	top: 80px;
     left: 40px;
-    width: 200px;
     font-family: $font-family-serif;
 	line-height: 1.6em;
 	z-index:9;
@@ -123,12 +122,21 @@ img {
 		list-style: none;
 
 		@media (max-width:1270px) {
+			background-color: white;
+			min-width: 150px;
 			margin: 0 0 20px;
+			border-radius: 3px;
+			border: 1px solid rgba(0,0,0,0.1);
+			padding: 20px;
+			text-align: left;
 		}
 
 		li {
 			margin-bottom: 3px;
-
+			
+			&:last-of-type {
+				margin-bottom:0;
+			}
 			a {
 				color: black;
 			}
@@ -170,7 +178,7 @@ img {
 .entry_meta {
 	position: relative;
 	padding-left: 50px;
-	line-height: 1.1;
+	line-height: 1;
 	
 	.author_avatar {
 		background-color: $brand-primary;
