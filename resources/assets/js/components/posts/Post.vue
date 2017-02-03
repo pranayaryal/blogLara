@@ -9,7 +9,7 @@
 			<div class="entry_meta">
     			<div class="author_avatar" style="background-image:url(http://satyr.io/100x100);"></div>
 
-    			<a class="author_name" href="#" title="Warwick Anderson">Warwick Anderson</a>
+    			<div class="author_name"><a href="#" title="Warwick Anderson">Warwick Anderson</a></div>
 				<time class="entry_date">{{ post.created_at | fromNow }}</time>
    			</div>
       	</header>
