@@ -16,11 +16,17 @@
 		<header class="entry_header">
 			<h2 class="entry_title"><a href="#" rel="bookmark">{{ post.title }}</a></h2>
 			<div class="entry_meta">
-    			<div class="author_avatar" style="background-image:url(http://satyr.io/250x250);"></div>
+    			<div class="author_avatar" style="background-image:url(http://satyr.io/100x100);"></div>
     			<a class="author_name" href="#" title="Warwick Anderson">Warwick Anderson</a>
 				<time class="entry_date">3 mins ago</time>
    			</div>
       	</header>
+
+        <div class="entry_intro">
+            <div class="content">
+            	Lorem ipsum dolor sit amet consectetur adipiscing elit est sollicitudin, natoque magna ornare justo ac aenean volutpat dictumst cum, feugiat augue varius tristique auctor convallis sociosqu purus. Dui maecenas dis velit elementum aptent fusce laoreet varius ad.
+            </div>
+        </div>
 
         <div class="entry_image">
 			<picture>
