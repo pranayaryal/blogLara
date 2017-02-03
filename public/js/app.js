@@ -27247,14 +27247,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     props: ['post']
@@ -29762,7 +29754,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "\n.panel-heading h2[data-v-6908f663] {\n    margin: 0;\n}\nimg[data-v-6908f663] {\n    display: block;\n    margin: 0 auto;\n    max-width: 100%;\n}\n.content[data-v-6908f663] {\n    margin: 40px auto;\n    max-width: 80%;\n}\n@media (min-width: 768px) {\n.content[data-v-6908f663] {\n        max-width: 70%;\n}\n}\n@media (min-width: 992px) {\n.content[data-v-6908f663] {\n        max-width: 65%;\n}\n}\n@media (min-width: 1280px) {\n.content[data-v-6908f663] {\n        max-width: 60%;\n}\n}\n", ""]);
+exports.push([module.i, "\nimg[data-v-6908f663] {\n    display: block;\n    margin: 0 auto;\n    max-width: 100%;\n}\n.content[data-v-6908f663] {\n    margin: 40px auto;\n    max-width: 720px;\n}\n", ""]);
 
 // exports
 
@@ -47245,11 +47237,20 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_c('h2', [_vm._v(_vm._s(_vm.post.title))])]), _vm._v(" "), _c('picture', [_c('source', {
+  return _c('article', {
+    staticClass: "entry"
+  }, [_c('header', {
+    staticClass: "entry_header"
+  }, [_c('h2', {
+    staticClass: "entry_title"
+  }, [_c('a', {
+    attrs: {
+      "href": "#",
+      "rel": "bookmark"
+    }
+  }, [_vm._v(_vm._s(_vm.post.title))])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "entry_image"
+  }, [_c('picture', [_c('source', {
     attrs: {
       "srcset": "http://satyr.io/1200x16:9",
       "media": "(min-width: 1280px)"
@@ -47274,12 +47275,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "srcset": "http://satyr.io/320x4:3",
       "alt": ""
     }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
+  })])], 1), _vm._v(" "), _c('div', {
+    staticClass: "entry_body"
   }, [_c('div', {
     staticClass: "content"
-  }, [_vm._v("\n            " + _vm._s(_vm.post.content) + "\n        ")])])], 1)
-},staticRenderFns: []}
+  }, [_vm._v("\n                " + _vm._s(_vm.post.content) + "\n            ")])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "entry_meta"
+  }, [_c('div', {
+    staticClass: "author_avatar",
+    staticStyle: {
+      "background-image": "url(http://satyr.io/100x100)"
+    }
+  }), _vm._v(" "), _c('a', {
+    staticClass: "author_name",
+    attrs: {
+      "href": "#",
+      "title": "Warwick Anderson"
+    }
+  }, [_vm._v("Warwick Anderson")]), _vm._v(" "), _c('time', {
+    staticClass: "entry_date"
+  }, [_vm._v("3 mins ago")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "entry_intro"
+  }, [_c('div', {
+    staticClass: "content"
+  }, [_vm._v("\n            \tLorem ipsum dolor sit amet consectetur adipiscing elit est sollicitudin, natoque magna ornare justo ac aenean volutpat dictumst cum, feugiat augue varius tristique auctor convallis sociosqu purus. Dui maecenas dis velit elementum aptent fusce laoreet varius ad.\n            ")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -47428,7 +47452,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "container"
+    staticClass: "entries"
   }, _vm._l((_vm.posts), function(post) {
     return _c('post', {
       attrs: {

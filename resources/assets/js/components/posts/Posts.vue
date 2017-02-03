@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div class="container">
+    <div class="entries">
         <post v-for="post in posts" :post="post">
     </div>
 </template>
