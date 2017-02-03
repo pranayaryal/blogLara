@@ -1,6 +1,6 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: white;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -10,17 +10,19 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #bbb900;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
 
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
+$font-family-serif: "Clarendon LT W01 Light", Georgia, "Times New Roman", Times, serif;
+$font-family-sans-serif: "Roboto", "Proxima N W01 Light", HelveticaNeue-Light, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
+$font-weight-base: 300;
+$line-height-base: 2;
+$text-color: #56595f;
 
 // Navbar
 $navbar-default-bg: #fff;
