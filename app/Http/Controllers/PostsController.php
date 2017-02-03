@@ -9,7 +9,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->post = new Post();
+        $this->Post = new Post();
     }
 
     // Views
@@ -21,11 +21,11 @@ class PostsController extends Controller
     // Api Section
     public function posts()
     {
-        return $this->post->allPosts();
+        return $this->Post->allPosts();
     }
 
-    public function save_post(Request $request)
+    public function savePost(Request $request)
     {
-        return $this->post->createPost($request);
+        return $this->Post->createPost($request);
     }
 }

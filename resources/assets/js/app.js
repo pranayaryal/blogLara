@@ -20,6 +20,7 @@ Vue.filter('fromNow', function (date) {
  */
 Vue.component('posts', require('./components/posts/Posts.vue'));
 Vue.component('admin', require('./components/admin/Admin.vue'));
+Vue.component('profile', require('./components/profile/Profile.vue'));
 
 const app = new Vue({
     el: '#app'
