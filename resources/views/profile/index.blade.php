@@ -1,4 +1,4 @@
-@extends
 @extends('layouts.app')
-<profile></profile>
 @section('content')
+<profile></profile>
+@endsection

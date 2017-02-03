@@ -22,4 +22,5 @@ Route::get('/posts', 'PostsController@posts')->middleware('guest');
 Route::post('/save-post', 'PostsController@savePost');
 
 // Profile
+Route::get('/profile', 'ProfileController@getProfile');
 Route::post('/save-profile', 'ProfileController@saveProfile');

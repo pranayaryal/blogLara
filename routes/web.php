@@ -21,6 +21,6 @@ Route::get('/admin', function () {
     return view('posts.admin');
 });
 
-Route::get('profile', function ($id) {
-    return view('profile');
+Route::get('profile', function () {
+    return view('profile.index');
 });
