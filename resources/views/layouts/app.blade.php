@@ -75,9 +75,23 @@
     	<nav class="nav">
 			<ul class="nav_menu">
 				<li><a href="/">Home</a></li>
-				<li><a href="/profile">Profile</a></li>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/login">Register</a></li>
+				@if(Auth::check())
+					<li><a href="/admin">Admin</a></li>
+					<li><a href="/profile">Profile</a></li>
+					<li><a href="{{ url('/logout') }}"
+							onclick="event.preventDefault();
+							document.getElementById('logout-form').submit();">
+							Logout
+						</a>
+
+						<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				@else
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Register</a></li>
+				@endif
 			</ul>
 			<button class="nav_button"><i class="icon-plus"></i></button>
     	</nav>
