@@ -75,9 +75,14 @@
     	<nav class="nav">
 			<ul class="nav_menu">
 				<li><a href="/">Home</a></li>
-				<li><a href="/profile">Profile</a></li>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/login">Register</a></li>
+				@if(Auth::check())
+					<li><a href="/admin">Admin</a></li>
+					<li><a href="/profile">Profile</a></li>
+					<li><a href="/logout">Logout</a></li>
+				@else
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Register</a></li>
+				@endif
 			</ul>
 			<button class="nav_button"><i class="icon-plus"></i></button>
     	</nav>
