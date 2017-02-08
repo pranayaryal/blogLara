@@ -13,6 +13,10 @@ Vue.filter('fromNow', function (date) {
     return moment(date).fromNow();
 });
 
+Vue.filter('capitalize', function (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

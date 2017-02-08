@@ -14,10 +14,12 @@ function postsInitialState() {
     return {
         posts: [
             {
-                title: '',
-                featured_image: '',
+                categories: [],
+                category_id: '',
                 content: '',
-                created_at: ''
+                created_at: '',
+                featured_image: '',
+                title: '',
             },
         ]
     };
@@ -39,7 +41,7 @@ export default {
                 .then(response => {
                     this.posts = response.data;
                 });
-        },
+        }
 
     },
     components: {

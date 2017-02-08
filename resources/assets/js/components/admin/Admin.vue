@@ -39,6 +39,16 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-md-3">Category</div>
+                <div class="col-md-7">
+                    <select class="form-control" v-model="createForm.category_id">
+                        <option v-for="category in createForm.categories" :value="category.id">{{ category.name | capitalize }}</option>
+                    </select>
+                    <div class="help-block">Select your posts category</div>
+                </div>
+            </div>
+
             <!-- post content -->
             <div class="form-group">
                 <label class="col-md-3 control-label">Content</label>
@@ -65,18 +75,26 @@
 function createFormInitialState() {
     return {
         createForm: {
-            title: '',
-            featured_image: 'http://satyr.io/1200x16:9',
+            categories: [],
+            category_id: '',
             content: '',
             created_at: '',
+            errors: [],
+            featured_image: 'http://satyr.io/1200x16:9',
+            title: '',
             updated_at: '',
-            errors: []
         }
     }
 }
 export default {
     data() {
         return createFormInitialState()
+    },
+    mounted() {
+        this.$http.get('api/categories')
+            .then(response => {
+                this.createForm.categories = response.data
+            });
     },
     methods: {
         store() {
@@ -96,6 +114,7 @@ export default {
                     form.content = '';
                     form.created_at = '';
                     form.updated_at = '';
+                    form.category_id = '';
                 })
                 .catch(response => {
                     if (typeof response.data === 'object') {

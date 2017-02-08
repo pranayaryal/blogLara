@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -12,7 +13,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'created_at', 'content', 'featured_image'
+        'title', 'created_at', 'content', 'featured_image', 'category_id'
     ];
 
     /**
@@ -34,7 +35,8 @@ class Post extends Model
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
-            'featured_image' => $request->featured_image
+            'featured_image' => $request->featured_image,
+            'category_id' => $request->category_id
         ]);
 
         return response()->json(['data' => $post]);
