@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
@@ -12,19 +13,27 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'design'
+            'name' => 'design',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'development'
+            'name' => 'development',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'process'
+            'name' => 'process',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'random'
+            'name' => 'random',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
     }
 }
