@@ -40,9 +40,9 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-3">Categories</div>
+                <div class="col-md-3">Category</div>
                 <div class="col-md-7">
-                    <select class="form-control">
+                    <select class="form-control" v-model="createForm.category_id">
                         <option v-for="category in createForm.categories" :value="category.id">{{ category.name | capitalize }}</option>
                     </select>
                     <div class="help-block">Select your posts category</div>
@@ -76,6 +76,7 @@ function createFormInitialState() {
     return {
         createForm: {
             categories: [],
+            category_id: '',
             content: '',
             created_at: '',
             errors: [],
@@ -113,6 +114,7 @@ export default {
                     form.content = '';
                     form.created_at = '';
                     form.updated_at = '';
+                    form.category_id = '';
                 })
                 .catch(response => {
                     if (typeof response.data === 'object') {
