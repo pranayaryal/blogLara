@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -22,6 +23,11 @@ class PostsController extends Controller
     public function posts()
     {
         return $this->Post->allPosts();
+    }
+
+    public function getCategories()
+    {
+        return response()->json(Category::all());
     }
 
     public function savePost(Request $request)
