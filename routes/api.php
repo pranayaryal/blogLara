@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Posts
 Route::get('/posts', 'PostsController@posts')->middleware('guest');
 Route::post('/save-post', 'PostsController@savePost');
+Route::get('/categories', 'PostsController@getCategories');
 
 // Profile
 Route::get('/profile', 'ProfileController@getProfile');
