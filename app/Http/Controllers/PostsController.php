@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use App\Category;
+use App\Post;
+use App\Status;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->Post = new Post();
         $this->Category = new Category();
+        $this->Post = new Post();
+        $this->Status = new Status();
     }
 
     // Views
@@ -26,13 +28,19 @@ class PostsController extends Controller
         return $this->Post->allPosts();
     }
 
+
+    public function savePost(Request $request)
+    {
+        return $this->Post->createPost($request);
+    }
+
     public function getCategories()
     {
         return $this->Category->allCategories();
     }
 
-    public function savePost(Request $request)
+    public function getStatuses()
     {
-        return $this->Post->createPost($request);
+        return $this->Status->allStatuses();
     }
 }
