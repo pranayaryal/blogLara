@@ -39,6 +39,7 @@
                 </div>
             </div>
 
+            <!-- Category -->
             <div class="form-group">
                 <div class="col-md-3">Category</div>
                 <div class="col-md-7">
@@ -62,6 +63,17 @@
                 </div>
             </div>
 
+            <!-- Category -->
+            <div class="form-group">
+                <div class="col-md-3">Status</div>
+                <div class="col-md-7">
+                    <select class="form-control" v-model="createForm.status_id">
+                        <option v-for="status in createForm.statuses" :value="status.id">{{ status.name | capitalize }}</option>
+                    </select>
+                    <div class="help-block">Select your posts status</div>
+                </div>
+            </div>
+
             <div class="col-md-7 col-md-offset-3">
                 <button type="button" class="btn btn-primary" @click="store">
                     Create
@@ -82,6 +94,8 @@ function createFormInitialState() {
             errors: [],
             featured_image: 'http://satyr.io/1200x16:9',
             title: '',
+            status_id: '',
+            statuses: [],
             updated_at: '',
         }
     }
@@ -94,6 +108,11 @@ export default {
         this.$http.get('api/categories')
             .then(response => {
                 this.createForm.categories = response.data
+            });
+
+        this.$http.get('api/statuses')
+            .then(response => {
+                this.createForm.statuses = response.data
             });
     },
     methods: {
