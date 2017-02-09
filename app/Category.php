@@ -20,7 +20,7 @@ class Category extends Model
         return $this->belongsTo('App\Post');
     }
 
-    public function getCategories()
+    public function allCategories()
     {
         return response()->json(Category::all());
     }
