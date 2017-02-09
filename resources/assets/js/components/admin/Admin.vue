@@ -41,7 +41,7 @@
 
             <!-- Category -->
             <div class="form-group">
-                <div class="col-md-3">Category</div>
+                <label class="col-md-3 control-label">Category</label>
                 <div class="col-md-7">
                     <select class="form-control" v-model="createForm.category_id">
                         <option v-for="category in createForm.categories" :value="category.id">{{ category.name | capitalize }}</option>
@@ -65,7 +65,7 @@
 
             <!-- Category -->
             <div class="form-group">
-                <div class="col-md-3">Status</div>
+                <label class="col-md-3 control-label">Status</label>
                 <div class="col-md-7">
                     <select class="form-control" v-model="createForm.status_id">
                         <option v-for="status in createForm.statuses" :value="status.id">{{ status.name | capitalize }}</option>
@@ -134,6 +134,7 @@ export default {
                     form.created_at = '';
                     form.updated_at = '';
                     form.category_id = '';
+                    form.status_id = '';
                 })
                 .catch(response => {
                     if (typeof response.data === 'object') {
