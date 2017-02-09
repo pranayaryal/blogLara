@@ -37,7 +37,7 @@ export default {
             this.getPosts()
         },
         getPosts() {
-            this.$http.get('/api/posts')
+            this.$http.get('/api/published-posts')
                 .then(response => {
                     this.posts = response.data;
                 });
