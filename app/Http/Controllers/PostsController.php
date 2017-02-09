@@ -11,6 +11,7 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->Post = new Post();
+        $this->Category = new Category();
     }
 
     // Views
@@ -27,7 +28,7 @@ class PostsController extends Controller
 
     public function getCategories()
     {
-        return response()->json(Category::all());
+        return $this->Category->allCategories();
     }
 
     public function savePost(Request $request)
