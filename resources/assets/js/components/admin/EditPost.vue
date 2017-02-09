@@ -27,15 +27,7 @@ article:last-child {
 </template>
 
 <script>
-function categoriesInitialState() {
-    return {
-        categories: {}
-    }
-}
 export default {
-    data() {
-        return categoriesInitialState()
-    },
     filters: {
         humanize_status(status_id) {
             if (status_id === 1) {
@@ -49,20 +41,6 @@ export default {
             return 'Published'
         }
     },
-    mounted() {
-        this.prepareComponent()
-    },
-    methods: {
-        prepareComponent() {
-            this.getCategories()
-        },
-        getCategories() {
-            this.$http.get('api/categories')
-            .then(response => {
-                this.categories = response.data
-            });
-        }
-    },
-    props: ['post', 'editChild', 'deleteChild']
+    props: ['post', 'editChild', 'deleteChild', 'categories']
 }
 </script>

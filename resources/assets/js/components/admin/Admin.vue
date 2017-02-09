@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="panel-body">
-                <edit-post v-for="post in posts" :post="post" :edit-child="edit" :delete-child="destroy"></edit-post>
+                <edit-post v-for="post in posts" :post="post" :edit-child="edit" :delete-child="destroy" :categories="createForm.categories"></edit-post>
             </div>
         </div>
 
@@ -340,7 +340,8 @@ export default {
     },
     props: {
         editChild: Function,
-        deleteChild: Function
+        deleteChild: Function,
+        categories: Object
     }
 }
 </script>
