@@ -37,7 +37,8 @@ class Post extends Model
             'title' => $request->title,
             'content' => $request->content,
             'featured_image' => $request->featured_image,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'status_id' => $request->status_id
         ]);
 
         return response()->json(['data' => $post]);
