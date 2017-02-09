@@ -2,10 +2,15 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Status extends Model
 {
+    const ARCHIVE = 1;
+    const DRAFT = 2;
+    const PUBLISHED = 3;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -15,13 +20,8 @@ class Category extends Model
         'name'
     ];
 
-    public function post()
+    public function allStatuses()
     {
-        return $this->belongsTo('App\Post');
-    }
-
-    public function allCategories()
-    {
-        return response()->json(Category::all());
+        return response()->json(Status::all());
     }
 }

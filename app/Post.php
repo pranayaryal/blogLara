@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'created_at', 'content', 'featured_image', 'category_id'
+        'title', 'created_at', 'content', 'featured_image', 'category_id', 'status_id'
     ];
 
     /**
@@ -27,7 +28,7 @@ class Post extends Model
 
     public function allPosts()
     {
-        return response()->json(Post::all());
+        return response()->json(Post::where(['status_id' => STATUS::PUBLISHED])->get());
     }
 
     public function createPost($request)
@@ -36,7 +37,8 @@ class Post extends Model
             'title' => $request->title,
             'content' => $request->content,
             'featured_image' => $request->featured_image,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'status_id' => $request->status_id
         ]);
 
         return response()->json(['data' => $post]);

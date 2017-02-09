@@ -39,8 +39,9 @@
                 </div>
             </div>
 
+            <!-- Category -->
             <div class="form-group">
-                <div class="col-md-3">Category</div>
+                <label class="col-md-3 control-label">Category</label>
                 <div class="col-md-7">
                     <select class="form-control" v-model="createForm.category_id">
                         <option v-for="category in createForm.categories" :value="category.id">{{ category.name | capitalize }}</option>
@@ -59,6 +60,17 @@
                     <span class="help-block">
                         Content of your post. Ex.) We began kicking ass by &hellip;
                     </span>
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label class="col-md-3 control-label">Status</label>
+                <div class="col-md-7">
+                    <select class="form-control" v-model="createForm.status_id">
+                        <option v-for="status in createForm.statuses" :value="status.id">{{ status.name | capitalize }}</option>
+                    </select>
+                    <div class="help-block">Select your posts status</div>
                 </div>
             </div>
 
@@ -82,6 +94,8 @@ function createFormInitialState() {
             errors: [],
             featured_image: 'http://satyr.io/1200x16:9',
             title: '',
+            status_id: '',
+            statuses: [],
             updated_at: '',
         }
     }
@@ -94,6 +108,11 @@ export default {
         this.$http.get('api/categories')
             .then(response => {
                 this.createForm.categories = response.data
+            });
+
+        this.$http.get('api/statuses')
+            .then(response => {
+                this.createForm.statuses = response.data
             });
     },
     methods: {
@@ -115,6 +134,7 @@ export default {
                     form.created_at = '';
                     form.updated_at = '';
                     form.category_id = '';
+                    form.status_id = '';
                 })
                 .catch(response => {
                     if (typeof response.data === 'object') {
