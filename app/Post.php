@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +28,7 @@ class Post extends Model
 
     public function allPosts()
     {
-        return response()->json(Post::all());
+        return response()->json(Post::where(['status_id' => STATUS::PUBLISHED])->get());
     }
 
     public function createPost($request)
