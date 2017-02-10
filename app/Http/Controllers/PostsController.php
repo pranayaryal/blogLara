@@ -43,6 +43,13 @@ class PostsController extends Controller
         return $this->Post->editPost($request);
     }
 
+    public function delete($id)
+    {
+        return $this->Post->deletePost($id);
+    }
+
+
+
     public function getCategories()
     {
         return $this->Category->allCategories();

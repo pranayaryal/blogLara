@@ -293,10 +293,13 @@ export default {
          * Destroy the given post.
          */
         destroy(goal_id) {
-            this.$http.delete('/api/post-delete/' + goal_id)
+            let confirmed = confirm('Are you sure you want to delete?');
+            if (confirmed) {
+                this.$http.delete('/api/post-delete/' + goal_id)
                     .then(response => {
                         this.getPosts();
                     });
+            }
         },
         store() {
             this.persistPost('post', '/api/save-post', this.createForm, '#modal-create-post');

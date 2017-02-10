@@ -64,4 +64,15 @@ class Post extends Model
 
         return response()->json(['Post saved']);
     }
+
+    public function deletePost($id)
+    {
+        $post = Post::find($id);
+
+        if (!$post->delete()) {
+            return response()->json('Error: Post not deleted');
+        }
+
+        return response()->json('Post deleted');
+    }
 }
