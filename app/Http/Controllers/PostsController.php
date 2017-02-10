@@ -23,16 +23,32 @@ class PostsController extends Controller
     }
 
     // Api Section
-    public function posts()
+    public function allPosts()
     {
         return $this->Post->allPosts();
     }
 
+    public function publishedPosts()
+    {
+        return $this->Post->publishedPosts();
+    }
 
     public function savePost(Request $request)
     {
         return $this->Post->createPost($request);
     }
+
+    public function updatePost(Request $request)
+    {
+        return $this->Post->editPost($request);
+    }
+
+    public function delete($id)
+    {
+        return $this->Post->deletePost($id);
+    }
+
+
 
     public function getCategories()
     {

@@ -18,8 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Posts
-Route::get('/posts', 'PostsController@posts')->middleware('guest');
+Route::get('/all-posts', 'PostsController@allPosts');
+Route::get('/published-posts', 'PostsController@publishedPosts')->middleware('guest');
 Route::post('/save-post', 'PostsController@savePost');
+Route::put('/update-post', 'PostsController@updatePost');
+Route::delete('/post-delete/{id}', 'PostsController@delete');
+
 Route::get('/categories', 'PostsController@getCategories');
 Route::get('/statuses', 'PostsController@getStatuses');
 

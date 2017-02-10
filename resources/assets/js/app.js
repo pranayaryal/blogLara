@@ -24,6 +24,7 @@ Vue.filter('capitalize', function (string) {
  */
 Vue.component('posts', require('./components/posts/Posts.vue'));
 Vue.component('admin', require('./components/admin/Admin.vue'));
+Vue.component('edit-post', require('./components/admin/EditPost.vue'));
 Vue.component('profile', require('./components/profile/Profile.vue'));
 
 const app = new Vue({

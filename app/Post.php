@@ -23,12 +23,17 @@ class Post extends Model
      * @var array
      */
     protected $hidden = [
-        'id',
+        // 'id',
     ];
+
+    public function publishedPosts()
+    {
+        return response()->json(Post::where(['status_id' => STATUS::PUBLISHED])->get());
+    }
 
     public function allPosts()
     {
-        return response()->json(Post::where(['status_id' => STATUS::PUBLISHED])->get());
+        return response()->json(Post::all());
     }
 
     public function createPost($request)
@@ -46,6 +51,28 @@ class Post extends Model
 
     public function editPost($request)
     {
+        $post = Post::find($request->id);
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->featured_image = $request->featured_image;
+        $post->status_id = $request->status_id;
+        $post->category_id = $request->category_id;
 
+        if (!$post->save()) {
+            return response()->json(['Error saving post']);
+        }
+
+        return response()->json(['Post saved']);
+    }
+
+    public function deletePost($id)
+    {
+        $post = Post::find($id);
+
+        if (!$post->delete()) {
+            return response()->json('Error: Post not deleted');
+        }
+
+        return response()->json('Post deleted');
     }
 }
