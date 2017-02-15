@@ -33,29 +33,7 @@
 </template>
 
 <script>
-function categoriesInitialState() {
-    return {
-        categories: {}
-    }
-}
 export default {
-    data() {
-        return categoriesInitialState()
-    },
-    mounted() {
-        this.prepareComponent()
-    },
-    methods: {
-        prepareComponent() {
-            this.getCategories()
-        },
-        getCategories() {
-            this.$http.get('/api/categories')
-            .then(response => {
-                this.categories = response.data
-            });
-        }
-    },
-    props: ['post', 'categoryChild', 'singlePostChild']
+    props: ['post', 'categories', 'categoryChild', 'singlePostChild']
 }
 </script>

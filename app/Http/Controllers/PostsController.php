@@ -33,6 +33,11 @@ class PostsController extends Controller
         return $this->Post->publishedPosts();
     }
 
+    public function getPost($id)
+    {
+        return $this->Post->singlePost($id);
+    }
+
     public function savePost(Request $request)
     {
         return $this->Post->createPost($request);
