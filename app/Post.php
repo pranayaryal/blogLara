@@ -32,6 +32,11 @@ class Post extends Model
         return response()->json(Post::all());
     }
 
+    public function singlePost($post_id)
+    {
+        return response()->json(Post::find($post_id));
+    }
+
     public function createPost($request)
     {
         $post = Post::create([
