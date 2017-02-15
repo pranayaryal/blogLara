@@ -10,7 +10,7 @@
     			<div class="author_avatar" style="background-image:url(http://satyr.io/100x100);"></div>
 
     			<div class="author_name"><a href="#" title="Warwick Anderson">Warwick Anderson</a></div>
-                <div class="category">Posted in: <a href="#" v-for="category in categories" v-if="category.id === post.category_id">{{ category.name }}</a></div>
+                <div class="category">Posted in: <a @click="categoryChild(post.category_id)" v-for="category in categories" v-if="category.id === post.category_id">{{ category.name }}</a></div>
 				<time class="entry_date">{{ post.created_at | fromNow }}</time>
    			</div>
       	</header>
@@ -50,12 +50,12 @@ export default {
             this.getCategories()
         },
         getCategories() {
-            this.$http.get('api/categories')
+            this.$http.get('/api/categories')
             .then(response => {
                 this.categories = response.data
             });
         }
     },
-    props: ['post']
+    props: ['post', 'categoryChild']
 }
 </script>

@@ -4,7 +4,7 @@
 
 <template>
     <div class="entries">
-        <post v-for="post in posts" :post="post">
+        <post v-for="post in posts" :post="post" :category-child="getPostsByCategory">
     </div>
 </template>
 
@@ -41,11 +41,20 @@ export default {
                 .then(response => {
                     this.posts = response.data;
                 });
+        },
+        getPostsByCategory(category_id) {
+             this.$http.get('/api/category/' + category_id)
+                .then(response => {
+                    this.posts = response.data;
+                });
         }
 
     },
     components: {
         post: Post
+    },
+    props: {
+        categoryChild: Function
     }
 }
 </script>
