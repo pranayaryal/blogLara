@@ -17,18 +17,14 @@ class Post extends Model
         'title', 'created_at', 'content', 'featured_image', 'category_id', 'status_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        // 'id',
-    ];
-
     public function publishedPosts()
     {
         return response()->json(Post::where(['status_id' => STATUS::PUBLISHED])->get());
+    }
+
+    public function postsByCategory($category_id)
+    {
+        return response()->json(Post::where(['category_id' => $category_id])->get());
     }
 
     public function allPosts()

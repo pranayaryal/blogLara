@@ -49,6 +49,10 @@ class PostsController extends Controller
     }
 
 
+    public function getCategory($category_id)
+    {
+        return $this->Post->postsByCategory($category_id);
+    }
 
     public function getCategories()
     {
