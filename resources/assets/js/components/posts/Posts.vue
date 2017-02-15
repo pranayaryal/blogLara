@@ -4,7 +4,7 @@
 
 <template>
     <div class="entries">
-        <post v-for="post in posts" :post="post" :category-child="getPostsByCategory">
+        <post v-for="post in posts" :post="post" :category-child="getPostsByCategory" :single-post-child="singlePost">
     </div>
 </template>
 
@@ -47,6 +47,16 @@ export default {
                 .then(response => {
                     this.posts = response.data;
                 });
+        },
+        singlePost(post) {
+            // debugger;
+            this.posts = [];
+            this.posts[0] = {};
+            this.posts[0].title = post.title;
+            this.posts[0].content = post.content;
+            this.posts[0].category_id = post.category_id;
+            this.posts[0].status_id = post.status_id;
+            this.posts[0].created_at = post.created_at;
         }
 
     },
@@ -54,7 +64,8 @@ export default {
         post: Post
     },
     props: {
-        categoryChild: Function
+        categoryChild: Function,
+        singlePostChild: Function
     }
 }
 </script>
