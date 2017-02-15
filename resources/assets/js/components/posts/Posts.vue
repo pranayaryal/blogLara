@@ -2,6 +2,7 @@
 
 <template>
     <div class="entries">
+        <h3 v-if="this.view !== false">Currently viewing: {{ this.view | currentView }}</h3>
         <template v-for="(post, index) in posts">
             <post :post="post" :category-child="getPostsByCategory" :single-post-child="singlePost" :categories="categories" v-if="post.featured_post === true"></post>
             <post-list :post="post" :category-child="getPostsByCategory" :single-post-child="singlePost" :categories="categories" v-else></post-list>
@@ -13,6 +14,7 @@
 import Post from './Post.vue';
 function postsInitialState() {
     return {
+        view: 'all_posts',
         categories: {},
         posts: [
             {
@@ -57,6 +59,7 @@ export default {
                 .then(response => {
                     this.posts = response.data;
                     this.posts[0].featured_post = true;
+                    this.view = this.posts[0].category_id;
                 });
         },
         singlePost(post) {
@@ -68,8 +71,8 @@ export default {
             this.posts[0].status_id = post.status_id;
             this.posts[0].title = post.title;
             this.posts[0].featured_post = true;
+            this.view = false;
         }
-
     },
     components: {
         post: Post
