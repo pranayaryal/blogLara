@@ -2,7 +2,9 @@
 
 <template>
     <div class="entries">
-        <h3 v-if="this.view !== false">Currently viewing: {{ this.view | currentView }}</h3>
+        <div class="entries_header">
+          <h3 v-if="this.view !== false">{{ this.view | currentView }}</h3>
+        </div>
         <template v-for="(post, index) in posts">
             <post :post="post" :category-child="getPostsByCategory" :single-post-child="singlePost" :categories="categories" v-if="post.featured_post === true"></post>
             <post-list :post="post" :category-child="getPostsByCategory" :single-post-child="singlePost" :categories="categories" v-else></post-list>
