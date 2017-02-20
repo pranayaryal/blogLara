@@ -1,7 +1,4 @@
 <style scoped>
-    .panel-body {
-        display: flex;
-    }
 </style>
 
 <template>
@@ -14,7 +11,9 @@
                 </a>
             </div>
             <div class="panel-body">
+               <div class="entries">
                 <edit-post v-for="post in posts" :post="post" :edit-child="edit" :delete-child="destroy" :categories="createForm.categories"></edit-post>
+               </div>
             </div>
         </div>
 
