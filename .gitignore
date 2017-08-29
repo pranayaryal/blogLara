@@ -3,6 +3,8 @@
 /lib
 /bootstrap
 /public/storage
+/public/css
+/public/js
 /storage/*.key
 /.idea
 Homestead.json
