@@ -8,7 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 server 'digital.doe1915.com', user: 'doe', roles: %w{ web }
-set :branch, 'master'
+set :branch, 'deploymentNew'
 set :deploy_to, '/opt/sites/digital.doe1915.com'
 set :keep_releases, 1
 
