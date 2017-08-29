@@ -8,3 +8,9 @@ set :deploy_to, "/opt/sites/digital.doe1915.com"
 set :keep_releases, 5
 
 # set :linked_dirs, %w{storage storage/app storage/framework storage/logs}
+
+SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+
+namespace :deploy do
+  after :starting, 'composer:install_executable'
+end
