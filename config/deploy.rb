@@ -12,3 +12,4 @@ set :keep_releases, 5
 # after 'composer:move', 'composer:install'
 after :deploy, 'shared_files:move'
 after 'shared_files:move', 'artisan:cache'
+after 'artisan:cache', 'permissions:views'
