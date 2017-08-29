@@ -1,6 +1,7 @@
 /node_modules
 /vendor
 /lib
+/bootstrap
 /public/storage
 /public/css
 /public/js
