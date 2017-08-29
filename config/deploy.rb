@@ -13,3 +13,4 @@ set :keep_releases, 5
 after :deploy, 'shared_files:move'
 after 'shared_files:move', 'artisan:cache'
 after 'artisan:cache', 'permissions:views'
+after 'permissions:views', 'front_end:move_built_files'
