@@ -1,19 +1,19 @@
 
 * {
 	transition: all 0.3s ease-in-out;
-	
+
 	&:focus {
 		outline: none;
 	}
-	
+
 }
-body { 
+body {
 	padding-top: 160px;
 	font-size: $font-size-base;
 	font-weight: $font-weight-base;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-	
+
 	@media (max-width:600px) {
 		font-size: 16px;
 	}
@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6 {
 a {
   cursor: pointer;
 	color: #313336;
-	
+
 	&:hover {
 		background-color: $brand-primary;
 		color: black;
@@ -49,11 +49,11 @@ img {
 	top: 40px;
     left: 40px;
 	z-index:9;
-	
+
 	a {
 		display: inline-block;
 		line-height: 0;
-		
+
 		span {
 			display: inline-block;
 		}
@@ -64,7 +64,7 @@ img {
 			}
 		}
 	}
-	
+
 }
 
 .nav {
@@ -86,13 +86,13 @@ img {
 		right: 40px;
 		text-align: right;
 	}
-	
+
 	&.nav--active {
 
 		.nav_button i {
 			transform: rotate(45deg);
 		}
-		
+
 		.nav_menu {
 			bottom: 0;
 		}
@@ -118,7 +118,7 @@ img {
 		}
 
 		&:hover {
-			transform: scale(1.1);	
+			transform: scale(1.1);
 		}
 	}
 
@@ -142,7 +142,7 @@ img {
 
 		li {
 			margin-bottom: 3px;
-			
+
 			&:last-of-type {
 				margin-bottom:0;
 			}
@@ -156,10 +156,10 @@ img {
 .entries {
 	max-width: 760px;
 	margin: 0 auto;
-  
+
   .entries_header {
     margin-bottom: 40px;
-    
+
     h3 {
       font-size: 20px;
     }
@@ -168,30 +168,30 @@ img {
 
 .entry {
 	margin-bottom: 120px;
-	
+
 	&:last-of-type {
 		margin-bottom: 0;
 	}
-  
+
   &.entry--list {
-    
+
     .entry_header {
       margin: 0;
     }
-    
+
     .entry_title {
       margin-bottom: 8px;
       font-size: 20px;
     }
-    
+
     .entry_meta {
       padding-left: 26px;
-      
+
       .author_avatar {
         width: 18px;
         height: 18px;
       }
-      
+
       .author_name {
         font-size: 15px;
       }
@@ -199,13 +199,13 @@ img {
       .entry_details, .entry_time {
         display: inline-block;
       }
-      
+
     }
-    
+
   }
-  
+
 }
-	
+
 .entry_header {
 	margin: 0 auto 30px;
 	max-width: 800px;
@@ -214,10 +214,10 @@ img {
 .entry_title {
 	margin: 0 0 15px;
 	font-size: 42px;
-	
+
 	a {
 		color: black;
-		
+
 		&:hover {
 			background-color: $brand-primary;
 		}
@@ -229,7 +229,7 @@ img {
 	padding-left: 50px;
 	line-height: 1.2;
   font-size: 15px;
-	
+
 	.author_avatar {
 		background-color: $brand-primary;
 		background-size: cover;
@@ -267,6 +267,10 @@ img {
 	}
 }
 
+.entry--list {
+    margin-bottom: 20px;
+}
+
 .user {
 	max-width: 720px;
 	margin: 0 auto;
@@ -299,11 +303,11 @@ img {
 .user_social {
 	margin: 5px 0 0;
 	padding: 0;
-	
+
 	li {
 		margin-right: 3px;
 		display: inline-block;
-		
+
 		a {
 			background-color: $brand-primary;
 			display: inline-block;
@@ -314,11 +318,11 @@ img {
 			text-align: center;
 			font-size: 14px;
 			line-height: 24px;
-			
+
 			i {
 				vertical-align: middle;
 			}
-			
+
 			&:hover {
 				background-color: black;
 				color: $brand-primary;
