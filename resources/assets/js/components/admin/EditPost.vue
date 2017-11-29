@@ -17,7 +17,7 @@ article:last-child {
     <article class="entry">
         <header class="entry_header">
             <a @click="deleteChild(post.id)">Delete</a>
-            <h4 class="entry_title"><a rel="bookmark" @click="editChild(post)">{{ post.title }} <span v-if="post.status_id !== 3"> &mdash; {{ post.status_id | humanize_status }}</a></h4>
+            <h4 class="entry_title"><a rel="bookmark" @click="editChild(post)">{{ post.title }} <span v-if="post.status_id !== 3"> &mdash;</span> {{ post.status_id | humanize_status }}</a></h4>
             <div class="entry_meta">
                 <div class="author_name">Warwick Anderson</div>
                 <div class="category">Posted in: <span v-for="category in categories" v-if="category.id === post.category_id">{{ category.name }}</span></div>

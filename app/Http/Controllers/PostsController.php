@@ -16,10 +16,81 @@ class PostsController extends Controller
         $this->Status = new Status();
     }
 
+    public function create(Post $post)
+    {
+        $categoryOptions = \App\Category::all();
+        $statusOptions = \App\Status::all();
+        $action = '/post';
+        return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions'));
+    }
+
+    public function index()
+    {
+        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author'])->get();
+        return view('posts.index', compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        // return $this->Post->singlePost($post);
+        $no_link = true;
+        return view('posts.show', compact('post', 'no_link'));
+    }
+
+    public function edit(Post $post)
+    {
+        $post = $post->load(['author', 'category', 'status']);
+        $action = '/posts/' . $post->id . '/edit';
+        $categoryOptions = \App\Category::all();
+        $statusOptions = \App\Status::all();
+        return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions'));
+    }
+
+    public function store(Post $post)
+    {
+        if (!empty(request('id'))) {
+            $post = $post->find(request('id'));
+        }
+
+        $post->category_id = request('category_id');
+        $post->content = request('content');
+        $post->status_id = request('status_id');
+        $post->title = request('title');
+        $post->user_id = request('user_id');
+
+        if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
+            $image = request()->all()['featured_image'];
+        }
+
+        try {
+            $post->save();
+
+            if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
+                $path = '/images/posts/' . $post->id . '/featured';
+                $image->move(public_path() . $path, $image->getClientOriginalName());
+                $post->featured_image = $path . '/' . $image->getClientOriginalName();
+                $post->save();
+            }
+            return redirect('/');
+        } catch (Expression $e) {
+            dd($e);
+        }
+    }
+
+    public function delete(Post $post)
+    {
+        if (!$post->delete()) {
+            return response()->json('Error: Post not deleted');
+        }
+
+        return response()->json('Post deleted');
+    }
+
     // Views
     public function admin()
     {
-        return view('posts.admin');
+        $posts = Post::where('user_id', auth()->user()->id)->with(['author', 'category', 'status'])->get();
+        return view('posts.admin', compact('posts'));
     }
 
     // Api Section
@@ -48,10 +119,10 @@ class PostsController extends Controller
         return $this->Post->editPost($request);
     }
 
-    public function delete($id)
-    {
-        return $this->Post->deletePost($id);
-    }
+    // public function delete($id)
+    // {
+    //     return $this->Post->deletePost($id);
+    // }
 
 
     public function getCategory($category_id)

@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                <div class="entries">
-                <edit-post v-for="post in posts" :post="post" :edit-child="edit" :delete-child="destroy" :categories="createForm.categories"></edit-post>
+                <edit-post v-for="post in posts" :key="post.id" :post="post" :edit-child="edit" :delete-child="destroy" :categories="createForm.categories"></edit-post>
                </div>
             </div>
         </div>
@@ -60,7 +60,8 @@
                                 <label class="col-md-3 control-label">Featured Image</label>
 
                                 <div class="col-md-7">
-                                    <input disabled id="create-post-title" type="text" class="form-control" @keyup.enter="store" v-model="createForm.featured_image" placeholder="Todo" v-bind:value="createForm.featured_image">
+                                    <!-- v-bind:value="createForm.featured_image" -->
+                                    <input disabled id="create-post-title" type="text" class="form-control" @keyup.enter="store" v-model="createForm.featured_image" placeholder="Todo">
                                 </div>
                             </div>
 
@@ -153,7 +154,8 @@
                                 <label class="col-md-3 control-label">Featured Image</label>
 
                                 <div class="col-md-7">
-                                    <input disabled id="create-post-title" type="text" class="form-control" @keyup.enter="store" v-model="editForm.featured_image" placeholder="Todo" v-bind:value="editForm.featured_image">
+                                    <!-- v-bind:value="editForm.featured_image" -->
+                                    <input disabled id="create-post-title" type="text" class="form-control" @keyup.enter="store" v-model="editForm.featured_image" placeholder="Todo" >
                                 </div>
                             </div>
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Category;
 use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,21 @@ class Post extends Model
     protected $fillable = [
         'title', 'created_at', 'content', 'featured_image', 'category_id', 'status_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 
     public function publishedPosts()
     {
@@ -32,9 +48,18 @@ class Post extends Model
         return response()->json(Post::all());
     }
 
-    public function singlePost($post_id)
+    public function singlePost($post)
     {
-        return response()->json(Post::find($post_id));
+        if (is_integer($post)) {
+            return $this->singlePostById($post);
+        }
+
+        return response()->json($post);
+    }
+
+    public function singlePostById($id)
+    {
+        return response()->json(Post::find($id));
     }
 
     public function createPost($request)
@@ -47,7 +72,16 @@ class Post extends Model
             'status_id' => $request->status_id
         ]);
 
+        if ($returnJson) {
+            return response()->json(['data' => $post]);
+        }
         return response()->json(['data' => $post]);
+
+        // try {
+
+        // } catch (Exception $e) {
+
+        // }
     }
 
     public function editPost($request)

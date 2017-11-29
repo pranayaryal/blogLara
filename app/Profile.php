@@ -15,7 +15,7 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'avatar', 'bio', 'instagram', 'twitter'
+        'avatar', 'bio', 'twitter', 'instagram', 'github', 'dribbble', 'title'
     ];
 
     /**
@@ -26,4 +26,9 @@ class Profile extends Model
     protected $hidden = [
         'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
