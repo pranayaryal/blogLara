@@ -30,10 +30,11 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post)
+    public function show($slug)
     {
         // return $this->Post->singlePost($post);
         $no_link = true;
+        $post = Post::whereSlug($slug)->firstOrFail();
         return view('posts.show', compact('post', 'no_link'));
     }
 

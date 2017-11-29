@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'PostsController@index');
-Route::get('posts/{post}', 'PostsController@show');
+Route::get('posts/{slug}', 'PostsController@show');
 Route::get('post', 'PostsController@create')->middleware('auth');
 Route::post('post', 'PostsController@store')->middleware('auth');
 Route::get('posts/{post}/edit', 'PostsController@edit')->middleware('auth');

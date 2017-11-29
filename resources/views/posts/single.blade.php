@@ -5,7 +5,7 @@
       <a href="/posts/{{ $post->id }}/edit" class="btn btn-sm btn-primary">Edit</a>
       @endif</h2>
       @else
-      <h2 class="entry_title"><a href="/posts/{{ $post->id }}">{{ $post->title }}@if (auth::check())
+      <h2 class="entry_title"><a href="/posts/{{ $post->slug }}">{{ $post->title }}@if (auth::check())
       <a href="/posts/{{ $post->id }}/edit" class="btn btn-sm btn-primary">Edit</a>
       @endif</a></h2>
       @endif
