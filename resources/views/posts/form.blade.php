@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+@include('errors');
+
 <form class="form-horizontal" role="form" action="{{ $action }}" method="POST" enctype="multipart/form-data">
     <!-- title -->
     {{ csrf_field() }}

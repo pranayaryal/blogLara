@@ -43,6 +43,11 @@ class PostsController extends Controller
 
     public function store(Post $post)
     {
+        $this->validate(request(), [
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
         if (!empty(request('id'))) {
             $post = $post->find(request('id'));
         }
