@@ -1,4 +1,11 @@
 <?php return array (
+  'fideloper/proxy' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    ),
+  ),
   'laravel/tinker' => 
   array (
     'providers' => 
@@ -15,13 +22,6 @@
     'aliases' => 
     array (
       'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
-    ),
-  ),
-  'fideloper/proxy' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
   'intervention/image' => 
