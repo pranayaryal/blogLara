@@ -13,6 +13,7 @@
 
 Auth::routes();
 
+// Posts
 Route::get('/', 'PostsController@index');
 Route::get('posts/{slug}', 'PostsController@show');
 Route::get('post', 'PostsController@create')->middleware('auth');
@@ -21,20 +22,17 @@ Route::get('posts/{post}/edit', 'PostsController@edit')->middleware('auth');
 Route::put('posts/{post}/edit', 'PostsController@store')->middleware('auth');
 Route::delete('posts/{post}/delete', 'PostsController@delete')->middleware('auth');
 Route::get('/admin', 'PostsController@admin');
-// Posts by category
-// Route::get('category/{id}', function ($id) {
-//     $posts = App\Post::where('category_id', $id)->get();
-//     $category_name = App\Category::where('id', $id)->pluck('name')->first();
-//     return view('posts.index', compact('posts', 'by_category', 'category_name'));
-// });
 
+// Categories
 Route::resource('category', 'CategoriesController')->middleware('auth')->except('show');
 Route::get('category/{slug}', 'CategoriesController@show');
 
+// Profiles
 Route::get('profile', 'ProfileController@create')->middleware('auth');
 Route::match(['put', 'post'], 'profile', 'ProfileController@store')->middleware('auth');
 Route::get('profile/{slug}', 'ProfileController@show');
 
+// FileManager
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
     Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');

@@ -16,13 +16,9 @@ trait SlugTrait
                     ->latest('id')
                     ->pluck('slug');
 
-            if ($latestSlug) {
-                $pieces = explode('-', $latestSlug);
-
-                $number = intval(end($pieces));
-
-                $model->slug .= '-' . ($number + 1);
-            }
+            $pieces = explode('-', $latestSlug);
+            $number = intval(end($pieces));
+            $number > 0 ? $model->slug .= '-' . ($number + 1) : '';
         });
     }
 }

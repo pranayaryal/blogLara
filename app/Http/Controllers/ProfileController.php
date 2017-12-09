@@ -38,17 +38,28 @@ class ProfileController extends Controller
             $profile = $profile->where('user_id', request('user_id'))->first();
         }
 
+        if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
+            $image = request()->all()['avatar'];
+        }
+
         $profile->user()->associate($user);
 
         $profile->title = request('title');
         $profile->bio = request('bio');
-        $profile->avatar = request('avatar');
         $profile->twitter = request('twitter');
         $profile->instagram = request('instagram');
         $profile->dribbble = request('dribbble');
         $profile->github = request('github');
 
         try {
+            $profile->avatar = '';
+
+            if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
+                $path = '/images/profile/' . $profile->slug . '/avatar';
+                $image->move(public_path() . $path, $image->getClientOriginalName());
+                $profile->avatar = $path . '/' . $image->getClientOriginalName();
+            }
+
             $profile->save();
             $user->save();
         } catch (Exception $e) {
@@ -57,7 +68,7 @@ class ProfileController extends Controller
 
         return redirect()->action(
             'ProfileController@show',
-            ['id' => $profile->id]
+            ['slug' => $profile->slug]
         );
     }
 

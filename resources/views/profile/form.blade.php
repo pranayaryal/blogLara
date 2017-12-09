@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form class="form-horizontal" role="form" action="/profile" method="POST">
+<form class="form-horizontal" role="form" action="/profile" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     @if (isset($profile->id) && !empty($profile->id))
