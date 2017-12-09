@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function show(Profile $profile)
+    public function show($slug)
     {
+        $profile = Profile::whereSlug($slug)->firstOrFail();
         $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->get();
         return view('profile.show', compact(['profile', 'posts']));
     }

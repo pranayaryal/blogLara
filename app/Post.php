@@ -6,7 +6,6 @@ use App\Category;
 use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-
 use App\Traits\SlugTrait;
 
 class Post extends Model
