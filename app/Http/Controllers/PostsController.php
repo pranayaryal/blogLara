@@ -46,6 +46,7 @@ class PostsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'content' => 'required',
+            'excerpt' => 'required'
         ]);
 
         if (!empty(request('id'))) {
