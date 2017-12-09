@@ -9,13 +9,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->Category = new Category();
-        $this->Post = new Post();
-        $this->Status = new Status();
-    }
-
     public function create(Post $post)
     {
         $categoryOptions = \App\Category::all();
@@ -64,14 +57,16 @@ class PostsController extends Controller
         }
 
         try {
-            $post->save();
+            $post->featured_image = '';
 
             if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
                 $path = '/images/posts/' . $post->id . '/featured';
                 $image->move(public_path() . $path, $image->getClientOriginalName());
                 $post->featured_image = $path . '/' . $image->getClientOriginalName();
-                $post->save();
             }
+
+            $post->save();
+
             return redirect('/');
         } catch (Expression $e) {
             dd($e);
