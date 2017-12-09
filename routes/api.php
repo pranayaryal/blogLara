@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,3 +31,15 @@ Route::get('/statuses', 'PostsController@getStatuses');
 // Profile
 Route::get('/profile', 'ProfileController@getProfile');
 Route::post('/save-profile', 'ProfileController@saveProfile');
+
+// Mailing list
+Route::post('/subscriber', function () {
+    try {
+        App\Subscriber::create([
+            'name' => request('name'),
+            'email' => request('email')]
+        );
+    } catch (Exception $e) {
+        dd($e);
+    }
+});

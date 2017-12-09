@@ -99,6 +99,17 @@
       @yield('content')
     </div>
 
+    <footer>
+      <div class="row">
+        <div class="col-sm-6">
+          Copyright &copy; {{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
+        </div>
+        <div class="col-sm-6">
+          @include('mailing-list')
+        </div>
+      </div>
+    </footer>
+
     <!-- Scripts -->
     <script src="/js/app.js"></script>
 </body>
