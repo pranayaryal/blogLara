@@ -14,24 +14,28 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             'name' => 'design',
+            'slug' => 'design',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
             'name' => 'development',
+            'slug' => 'development',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
             'name' => 'process',
+            'slug' => 'process',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
             'name' => 'random',
+            'slug' => 'random',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
