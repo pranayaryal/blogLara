@@ -13,9 +13,9 @@
       <div class="entry_meta">
         <div class="author_avatar" style="background-image:url(http://placecorgi.com/200);"></div>
         @if (isset($post->author))
-        <div class="entry_details"><a class="author_name" href="/profile/{{ $post->author->id }}" title="{{ $post->author->name }}">{{ $post->author->name }}</a> in <a class="category_name" href="/category/{{ $post->category->id }}">{{ $post->category->name }}</a></div>
+        <div class="entry_details"><a class="author_name" href="/profile/{{ $post->author->id }}" title="{{ $post->author->name }}">{{ $post->author->name }}</a> in <a class="category_name" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></div>
         @endif
-        <time class="entry_date">Timestamp FromNow here</time>
+        <time class="entry_date">{{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}</time>
       </div>
   </header>
 

@@ -45,8 +45,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
+        $cateogry = Category::whereSlug($slug)->firstOrFail();
+        $posts = Post::where('category_id', $cateogry->id)->get();
+        $category_name = $cateogry->name;
+        return view('posts.index', compact('posts', 'by_category', 'category_name'));
     }
 
     /**
