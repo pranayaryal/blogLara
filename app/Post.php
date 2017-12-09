@@ -7,29 +7,12 @@ use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\SlugTrait;
+
 class Post extends Model
 {
-    public static function boot()
-    {
-        parent::boot();
+    use SlugTrait;
 
-        static::creating(function ($post) {
-            $post->slug = str_slug($post->title);
-
-            $latestSlug =
-                static::whereRaw("slug RLIKE '^{$post->slug}(-[0-9]*)?$'")
-                    ->latest('id')
-                    ->pluck('slug');
-
-            if ($latestSlug) {
-                $pieces = explode('-', $latestSlug);
-
-                $number = intval(end($pieces));
-
-                $post->slug .= '-' . ($number + 1);
-            }
-        });
-    }
     /**
      * The attributes that are mass assignable.
      *
