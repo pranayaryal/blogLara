@@ -60,6 +60,19 @@
         </div>
     </div>
 
+    <!-- post excerpt -->
+    <div class="form-group">
+        <label class="col-md-3 control-label">Excerpt</label>
+
+        <div class="col-md-7">
+            <textarea class="form-control" name="excerpt" rows="15">{{ $post->excerpt }}</textarea>
+
+            <span class="help-block">
+                Excerpt of your post. Ex.) We began kicking ass by &hellip;
+            </span>
+        </div>
+    </div>
+
     <!-- Category -->
     <div class="form-group">
         <label class="col-md-3 control-label">Status</label>

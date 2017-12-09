@@ -20,15 +20,16 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author'])->get();
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'full_content'));
     }
 
     public function show($slug)
     {
         // return $this->Post->singlePost($post);
         $no_link = true;
+        $full_content = true;
         $post = Post::whereSlug($slug)->firstOrFail();
-        return view('posts.show', compact('post', 'no_link'));
+        return view('posts.show', compact('post', 'no_link', 'full_content'));
     }
 
     public function edit(Post $post)
@@ -48,6 +49,7 @@ class PostsController extends Controller
 
         $post->category_id = request('category_id');
         $post->content = request('content');
+        $post->excerpt = request('excerpt');
         $post->status_id = request('status_id');
         $post->title = request('title');
         $post->user_id = request('user_id');

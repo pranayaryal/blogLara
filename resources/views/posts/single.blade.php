@@ -26,7 +26,13 @@
     </picture>
   </div>
 
+  @if(!empty($full_content) && $full_content)
   <div class="entry_block entry_block--content">
     {!! $post->content !!}
   </div>
+  @else
+<div class="entry_block entry_block--content">
+    {!! $post->excerpt !!}
+  </div>
+  @endif
 </article>
