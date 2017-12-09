@@ -34,3 +34,9 @@ Route::get('category/{slug}', 'CategoriesController@show');
 Route::get('profile', 'ProfileController@create')->middleware('auth');
 Route::match(['put', 'post'], 'profile', 'ProfileController@store')->middleware('auth');
 Route::get('profile/{slug}', 'ProfileController@show');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
+    // list all lfm routes here...
+});

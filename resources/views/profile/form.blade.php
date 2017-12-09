@@ -37,8 +37,12 @@
         <label class="col-md-3 control-label" for="avatar">Avatar</label>
 
         <div class="col-md-7">
-            <input disabled type="text" class="form-control" name="avatar" value="{{ $profile->avatar }}">
+            <input type="file" class="form-control" name="avatar">
         </div>
+
+        @if (!empty($post->featured_image))
+            <img src="{{ $post->featured_image }}" alt="">
+        @endif
     </div>
 
     <div class="form-group">
