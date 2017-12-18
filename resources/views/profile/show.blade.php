@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="user">
+    <div class="user_avatar" style="background-image: url( {{ $profile->avatar }} )"></div>
+
     <div class="user_details">
-        <div class="user_avatar" style="background-image: url( {{ $profile->avatar }} )"></div>
         <h2 class="user_name">{{ $profile->user->name }}</h2>
         <p class="user_title">{{ $profile->title }}</p>
 
@@ -20,7 +21,6 @@
 </div>
 
 <div class="entries">
-    <h2>Posts</h2>
     @each('posts.listItem', $posts, 'post')
 </div>
 @endsection
