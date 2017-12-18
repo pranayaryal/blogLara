@@ -8350,57 +8350,6 @@ button.close {
   }
 }
 
-@font-face {
-  font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?caa85de31bd178f1e3d491eaef829455);
-  src: url(/fonts/icomoon.eot?caa85de31bd178f1e3d491eaef829455) format("embedded-opentype"), url(/fonts/icomoon.woff2?f89b13bf87c0092b3fe7280ff7a4be89) format("woff2"), url(/fonts/icomoon.ttf?97c85be513b85c374ea17e1908239724) format("truetype"), url(/fonts/icomoon.woff?08acba15be37e93ebda585340494e3ce) format("woff"), url(/fonts/icomoon.svg?df3aedf6e063b4f10219a1a40d61142e) format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"],
-[class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-menu:before {
-  content: "\E905";
-}
-
-.icon-plus:before {
-  content: "\E906";
-}
-
-.icon-dribbble:before {
-  content: "\E902";
-}
-
-.icon-github:before {
-  content: "\E903";
-}
-
-.icon-twitter:before {
-  content: "\E904";
-}
-
-.icon-instagram:before {
-  content: "\E900";
-}
-
-.icon-facebook:before {
-  content: "\E901";
-}
-
 * {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
