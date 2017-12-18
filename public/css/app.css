@@ -17907,6 +17907,148 @@ label {
   display: none;
 }
 
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+  margin-bottom: 1em;
+}
+
+.content h1:not(:first-child), .content h2:not(:first-child), .content h3:not(:first-child), .content h4:not(:first-child), .content h5:not(:first-child), .content h6:not(:first-child) {
+  margin-top: 1.5em;
+}
+
+.content p:not(:last-child), .content dl:not(:last-child), .content ol:not(:last-child), .content ul:not(:last-child), .content blockquote:not(:last-child), .content pre:not(:last-child), .content table:not(:last-child) {
+  margin-bottom: 1.4em;
+}
+
+.content .table thead th {
+  color: #bbb900;
+  font-weight: 500;
+}
+
+.content ul li, .content ol li {
+  margin-bottom: 3px;
+}
+
+.content > *:last-child {
+  margin-bottom: 0;
+}
+
+.content a:not(.button) {
+  border-bottom: 1px solid transparent;
+  color: #bbb900;
+  text-decoration: none;
+}
+
+.content a:not(.button):hover {
+  border-color: #bbb900;
+}
+
+.content strong {
+  color: #bbb900;
+  font-weight: 600;
+}
+
+.content strong em {
+  font-weight: 600;
+}
+
+.content div {
+  max-width: 100%;
+}
+
+.content blockquote {
+  padding: 30px;
+  border-left: 4px solid #bbb900;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.8em;
+}
+
+.content blockquote h1, .content blockquote h2, .content blockquote h3, .content blockquote h4, .content blockquote h5, .content blockquote h6, .content blockquote .btn {
+  font-style: normal;
+}
+
+.content blockquote p:last-child {
+  margin: 0;
+}
+
+.content blockquote cite {
+  color: #bbb900;
+}
+
+.content img.img_round {
+  border-radius: 100%;
+}
+
+.content .alignleft {
+  float: left;
+  margin: 0 15px 30px 0;
+}
+
+.content .aligncenter {
+  display: block;
+  margin: 0 auto 30px auto;
+}
+
+.content .alignright {
+  float: right;
+  margin: 0 0 30px 15px;
+}
+
+.content .alignnone {
+  display: block;
+  float: none;
+  margin: 0 0 30px 0;
+}
+
+.content .size-full {
+  margin: 0 0 30px 0;
+  width: 100%;
+  height: auto;
+}
+
+.content p .alignleft {
+  float: left;
+  margin: 5px 30px 30px 0;
+}
+
+.content p .aligncenter {
+  display: block;
+  margin: 0 auto 30px auto;
+}
+
+.content p .alignright {
+  float: right;
+  margin: 0 0 30px 30px;
+}
+
+.content p .alignnone {
+  display: block;
+  float: none;
+  margin: 0 0 30px 0;
+}
+
+.content p .size-full {
+  margin: 0 0 30px 0;
+  width: 100%;
+  height: auto;
+}
+
+.content .gallery-caption {
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.8em;
+}
+
+.content .gallery-caption p:last-child {
+  margin: 0;
+}
+
+.content .gallery:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
 .site-footer {
   margin-top: 100px;
   font-size: 14px;
