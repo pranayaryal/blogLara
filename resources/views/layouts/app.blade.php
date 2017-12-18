@@ -66,9 +66,9 @@
           @endif
         </header>
 
-        <div class="content">
+        <div class="contents">
           @yield('content')
-        </div>
+        <div>
 
         <footer>
           <div class="columns">
