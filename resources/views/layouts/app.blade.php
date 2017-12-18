@@ -87,6 +87,13 @@
     	<nav class="nav">
 			<ul class="nav_menu">
 				<li><a href="/">Home</a></li>
+        <li>
+          <form id="search-form" action="{{ url('/search') }}" method="POST">
+            {{ csrf_field() }}
+            <input name="query">
+            <input type="submit" class="button">
+          </form>
+        </li>
 				@if(Auth::check())
 					<li><a href="/admin">Posts</a></li>
 					<li><a href="/profile">Profile</a></li>

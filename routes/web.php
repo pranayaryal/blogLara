@@ -40,5 +40,5 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Search
-Route::get('/search/{query}', 'SearchController@search');
+Route::post('/search', 'SearchController@search')->name('search');
 
