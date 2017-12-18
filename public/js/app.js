@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,8 +70,8 @@
 "use strict";
 
 
-var bind = __webpack_require__(3);
-var isBuffer = __webpack_require__(20);
+var bind = __webpack_require__(2);
+var isBuffer = __webpack_require__(19);
 
 /*global toString:true*/
 
@@ -375,33 +375,6 @@ module.exports = {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -424,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(5);
+    adapter = __webpack_require__(3);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(5);
+    adapter = __webpack_require__(3);
   }
   return adapter;
 }
@@ -498,10 +471,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -519,197 +492,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -720,7 +503,7 @@ var settle = __webpack_require__(23);
 var buildURL = __webpack_require__(25);
 var parseHeaders = __webpack_require__(26);
 var isURLSameOrigin = __webpack_require__(27);
-var createError = __webpack_require__(6);
+var createError = __webpack_require__(4);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
 module.exports = function xhrAdapter(config) {
@@ -896,7 +679,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -921,7 +704,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -933,7 +716,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -959,15 +742,15 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(10);
-module.exports = __webpack_require__(58);
+__webpack_require__(8);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -977,9 +760,9 @@ module.exports = __webpack_require__(58);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(11);
+__webpack_require__(9);
 
-window.Vue = __webpack_require__(37);
+window.Vue = __webpack_require__(51);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -987,27 +770,27 @@ window.Vue = __webpack_require__(37);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('subscriber', __webpack_require__(40));
+Vue.component('subscriber', __webpack_require__(54));
 
 var app = new Vue({
   el: '#app'
 });
 
-__webpack_require__(49);
+__webpack_require__(37);
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(12);
+window._ = __webpack_require__(10);
 
 /**
  * FontAwesome 5
  */
+__webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
-__webpack_require__(16);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -1016,7 +799,7 @@ __webpack_require__(16);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(17);
+  window.$ = window.jQuery = __webpack_require__(16);
 } catch (e) {}
 
 /**
@@ -1025,7 +808,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(18);
+window.axios = __webpack_require__(17);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -1059,7 +842,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -18148,10 +17931,37 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(12)(module)))
 
 /***/ }),
-/* 13 */
+/* 11 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -18179,7 +17989,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /*!
@@ -18775,7 +18585,7 @@ module.exports = function(module) {
 }();
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /*!
@@ -18815,7 +18625,7 @@ module.exports = function(module) {
 }();
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /*!
@@ -18855,7 +18665,7 @@ module.exports = function(module) {
 }();
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -29115,22 +28925,22 @@ return jQuery;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(18);
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(3);
-var Axios = __webpack_require__(21);
-var defaults = __webpack_require__(2);
+var bind = __webpack_require__(2);
+var Axios = __webpack_require__(20);
+var defaults = __webpack_require__(1);
 
 /**
  * Create an instance of Axios
@@ -29163,9 +28973,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(6);
 axios.CancelToken = __webpack_require__(35);
-axios.isCancel = __webpack_require__(7);
+axios.isCancel = __webpack_require__(5);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -29180,7 +28990,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /*!
@@ -29207,13 +29017,13 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(1);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(30);
 var dispatchRequest = __webpack_require__(31);
@@ -29293,6 +29103,196 @@ module.exports = Axios;
 
 
 /***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29318,7 +29318,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(6);
+var createError = __webpack_require__(4);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -29753,8 +29753,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
-var isCancel = __webpack_require__(7);
-var defaults = __webpack_require__(2);
+var isCancel = __webpack_require__(5);
+var defaults = __webpack_require__(1);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
 
@@ -29913,7 +29913,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(8);
+var Cancel = __webpack_require__(6);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -30006,6 +30006,1623 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+__webpack_require__(38);
+__webpack_require__(39);
+__webpack_require__(40);
+__webpack_require__(41);
+__webpack_require__(42);
+__webpack_require__(43);
+__webpack_require__(44);
+__webpack_require__(45);
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+let accordions = document.querySelectorAll('.accordions');
+if (accordions) {
+  accordions.forEach(accordion => {
+    let items = accordion.querySelectorAll('.accordion');
+    if (items) {
+      items.forEach(item => {
+        item.querySelector('.toggle').addEventListener('click', e => {
+          e.preventDefault();
+          let currentItem = e.target.parentNode.parentNode;
+          if (!currentItem.classList.contains('is-active')) {
+            let activeItem = accordion.querySelector('.accordion.is-active');
+            if (activeItem) {
+              activeItem.classList.remove('is-active');
+            }
+            currentItem.classList.add('is-active');
+          }
+        });
+      });
+    }
+  });
+}
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+var datepicker_langs = {
+  en: {
+    weekStart: 1,
+    previousMonth: 'Previous Month',
+    nextMonth: 'Next Month',
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  },
+  fr: {
+    weekStart: 1,
+    previousMonth: 'Mois précédent',
+    nextMonth: 'Mois suivant',
+    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    monthsShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Auo', 'Sep', 'Oct', 'Nov', 'Déc'],
+    weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+  },
+  de: {
+    weekStart: 1,
+    previousMonth: 'Vorheriger Monat',
+    nextMonth: 'Nächster Monat',
+    months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    monthsShort: ['Jan', 'Febr', 'März', 'Apr', 'Mai', 'Juni', 'Juli', 'Aug', 'Sept', 'Okt', 'Nov', 'Dez'],
+    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+    weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
+  }
+}
+
+class DatePicker {
+  constructor(selector, options) {
+    if (!options) options = {}
+
+    var defaultOptions = {
+      startDate: new Date(),
+      // the default data format `field` value
+      dataFormat: 'yyyy/mm/dd',
+      // internationalization
+      lang: 'en',
+      overlay: false,
+      closeOnSelect: true,
+      // callback function
+      onSelect: null,
+      onOpen: null,
+      onClose: null,
+      onRender: null
+    };
+
+    this.element = typeof selector === 'string' ? document.querySelector(selector) : selector;
+    // An invalid selector or non-DOM node has been provided.
+    if (!this.element) {
+      throw new Error('An invalid selector or non-DOM node has been provided.');
+    }
+
+    this.parent = this.element.parentElement;
+    this.lang = typeof datepicker_langs[this.lang] !== 'undefined' ? this.lang : 'en';
+
+    this.options = Object.assign({}, defaultOptions, options);
+
+
+    this.month = this.options.startDate.getMonth(),
+    this.year = this.options.startDate.getFullYear(),
+    this.open = false;
+
+    this.build();
+  }
+
+  build() {
+    var _this = this;
+
+    this.datePickerContainer = document.createElement('div');
+    this.datePickerContainer.id = 'datePicker' + ( new Date ).getTime();
+    if (this.options.overlay) {
+      this.datePickerContainer.classList.add('modal');
+    }
+    this.datePickerContainer.classList.add('datepicker');
+
+    this.calendarContainer = document.createElement('div');
+    this.calendarContainer.id = 'datePicker' + ( new Date ).getTime();
+    this.calendarContainer.classList.add('calendar');
+    this.renderCalendar();
+
+    if (this.options.overlay) {
+      var datePickerOverlay = document.createElement('div');
+      datePickerOverlay.classList.add('modal-background');
+      this.datePickerContainer.appendChild(datePickerOverlay);
+    }
+
+    var modalClose = document.createElement('button');
+    modalClose.className = 'modal-close';
+    modalClose.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      _this.datePickerContainer.classList.remove('is-active');
+    })
+
+    this.datePickerContainer.appendChild(this.calendarContainer);
+    this.datePickerContainer.appendChild(modalClose);
+    document.body.appendChild(this.datePickerContainer);
+
+    this.element.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (_this.open) {
+        _this.hide();
+        _this.open = false;
+      } else {
+        _this.show();
+        _this.open = true;
+      }
+    });
+  }
+
+  /**
+   * templating functions to abstract HTML rendering
+   */
+  renderDayName(day, abbr = false) {
+    day += datepicker_langs[this.options.lang].weekStart;
+    while (day >= 7) {
+      day -= 7;
+    }
+
+    return abbr ? datepicker_langs[this.options.lang].weekdaysShort[day] : datepicker_langs[this.options.lang].weekdays[day];
+  }
+
+  renderDay(day, month, year, isSelected, isToday, isDisabled, isEmpty, isBetween, isSelectedIn, isSelectedOut) {
+    var _this = this;
+    var newDayContainer = document.createElement('div');
+    var newDayButton = document.createElement('button');
+
+    newDayButton.classList.add('date-item');
+    newDayButton.innerHTML = day;
+    newDayButton.addEventListener('click', function (e) {
+      if (typeof _this.options.onSelect != 'undefined' &&
+        _this.options.onSelect != null &&
+        _this.options.onSelect) {
+        _this.options.onSelect(new Date(year, month, day));
+      }
+      _this.element.value = _this.getFormatedDate(( new Date(year, month, day) ), _this.options.dataFormat);
+      if (_this.options.closeOnSelect) {
+        _this.hide();
+      }
+    });
+
+    newDayContainer.classList.add('calendar-date');
+    newDayContainer.appendChild(newDayButton);
+
+    if (isDisabled) {
+      newDayContainer.setAttribute('disabled', 'disabled');
+    }
+    if (isToday) {
+      newDayContainer.classList.add('is-today');
+    }
+    if (isSelected) {
+      newDayContainer.classList.add('is-active');
+    }
+    if (isBetween) {
+      newDayContainer.classList.add('calendar-range');
+    }
+    if (isSelectedIn) {
+      newDayContainer.classList.add('range-start');
+    }
+    if (isSelectedOut) {
+      newDayContainer.classList.add('range-end');
+    }
+
+    return newDayContainer;
+  }
+
+  renderNav(year, month) {
+    var _this = this;
+    var calendarNav = document.createElement('div');
+    calendarNav.classList.add('calendar-nav');
+
+    var previousButtonContainer = document.createElement('div');
+    previousButtonContainer.classList.add('calendar-nav-left');
+    this.previousYearButton = document.createElement('div');
+    this.previousYearButton.classList.add('button');
+    this.previousYearButton.classList.add('is-text');
+    var previousButtonIcon = document.createElement('i');
+    previousButtonIcon.classList.add('fa');
+    previousButtonIcon.classList.add('fa-backward');
+    this.previousYearButton.appendChild(previousButtonIcon);
+    this.previousYearButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _this.prevYear();
+    });
+    previousButtonContainer.appendChild(this.previousYearButton);
+
+    this.previousMonthButton = document.createElement('div');
+    this.previousMonthButton.classList.add('button');
+    this.previousMonthButton.classList.add('is-text');
+    var previousMonthButtonIcon = document.createElement('i');
+    previousMonthButtonIcon.classList.add('fa');
+    previousMonthButtonIcon.classList.add('fa-chevron-left');
+    this.previousMonthButton.appendChild(previousMonthButtonIcon);
+    this.previousMonthButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _this.prevMonth();
+    });
+    previousButtonContainer.appendChild(this.previousMonthButton);
+
+
+    var calendarTitle = document.createElement('div');
+    calendarTitle.innerHTML = datepicker_langs[this.options.lang].months[month] + ' ' + year;
+
+    var nextButtonContainer = document.createElement('div');
+    nextButtonContainer.classList.add('calendar-nav-right');
+    this.nextMonthButton = document.createElement('div');
+    this.nextMonthButton.classList.add('button');
+    this.nextMonthButton.classList.add('is-text');
+    var nextMonthButtonIcon = document.createElement('i');
+    nextMonthButtonIcon.classList.add('fa');
+    nextMonthButtonIcon.classList.add('fa-chevron-right');
+    this.nextMonthButton.appendChild(nextMonthButtonIcon);
+    this.nextMonthButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _this.nextMonth();
+    });
+    nextButtonContainer.appendChild(this.nextMonthButton);
+    this.nextYearButton = document.createElement('div');
+    this.nextYearButton.classList.add('button');
+    this.nextYearButton.classList.add('is-text');
+    var nextYearButtonIcon = document.createElement('i');
+    nextYearButtonIcon.classList.add('fa');
+    nextYearButtonIcon.classList.add('fa-forward');
+    this.nextYearButton.appendChild(nextYearButtonIcon);
+    this.nextYearButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _this.nextYear();
+    });
+    nextButtonContainer.appendChild(this.nextYearButton);
+
+    calendarNav.appendChild(previousButtonContainer);
+    calendarNav.appendChild(calendarTitle);
+    calendarNav.appendChild(nextButtonContainer);
+
+    return calendarNav;
+  }
+
+  renderHeader() {
+    var calendarHeader = document.createElement('div');
+    calendarHeader.classList.add('calendar-header');
+
+    for (var i = 0; i < 7; i++) {
+      var newDay = document.createElement('div');
+      newDay.classList.add('calendar-date');
+      newDay.innerHTML = this.renderDayName(i, true);
+      calendarHeader.appendChild(newDay);
+    }
+
+    return calendarHeader;
+  }
+
+  renderBody() {
+    var calendarBody = document.createElement('div');
+    calendarBody.classList.add('calendar-body');
+
+    return calendarBody;
+  }
+
+  renderCalendar() {
+    var now = new Date();
+
+    var calendarNav = this.renderNav(this.year, this.month);
+    var calendarHeader = this.renderHeader();
+    var calendarBody = this.renderBody();
+
+    this.calendarContainer.appendChild(calendarNav);
+    this.calendarContainer.appendChild(calendarHeader);
+    this.calendarContainer.appendChild(calendarBody);
+
+    var days = this.getDaysInMonth(this.year, this.month),
+      before = new Date(this.year, this.month, 1).getDay();
+
+    if (typeof this.options.onRender != 'undefined' &&
+      this.options.onRender != null &&
+      this.options.onRender) {
+      this.options.onRender(this);
+    }
+
+    if (datepicker_langs[this.options.lang].weekStart > 0) {
+      before -= datepicker_langs[this.options.lang].weekStart;
+      if (before < 0) {
+        before += 7;
+      }
+    }
+
+    var cells = days + before,
+      after = cells;
+    while (after > 7) {
+      after -= 7;
+    }
+
+    cells += 7 - after;
+    for (var i = 0; i < cells; i++) {
+      var day = new Date(this.year, this.month, 1 + ( i - before )),
+        isBetween = false,
+        isSelected = false,
+        isSelectedIn = false,
+        isSelectedOut = false,
+        isToday = this.compareDates(day, now),
+        isEmpty = i < before || i >= ( days + before ),
+        isDisabled = false;
+
+      if (!isSelected) {
+        isSelectedIn = false;
+        isSelectedOut = false;
+      }
+
+      if (day.getMonth() !== this.month) {
+        isDisabled = true;
+      }
+
+      calendarBody.append(this.renderDay(day.getDate(), this.month, this.year, isSelected, isToday, isDisabled, isEmpty, isBetween, isSelectedIn, isSelectedOut));
+    }
+  }
+
+  prevMonth() {
+    this.month -= 1;
+    this.adjustCalendar();
+    this.renderCalendar();
+  }
+
+  nextMonth() {
+    this.month += 1;
+    this.adjustCalendar();
+    this.renderCalendar();
+  }
+
+  prevYear() {
+    this.year -= 1;
+    this.adjustCalendar();
+    this.renderCalendar();
+  }
+
+  nextYear() {
+    this.year += 1;
+    this.adjustCalendar();
+    this.renderCalendar();
+  }
+
+  show() {
+    if (typeof this.options.onOpen != 'undefined' &&
+      this.options.onOpen != null &&
+      this.options.onOpen) {
+      this.options.onOpen(this);
+    }
+    this.datePickerContainer.classList.add('is-active');
+    if (!this.options.overlay) {
+      this.adjustPosition();
+    }
+    this.open = true;
+  }
+
+  hide() {
+    this.open = false;
+    if (typeof this.options.onClose != 'undefined' &&
+      this.options.onClose != null &&
+      this.options.onClose) {
+      this.options.onClose(this);
+    }
+    this.datePickerContainer.classList.remove('is-active');
+  }
+
+  adjustCalendar() {
+    if (this.month < 0) {
+      this.year -= Math.ceil(Math.abs(this.month) / 12);
+      this.month += 12;
+    }
+    if (this.month > 11) {
+      this.year += Math.floor(Math.abs(this.month) / 12);
+      this.month -= 12;
+    }
+    this.calendarContainer.innerHTML = '';
+    return this;
+  }
+
+  adjustPosition() {
+    var width = this.calendarContainer.offsetWidth,
+      height = this.calendarContainer.offsetHeight,
+      viewportWidth = window.innerWidth || document.documentElement.clientWidth,
+      viewportHeight = window.innerHeight || document.documentElement.clientHeight,
+      scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+      left, top, clientRect;
+
+    if (typeof this.element.getBoundingClientRect === 'function') {
+      clientRect = this.element.getBoundingClientRect();
+      left = clientRect.left + window.pageXOffset;
+      top = clientRect.bottom + window.pageYOffset;
+    } else {
+      left = this.element.offsetLeft;
+      top = this.element.offsetTop + this.element.offsetHeight;
+      while (( this.element = this.element.offsetParent )) {
+        left += this.element.offsetLeft;
+        top += this.element.offsetTop;
+      }
+    }
+
+    this.calendarContainer.style.position = 'absolute';
+    this.calendarContainer.style.left = left + 'px';
+    this.calendarContainer.style.top = top + 'px';
+  }
+
+  destroy() {
+    this.calendarContainer.remove();
+  }
+
+  /**
+   * Returns date according to passed format
+   *
+   * @param {Date}   dt     Date object
+   * @param {String} format Format string
+   *      d    - day of month
+   *      dd   - 2-digits day of month
+   *      D    - day of week
+   *      m    - month number
+   *      mm   - 2-digits month number
+   *      M    - short month name
+   *      MM   - full month name
+   *      yy   - 2-digits year number
+   *      yyyy - 4-digits year number
+   */
+  getFormatedDate(dt, format) {
+    var items = {
+      d: dt.getDate(),
+      dd: dt.getDate(),
+      D: dt.getDay(),
+      m: dt.getMonth() + 1,
+      mm: dt.getMonth() + 1,
+      M: dt.getMonth(),
+      MM: dt.getMonth(),
+      yy: dt.getFullYear().toString().substr(-2),
+      yyyy: dt.getFullYear()
+    };
+
+    items.dd < 10 && ( items.dd = '0' + items.dd );
+    items.mm < 10 && ( items.mm = '0' + items.mm );
+    items.D = datepicker_langs[this.options.lang].weekdays[items.D ? items.D - 1 : 6];
+    items.M = datepicker_langs[this.options.lang].monthsShort[items.M];
+    items.MM = datepicker_langs[this.options.lang].months[items.MM];
+
+    return format.replace(/(?:[dmM]{1,2}|D|yyyy|yy)/g, function (m) {
+      return typeof items[m] !== 'undefined' ? items[m] : m;
+    });
+  }
+
+  /**
+   * Returns true if date picker is visible now
+   *
+   * @returns {Boolean}
+   */
+  isActive() {
+    return this.calendarContainer.classList.contains('is-active');
+  }
+
+  isDate(obj) {
+    return ( /Date/ ).test(Object.prototype.toString.call(obj)) && !isNaN(obj.getTime());
+  }
+
+  isLeapYear(year) {
+    // solution by Matti Virkkunen: http://stackoverflow.com/a/4881951
+    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+  }
+
+  getDaysInMonth(year, month) {
+    return [31, this.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+  }
+
+  compareDates(a, b) {
+    // weak date comparison (use setToStartOfDay(date) to ensure correct result)
+    return a.getTime() === b.getTime();
+  }
+}
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+class Carousel {
+  constructor(element) {
+    this.element = element;
+
+    this.init();
+  }
+
+  init() {
+    this.carouselContent = this.element.querySelector('.carousel-content');
+    this.items = this.carouselContent.querySelectorAll('.carousel-item');
+
+    this.element.querySelector('.carousel-nav-left').addEventListener('click', (e) => {
+      this.prevSlide();
+    }, false);
+    this.element.querySelector('.carousel-nav-right').addEventListener('click', (e) => {
+      this.nextSlide();
+    }, false);
+
+    this.setOrder();
+  }
+
+  setOrder(direction){
+    // initialize direction to change order
+    if (direction === 'previous') {
+      direction = 1;
+    } else if (direction === 'next') {
+      direction = -1;
+    }
+
+    let nbItems = this.items.length;
+    if (nbItems) {
+      this.items.forEach((item, index) => {
+        let newValue;
+        if (item.style.order) {
+          newValue = (parseInt(item.style.order, 10) + direction) % nbItems;
+        } else {
+          newValue = ((index + 2) % nbItems);
+        }
+        if (!newValue || newValue !== 2) {
+          item.style['z-index'] = '0';
+          item.classList.remove('is-active');
+        } else {
+          item.style['z-index'] = '1';
+          item.classList.add('is-active');
+        }
+        item.style.order = newValue ? newValue : nbItems;
+      });
+    }
+  }
+
+  prevSlide(evt) {
+    // add reverse
+    this.carouselContent.classList.add('carousel-reverse');
+    // Disable transition to instant change order
+    this.carouselContent.classList.toggle('carousel-animate');
+    // Change order of element
+    // Current order 2 visible become order 1
+    this.setOrder('previous');
+
+    // Enable transition to animate order 1 to order 2
+    setTimeout(() => {
+      this.carouselContent.classList.toggle('carousel-animate');
+    }, 50);
+  }
+
+  nextSlide(evt) {
+    // remove reverse
+    this.carouselContent.classList.remove('carousel-reverse');
+
+    // Disable transition to instant change order
+    this.carouselContent.classList.toggle('carousel-animate');
+    // Change order of element
+    // Current order 2 visible become order 3
+    this.setOrder('next');
+    // Enable transition to animate order 3 to order 2
+    setTimeout(() => {
+      this.carouselContent.classList.toggle('carousel-animate');
+    }, 50);
+  };
+}
+
+window.onload = function() {
+  let carousels = document.querySelectorAll('.carousel, .hero-carousel');
+  if (carousels) {
+    carousels.forEach(element => {
+      new Carousel(element);
+    })
+  }
+};
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+let fetchStyle = function(url) {
+  return new Promise((resolve, reject) => {
+    let link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.onload = function() { resolve(); };
+    link.href = url;
+
+    if (!document.querySelector('link[href="' + url + '"]')) {
+      let headScript = document.querySelector('head');
+      headScript.append(link);
+    }
+  });
+};
+
+class IconPicker {
+  constructor(element, options = {}) {
+    const defaultOptions = {
+      iconSets: [ {
+        name: 'simpleLine', // Name displayed on tab
+        css: 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css', // CSS url containing icons rules
+        prefix: 'icon-', // CSS rules prefix to identify icons
+        displayPrefix: ''
+      },{
+        name: 'fontAwesome', // Name displayed on tab
+        css: 'https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css', // CSS url containing icons rules
+        prefix: 'fa-', // CSS rules prefix to identify icons
+        displayPrefix: 'fa fa-icon'
+      } ]
+    };
+
+
+    this.element = element;
+    this.options = Object.assign({}, defaultOptions, options);
+    this.icons = [];
+    this.id = 'iconPicker' + ( new Date ).getTime();
+    this.init();
+  }
+
+  init() {
+    this.createModal();
+    this.createPreview();
+
+    this.options.iconSets.forEach( iconSet => {
+      fetchStyle(iconSet.css);
+      // Parse CSS file to get array of all available icons
+      fetch(iconSet.css, {mode: 'cors'})
+        .then(res => {
+          return res.text();
+        })
+        .then(css => {
+          this.icons[iconSet.name] = this.parseCSS(css, iconSet.prefix || 'fa-', iconSet.displayPrefix || '');
+          this.modalSetTabs.querySelector('a').click();
+        })
+        ;
+    } );
+  }
+
+  createPreview() {
+    this.preview = document.createElement('div');
+    this.preview.className = 'icon is-large';
+    this.preview.classList.add('iconpicker-preview');
+    let iconPreview = document.createElement('i');
+    iconPreview.className = 'iconpicker-icon-preview';
+    if (this.element.value.length) {
+      let classes = this.element.value.split(' ');
+      classes.forEach( cls => {
+        iconPreview.classList.add( cls );
+      });
+    }
+    this.preview.appendChild(iconPreview);
+
+    this.preview.addEventListener('click', e => {
+      e.preventDefault();
+
+      this.modal.classList.add('is-active');
+    });
+
+    this.element.parentNode.insertBefore(this.preview, this.element.nextSibling);
+  }
+
+  parseCSS( css, prefix = 'fa-', displayPrefix = '' ) {
+    const iconPattern = new RegExp('\\.' + prefix + '([^\\.!:]*)::?before\\s*{\\s*content:\\s*["|\']\\\\[^\'|"]*["|\'];?\\s*}', 'g');
+    const index = 1;
+    let icons = [], icon, match;
+
+    while ( match = iconPattern.exec(css)) {
+      icon = {
+        prefix: prefix,
+        selector: prefix + match[index].trim(':'),
+        name: this.ucwords(match[index]).trim(':'),
+        filter: match[index].trim(':'),
+        displayPrefix: displayPrefix
+      }
+      icons[match[index]] = icon;
+    }
+
+    if (Object.getOwnPropertyNames(this.icons).length == 0) {
+      console.warn( "No icons found in CSS file" );
+    }
+    return icons;
+  }
+
+  ucwords (str) {
+    return (str + '').replace(/^(.)|\s+(.)/g, function ($1) {
+      return $1.toUpperCase();
+    });
+  }
+
+  drawIcons(iconSet) {
+    this.iconsList.innerHTML = '';
+
+    if (iconSet) {
+      for (let [iconName, icon] of Object.entries(iconSet)) {
+        this.iconsList.appendChild(this.createIconPreview(icon));
+      }
+    }
+  }
+
+  createIconPreview(icon, prefix = 'fa-') {
+    let iconLink = document.createElement('a');
+    iconLink.dataset.title = icon['name'];
+    iconLink.setAttribute('title', icon['name']);
+    iconLink.dataset.icon = icon['selector'];
+    iconLink.dataset.filter = icon['filter'];
+    let iconPreview = document.createElement('i');
+    iconPreview.className = 'iconpicker-icon-preview';
+    if (icon['displayPrefix'].length) {
+      prefix = icon['displayPrefix'].split(' ');
+      prefix.forEach( pfx => {
+        iconPreview.classList.add( pfx );
+      });
+    }
+    iconPreview.classList.add( icon['selector'] );
+    iconLink.appendChild(iconPreview);
+    iconLink.addEventListener('click', e => {
+      e.preventDefault();
+      this.preview.innerHTML = '';
+      this.element.value = e.target.classList;
+      this.preview.appendChild(e.target.cloneNode(true));
+      this.modal.classList.remove('is-active');
+    })
+    return iconLink;
+  }
+
+  createModal() {
+    this.modal = document.createElement('div');
+    this.modal.className = 'modal';
+    this.modal.classList.add( 'iconpicker-modal' );
+    this.modal.id = this.id;
+    let modalBackground = document.createElement('div');
+    modalBackground.className = 'modal-background';
+    let modalCard = document.createElement('div');
+    modalCard.className = 'modal-card';
+
+    let modalHeader = document.createElement('header');
+    modalHeader.className = 'modal-card-head';
+    let modalHeaderTitle = document.createElement('p');
+    modalHeaderTitle.className = 'modal-card-title';
+    modalHeaderTitle.innerHTML = 'iconPicker';
+    this.modalHeaderSearch = document.createElement('input');
+    this.modalHeaderSearch.setAttribute('type', 'search');
+    this.modalHeaderSearch.setAttribute('placeholder', 'Search');
+    this.modalHeaderSearch.className = 'iconpicker-search';
+    this.modalHeaderSearch.addEventListener('input', e => {
+      this.filter(e.target.value);
+    });
+    let modalHeaderClose = document.createElement('button');
+    modalHeaderClose.className = 'delete';
+    modalHeaderClose.addEventListener('click', e => {
+      e.preventDefault();
+
+      this.modal.classList.remove('is-active');
+    });
+
+    modalCard.appendChild(modalHeader);
+
+    this.modalBody = document.createElement('section');
+    this.modalBody.className = 'modal-card-body';
+
+    if (this.options.iconSets.length >= 1) {
+      let modalSets = document.createElement('div');
+      modalSets.className = 'iconpicker-sets';
+      modalSets.classList.add('tabs');
+      this.modalSetTabs = document.createElement('ul');
+      this.options.iconSets.forEach(iconSet => {
+        let modalSetTab = document.createElement('li');
+        let modalSetTabLink = document.createElement('a');
+        modalSetTabLink.dataset.iconset = iconSet.name;
+        modalSetTabLink.innerHTML = iconSet.name;
+        modalSetTabLink.addEventListener('click', e => {
+          e.preventDefault();
+
+          this.modalSetTabs.querySelectorAll('.is-active').forEach( el => {
+            el.classList.remove('is-active');
+          });
+
+          e.target.parentNode.classList.add('is-active');
+          this.drawIcons(this.icons[e.target.dataset.iconset]);
+          this.filter(this.modalHeaderSearch.value);
+        })
+        modalSetTab.appendChild(modalSetTabLink);
+        this.modalSetTabs.appendChild(modalSetTab);
+      });
+      modalSets.appendChild(this.modalSetTabs);
+      modalCard.appendChild(modalSets);
+    }
+
+    this.iconsList = document.createElement('div');
+    this.iconsList.className = 'iconpicker-icons';
+
+    modalHeader.appendChild(modalHeaderTitle);
+    modalHeader.appendChild(this.modalHeaderSearch);
+    modalHeader.appendChild(modalHeaderClose);
+
+    this.modalBody.appendChild(this.iconsList);
+    modalCard.appendChild(this.modalBody);
+
+    this.modal.appendChild(modalBackground);
+    this.modal.appendChild(modalCard);
+    document.body.appendChild(this.modal);
+  }
+
+  filter(value = '') {
+    if (value === '') {
+      this.iconsList.querySelectorAll('[data-filter]').forEach( el => {
+        el.classList.remove('is-hidden');
+      });
+      return;
+    }
+    this.iconsList.querySelectorAll('[data-filter]').forEach( el => {
+      el.classList.remove('is-hidden');
+    });
+    this.iconsList.querySelectorAll('[data-filter]:not([data-filter*="' + value + '"])').forEach( el => {
+      el.classList.add('is-hidden');
+    });
+  }
+}
+
+if (typeof iconPickerOptions === undefined || iconPickerOptions === null) {
+  let iconPickerOptions =  {};
+}
+console.log(iconPickerOptions);
+let iconPickers = document.querySelectorAll('[data-action="iconPicker"]');
+if (iconPickers) {
+  iconPickers.forEach(element => {
+    if (!element.dataset.iconPicker) {
+      element.dataset.iconPicker = new IconPicker(element, iconPickerOptions || {});
+    }
+  })
+}
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+function closest(el, selector) {
+  var matchesFn;
+
+  // find vendor prefix
+  [ 'matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector' ].some( function( fn ) {
+    if ( typeof document.body[ fn ] == 'function' ) {
+      matchesFn = fn;
+      return true;
+    }
+    return false;
+  } );
+
+  var parent;
+
+  // traverse parents
+  while ( el ) {
+      parent = el.parentElement;
+      if ( parent && parent[ matchesFn ]( selector ) ) {
+        return parent;
+      }
+      el = parent;
+  }
+
+  return null;
+}
+
+document.addEventListener( 'DOMContentLoaded', function () {
+  // Get all document sliders
+  var showQuickview = document.querySelectorAll( '[data-show="quickview"]' );
+  [].forEach.call( showQuickview, function ( show ) {
+    var quickview = document.getElementById( show.dataset[ 'target' ] );
+    if ( quickview ) {
+      // Add event listener to update output when slider value change
+      show.addEventListener( 'click', function( event ) {
+        quickview.classList.add( 'is-active' );
+      } );
+    }
+  } );
+
+  // Get all document sliders
+  var dismissQuickView = document.querySelectorAll( '[data-dismiss="quickview"]' );
+  [].forEach.call( dismissQuickView, function ( dismiss ) {
+    var quickview = closest( dismiss, '.quickview' );
+    if ( quickview ) {
+      // Add event listener to update output when slider value change
+      dismiss.addEventListener( 'click', function( event ) {
+        quickview.classList.remove( 'is-active' );
+      } );
+    }
+  } );
+} );
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+// Find output DOM associated to the DOM element passed as parameter
+function findOutputForSlider( element ) {
+   var idVal = element.id;
+   outputs = document.getElementsByTagName( 'output' );
+   for( var i = 0; i < outputs.length; i++ ) {
+     if ( outputs[ i ].htmlFor == idVal )
+       return outputs[ i ];
+   }
+}
+
+function getSliderOutputPosition( slider ) {
+  // Update output position
+  var newPlace,
+      minValue;
+
+  var style = window.getComputedStyle( slider, null );
+  // Measure width of range input
+  sliderWidth = parseInt( style.getPropertyValue( 'width' ), 10 );
+
+  // Figure out placement percentage between left and right of input
+  if ( !slider.getAttribute( 'min' ) ) {
+    minValue = 0;
+  } else {
+    minValue = slider.getAttribute( 'min' );
+  }
+  var newPoint = ( slider.value - minValue ) / ( slider.getAttribute( 'max' ) - minValue );
+
+  // Prevent bubble from going beyond left or right (unsupported browsers)
+  if ( newPoint < 0 ) {
+    newPlace = 0;
+  } else if ( newPoint > 1 ) {
+    newPlace = sliderWidth;
+  } else {
+    newPlace = sliderWidth * newPoint;
+  }
+
+  return {
+    'position': newPlace + 'px'
+  }
+}
+
+document.addEventListener( 'DOMContentLoaded', function () {
+  // Get all document sliders
+  var sliders = document.querySelectorAll( 'input[type="range"].slider' );
+  [].forEach.call( sliders, function ( slider ) {
+    var output = findOutputForSlider( slider );
+    if ( output ) {
+      if ( slider.classList.contains( 'has-output-tooltip' ) ) {
+        // Get new output position
+        var newPosition = getSliderOutputPosition( slider );
+
+        // Set output position
+        output.style[ 'left' ] = newPosition.position;
+      }
+
+      // Add event listener to update output when slider value change
+      slider.addEventListener( 'input', function( event ) {
+        if ( event.target.classList.contains( 'has-output-tooltip' ) ) {
+          // Get new output position
+          var newPosition = getSliderOutputPosition( event.target );
+
+          // Set output position
+          output.style[ 'left' ] = newPosition.position;
+        }
+
+        // Update output with slider value
+        output.value = event.target.value;
+      } );
+    }
+  } );
+} );
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+class StepsWizard {
+  constructor( element = null, options = {} ) {
+    this.options = Object.assign( {}, {
+      'selector': '.step-item',
+      'selector_content': '.step-content',
+      'previous_selector': '[data-nav="previous"]',
+      'next_selector': '[data-nav="next"]',
+      'active_class': 'is-active',
+      'completed_class': 'is-completed',
+      'beforeNext': null,
+      'onShow': null,
+      'onFinish': null,
+      'onError': null
+    }, options );
+
+    this.element = element;
+    this.steps = element.querySelectorAll( this.options.selector );
+    this.contents = element.querySelectorAll( this.options.selector_content );
+    this.previous_btn = element.querySelector( this.options.previous_selector );
+    this.next_btn = element.querySelector( this.options.next_selector );
+
+    this.init();
+  }
+
+  init() {
+    for ( var i = 0; i < this.steps.length; i++ ) {
+      var step = this.steps[ i ];
+
+      step.setAttribute( 'data-step-id', i );
+    }
+
+    this.bind();
+
+    this.start();
+  }
+
+  bind() {
+    var _this = this;
+
+    if ( this.previous_btn != null ) {
+      this.previous_btn.addEventListener( 'click', function( e ) {
+        _this.previous_step();
+      } );
+    }
+
+    if ( this.next_btn != null ) {
+      this.next_btn.addEventListener( 'click', function( e ) {
+        _this.next_step();
+      } );
+    }
+  }
+
+  start() {
+    this.activate_step( 0 );
+    this.updateActions( this.steps[ 0 ] );
+  }
+
+  get_current_step_id() {
+    for ( var i = 0; i < this.steps.length; i++ ) {
+      var step = this.steps[ i ];
+
+      if ( step.classList.contains( this.options.active_class ) ) {
+        return parseInt( step.getAttribute( 'data-step-id' ) );
+      }
+    }
+
+    return null;
+  }
+
+  updateActions( step ) {
+    var stepId = parseInt( step.getAttribute( 'data-step-id' ) );
+    if ( stepId == 0 ) {
+      if ( this.previous_btn != null ) {
+        this.previous_btn.setAttribute( 'disabled', 'disabled' );
+      }
+      if ( this.next_btn != null ) {
+        this.next_btn.removeAttribute( 'disabled', 'disabled' );
+      }
+    } else if ( stepId == ( this.steps.length - 1 ) ) {
+      if ( this.previous_btn != null ) {
+        this.previous_btn.removeAttribute( 'disabled', 'disabled' );
+      }
+      if ( this.next_btn != null ) {
+        this.next_btn.setAttribute( 'disabled', 'disabled' );
+      }
+    } else {
+      if ( this.previous_btn != null ) {
+        this.previous_btn.removeAttribute( 'disabled', 'disabled' );
+      }
+      if ( this.next_btn != null ) {
+        this.next_btn.removeAttribute( 'disabled', 'disabled' );
+      }
+    }
+  }
+
+  next_step() {
+    var current_id = this.get_current_step_id();
+
+    if ( current_id == null ) {
+      return;
+    }
+
+    var next_id = current_id + 1,
+        errors = [];
+
+    if ( typeof this.options.beforeNext != 'undefined' &&
+        this.options.beforeNext != null &&
+        this.options.beforeNext ) {
+      errors = this.options.beforeNext( current_id );
+    }
+
+    if ( typeof errors == 'undefined' ) {
+      errors = [];
+    }
+
+    if ( errors.length > 0 ) {
+      for ( var i = 0; i < errors.length; i++ ) {
+        if ( typeof this.options.onError != 'undefined' &&
+            this.options.onError != null &&
+            this.options.onError ) {
+          this.options.onError( errors[ i ] );
+        }
+      }
+
+      return;
+    }
+
+    if ( next_id >= this.steps.length ) {
+      if ( typeof this.options.onFinish != 'undefined' &&
+          this.options.onFinish != null &&
+          this.options.onFinish ) {
+        this.options.onFinish( current_id );
+      }
+      this.deactivate_step( current_id );
+    } else {
+      this.complete_step( current_id );
+      this.activate_step( next_id );
+    }
+  }
+
+  previous_step() {
+    var current_id = this.get_current_step_id();
+    if ( current_id == null ) {
+      return;
+    }
+
+    this.uncomplete_step( current_id - 1 );
+    this.activate_step( current_id - 1 );
+  }
+
+  /**
+   * Activate a single step,
+   * will deactivate all other steps.
+   */
+  activate_step( step_id ) {
+    this.updateActions( this.steps[ step_id ] );
+
+    for ( var i = 0; i < this.steps.length; i++ ) {
+      var _step = this.steps[ i ];
+
+      if ( _step == this.steps[ step_id ] ) {
+        continue;
+      }
+
+      this.deactivate_step( i );
+    }
+
+    this.steps[ step_id ].classList.add( this.options.active_class );
+    if ( typeof this.contents[ step_id ] !== 'undefined' ) {
+      this.contents[ step_id ].classList.add( this.options.active_class );
+    }
+
+    if ( typeof this.options.onShow != 'undefined' &&
+        this.options.onShow != null &&
+        this.options.onShow ) {
+      this.options.onShow( step_id );
+    }
+  }
+
+  complete_step( step_id ) {
+    this.steps[ step_id ].classList.add( this.options.completed_class );
+  }
+
+  uncomplete_step( step_id ) {
+    this.steps[ step_id ].classList.remove( this.options.completed_class );
+  }
+
+  deactivate_step( step_id ) {
+    this.steps[ step_id ].classList.remove( this.options.active_class );
+    if ( typeof this.contents[ step_id ] !== 'undefined' ) {
+      this.contents[ step_id ].classList.remove( this.options.active_class );
+    }
+  }
+}
+
+document.addEventListener( 'DOMContentLoaded', function () {
+  var stepsWizard = new StepsWizard( document.getElementById( 'stepsDemo' ) );
+} );
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+class Tagify {
+  constructor(element, options = {}) {
+    let defaultOptions = {
+      disabled: false,
+      delimiter: ',',
+      allowDelete: true,
+      lowercase: false,
+      uppercase: false,
+      duplicates: true
+    }
+    this.element = element;
+    this.options = Object.assign({}, defaultOptions, options);
+
+    this.init();
+  }
+
+  init() {
+    if (!this.options.disabled) {
+      this.tags = [];
+      this.container = document.createElement('div');
+      this.container.className = 'tagsinput';
+      this.container.classList.add('field');
+      this.container.classList.add('is-grouped');
+      this.container.classList.add('is-grouped-multiline');
+      this.container.classList.add('input');
+
+      let inputType = this.element.getAttribute('type');
+    	if (!inputType || inputType === 'tags') {
+    		inputType = 'text';
+      }
+      this.input = document.createElement('input');
+      this.input.setAttribute('type', inputType);
+      this.container.appendChild(this.input);
+
+      let sib = this.element.nextSibling;
+      this.element.parentNode[sib ? 'insertBefore':'appendChild'](this.container, sib);
+      this.element.style.cssText = 'position:absolute;left:0;top:0;width:1px;height:1px;opacity:0.01;';
+      this.element.tabIndex = -1;
+
+      this.enable();
+    }
+  }
+
+  enable() {
+    if (!this.enabled && !this.options.disabled) {
+
+      this.element.addEventListener('focus', () => {
+        this.container.classList.add('focus');
+        this.select();
+      });
+
+      this.input.addEventListener('focus', () => {
+    		this.container.classList.add('focus');
+    		this.select();
+      });
+      this.input.addEventListener('blur', () => {
+    		this.container.classList.remove('focus');
+    		this.select();
+    		this.savePartial();
+      });
+      this.input.addEventListener('keydown', (e) => {
+        let key = e.keyCode || e.which,
+          selectedTag,
+          activeTag = this.container.querySelector('.is-active'),
+          last = (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).pop(),
+          atStart = this.caretAtStart(e);
+
+        if (activeTag) {
+          selectedTag = this.container.querySelector('[data-tag="' + activeTag.innerHTML + '"]');
+        }
+        this.setInputWidth();
+
+        if (key === 13 || key === this.options.delimiter.charCodeAt(0) || key === 9) {
+          if (!this.input.value && key !== this.options.delimiter.charCodeAt(0)) {
+            return;
+          }
+          this.savePartial();
+        } else if (key === 46 && selectedTag) {
+    			if (selectedTag.nextSibling !== this.input) {
+            this.select(selectedTag.nextSibling);
+          }
+    			this.container.removeChild(selectedTag);
+          delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
+    			this.setInputWidth();
+    			this.save();
+        } else if (key === 8) {
+          if (selectedTag) {
+    				this.select(selectedTag.previousSibling);
+    				this.container.removeChild(selectedTag);
+            delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
+    				this.setInputWidth();
+    				this.save();
+    			}
+    			else if (last && atStart) {
+    				this.select(last);
+    			}
+    			else {
+    				return;
+          }
+        } else if (key === 37) {
+    			if (selectedTag) {
+    				if (selectedTag.previousSibling) {
+    					select(selectedTag.previousSibling);
+    				}
+    			} else if (!atStart) {
+    				return;
+    			} else {
+    				this.select(last);
+    			}
+    		}
+    		else if (key === 39) {
+    			if (!selectedTag) {
+            return;
+          }
+    			this.select(selectedTag.nextSibling);
+    		}
+    		else {
+    			return this.select();
+        }
+
+        e.preventDefault();
+        return false;
+      });
+      this.input.addEventListener('input', () => {
+        this.element.value = this.getValue();
+        this.element.dispatchEvent(new Event('input'));
+      });
+      this.input.addEventListener('paste', () => setTimeout(savePartial, 0));
+
+      this.container.addEventListener('mousedown', (e) => { this.refocus(e); });
+      this.container.addEventListener('touchstart', (e) => { this.refocus(e); });
+
+      this.savePartial(this.element.value);
+
+      this.enabled = true;
+    }
+  }
+
+  disable() {
+    if (this.enabled && !this.options.disabled) {
+      this.reset();
+
+      this.enabled = false;
+    }
+  }
+
+  select(el) {
+		let sel = this.container.querySelector('.is-active');
+		if (sel) {
+      sel.classList.remove('is-active');
+    }
+		if (el) {
+      el.classList.add('is-active');
+    }
+  }
+
+  addTag(text) {
+    if (~text.indexOf(this.options.delimiter)) {
+      text = text.split(this.options.delimiter);
+    }
+    if (Array.isArray(text)) {
+      return text.forEach((text) => {
+        this.addTag(text)
+      });
+    }
+
+    let tag = text && text.trim();
+    if (!tag) {
+      return false;
+    }
+
+    if (this.element.getAttribute('lowercase') || this.options['lowercase'] == 'true') {
+      tag = tag.toLowerCase();
+    }
+    if (this.element.getAttribute('uppercase') || this.options['uppercase'] == 'true') {
+      tag = tag.toUpperCase();
+    }
+    if (this.element.getAttribute('duplicates') == 'true' || this.options['duplicates'] || this.tags.indexOf(tag) === -1) {
+      this.tags.push(tag);
+
+      let newTagWrapper = document.createElement('div');
+      newTagWrapper.className = 'control';
+      newTagWrapper.setAttribute('data-tag', tag);
+
+      let newTag = document.createElement('div');
+      newTag.className = 'tags';
+      newTag.classList.add('has-addons');
+
+      let newTagContent = document.createElement('span');
+      newTagContent.className = 'tag';
+      newTagContent.innerHTML = tag;
+
+      newTag.appendChild(newTagContent);
+      if (this.options.allowDelete) {
+        let newTagDeleteButton = document.createElement('a');
+        newTagDeleteButton.className = 'tag';
+        newTagDeleteButton.classList.add('is-delete');
+        newTagDeleteButton.addEventListener('click', (e) => {
+          let selectedTag,
+            activeTag = e.target.parentNode,
+            last = (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).pop(),
+            atStart = this.caretAtStart(e);
+
+          if (activeTag) {
+            selectedTag = this.container.querySelector('[data-tag="' + activeTag.innerText + '"]');
+          }
+
+          if (selectedTag) {
+    				this.select(selectedTag.previousSibling);
+    				this.container.removeChild(selectedTag);
+            delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
+    				this.setInputWidth();
+    				this.save();
+    			}
+    			else if (last && atStart) {
+    				this.select(last);
+    			}
+    			else {
+    				return;
+          }
+        });
+        newTag.appendChild(newTagDeleteButton);
+      }
+      newTagWrapper.appendChild(newTag);
+
+      this.container.insertBefore( newTagWrapper, this.input);
+    }
+  }
+
+  getValue() {
+    return this.tags.join(this.options.delimiter);
+  }
+
+  setValue(value) {
+    (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).forEach((tag) => {
+      delete this.tags[this.tags.indexOf(tag.innerHTML)];
+      this.container.removeChild(tag);
+    });
+    this.savePartial(value);
+  }
+
+  setInputWidth() {
+    let last = (Array.prototype.slice.call(this.container.querySelectorAll('.control'))).pop();
+
+    if (!this.container.offsetWidth) {
+      return;
+    }
+    this.input.style.width = Math.max(this.container.offsetWidth - (last ? (last.offsetLeft + last.offsetWidth) : 30) - 30, this.container.offsetWidth / 4) + 'px';
+  }
+
+  savePartial(value) {
+    if (typeof value !== 'string' && !Array.isArray(value)) {
+      value = this.input.value;
+    }
+    if (this.addTag(value) !== false) {
+			this.input.value = '';
+			this.save();
+			this.setInputWidth();
+    }
+  }
+
+  save() {
+    this.element.value = this.tags.join(this.options.delimiter);
+    this.element.dispatchEvent(new Event('change'));
+  }
+
+  caretAtStart(el) {
+		try {
+			return el.selectionStart === 0 && el.selectionEnd === 0;
+		}
+		catch(e) {
+			return el.value === '';
+		}
+  }
+
+  refocus(e) {
+		if (e.target.classList.contains('tag')) {
+      this.select(e.target);
+    }
+		if (e.target === this.input) {
+      return this.select();
+    }
+		this.input.focus();
+		e.preventDefault();
+		return false;
+  }
+
+  reset() {
+    this.tags = [];
+  }
+
+  destroy() {
+    this.disable();
+    this.reset();
+    this.element = null;
+  }
+}
+
+let tagInputs = document.querySelectorAll('input[type="tags"]');
+if (tagInputs) {
+  tagInputs.forEach(element => {
+    new Tagify(element);
+  })
+}
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40729,10 +42346,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(52).setImmediate))
 
 /***/ }),
-/* 38 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -40785,13 +42402,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(39);
+__webpack_require__(53);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 39 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -40981,22 +42598,22 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(21)))
 
 /***/ }),
-/* 40 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(41)
+  __webpack_require__(55)
 }
-var normalizeComponent = __webpack_require__(46)
+var normalizeComponent = __webpack_require__(59)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(60)
 /* template */
-var __vue_template__ = __webpack_require__(48)
+var __vue_template__ = __webpack_require__(61)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -41036,17 +42653,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(42);
+var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(44)("b57ce5de", content, false);
+var update = __webpack_require__(57)("b57ce5de", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -41062,10 +42679,10 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)(undefined);
+exports = module.exports = __webpack_require__(48)(undefined);
 // imports
 
 
@@ -41076,89 +42693,7 @@ exports.push([module.i, "\n\n", ""]);
 
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 44 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -41177,7 +42712,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(45)
+var listToStyles = __webpack_require__(58)
 
 /*
 type StyleObject = {
@@ -41379,7 +42914,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 45 */
+/* 58 */
 /***/ (function(module, exports) {
 
 /**
@@ -41412,7 +42947,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 46 */
+/* 59 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -41521,7 +43056,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 47 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41590,7 +43125,7 @@ function subscriberFormInitialState() {
 });
 
 /***/ }),
-/* 48 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -41670,1538 +43205,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-50900388", module.exports)
   }
 }
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-__webpack_require__(50);
-__webpack_require__(51);
-__webpack_require__(52);
-__webpack_require__(53);
-__webpack_require__(54);
-__webpack_require__(55);
-__webpack_require__(56);
-__webpack_require__(57);
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-let accordions = document.querySelectorAll('.accordions');
-if (accordions) {
-  accordions.forEach(accordion => {
-    let items = accordion.querySelectorAll('.accordion');
-    if (items) {
-      items.forEach(item => {
-        item.querySelector('.toggle').addEventListener('click', e => {
-          e.preventDefault();
-          let currentItem = e.target.parentNode.parentNode;
-          if (!currentItem.classList.contains('is-active')) {
-            let activeItem = accordion.querySelector('.accordion.is-active');
-            if (activeItem) {
-              activeItem.classList.remove('is-active');
-            }
-            currentItem.classList.add('is-active');
-          }
-        });
-      });
-    }
-  });
-}
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-var datepicker_langs = {
-  en: {
-    weekStart: 1,
-    previousMonth: 'Previous Month',
-    nextMonth: 'Next Month',
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  },
-  fr: {
-    weekStart: 1,
-    previousMonth: 'Mois précédent',
-    nextMonth: 'Mois suivant',
-    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    monthsShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Auo', 'Sep', 'Oct', 'Nov', 'Déc'],
-    weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
-  },
-  de: {
-    weekStart: 1,
-    previousMonth: 'Vorheriger Monat',
-    nextMonth: 'Nächster Monat',
-    months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-    monthsShort: ['Jan', 'Febr', 'März', 'Apr', 'Mai', 'Juni', 'Juli', 'Aug', 'Sept', 'Okt', 'Nov', 'Dez'],
-    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-    weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
-  }
-}
-
-class DatePicker {
-  constructor(selector, options) {
-    if (!options) options = {}
-
-    var defaultOptions = {
-      startDate: new Date(),
-      // the default data format `field` value
-      dataFormat: 'yyyy/mm/dd',
-      // internationalization
-      lang: 'en',
-      overlay: false,
-      closeOnSelect: true,
-      // callback function
-      onSelect: null,
-      onOpen: null,
-      onClose: null,
-      onRender: null
-    };
-
-    this.element = typeof selector === 'string' ? document.querySelector(selector) : selector;
-    // An invalid selector or non-DOM node has been provided.
-    if (!this.element) {
-      throw new Error('An invalid selector or non-DOM node has been provided.');
-    }
-
-    this.parent = this.element.parentElement;
-    this.lang = typeof datepicker_langs[this.lang] !== 'undefined' ? this.lang : 'en';
-
-    this.options = Object.assign({}, defaultOptions, options);
-
-
-    this.month = this.options.startDate.getMonth(),
-    this.year = this.options.startDate.getFullYear(),
-    this.open = false;
-
-    this.build();
-  }
-
-  build() {
-    var _this = this;
-
-    this.datePickerContainer = document.createElement('div');
-    this.datePickerContainer.id = 'datePicker' + ( new Date ).getTime();
-    if (this.options.overlay) {
-      this.datePickerContainer.classList.add('modal');
-    }
-    this.datePickerContainer.classList.add('datepicker');
-
-    this.calendarContainer = document.createElement('div');
-    this.calendarContainer.id = 'datePicker' + ( new Date ).getTime();
-    this.calendarContainer.classList.add('calendar');
-    this.renderCalendar();
-
-    if (this.options.overlay) {
-      var datePickerOverlay = document.createElement('div');
-      datePickerOverlay.classList.add('modal-background');
-      this.datePickerContainer.appendChild(datePickerOverlay);
-    }
-
-    var modalClose = document.createElement('button');
-    modalClose.className = 'modal-close';
-    modalClose.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      _this.datePickerContainer.classList.remove('is-active');
-    })
-
-    this.datePickerContainer.appendChild(this.calendarContainer);
-    this.datePickerContainer.appendChild(modalClose);
-    document.body.appendChild(this.datePickerContainer);
-
-    this.element.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      if (_this.open) {
-        _this.hide();
-        _this.open = false;
-      } else {
-        _this.show();
-        _this.open = true;
-      }
-    });
-  }
-
-  /**
-   * templating functions to abstract HTML rendering
-   */
-  renderDayName(day, abbr = false) {
-    day += datepicker_langs[this.options.lang].weekStart;
-    while (day >= 7) {
-      day -= 7;
-    }
-
-    return abbr ? datepicker_langs[this.options.lang].weekdaysShort[day] : datepicker_langs[this.options.lang].weekdays[day];
-  }
-
-  renderDay(day, month, year, isSelected, isToday, isDisabled, isEmpty, isBetween, isSelectedIn, isSelectedOut) {
-    var _this = this;
-    var newDayContainer = document.createElement('div');
-    var newDayButton = document.createElement('button');
-
-    newDayButton.classList.add('date-item');
-    newDayButton.innerHTML = day;
-    newDayButton.addEventListener('click', function (e) {
-      if (typeof _this.options.onSelect != 'undefined' &&
-        _this.options.onSelect != null &&
-        _this.options.onSelect) {
-        _this.options.onSelect(new Date(year, month, day));
-      }
-      _this.element.value = _this.getFormatedDate(( new Date(year, month, day) ), _this.options.dataFormat);
-      if (_this.options.closeOnSelect) {
-        _this.hide();
-      }
-    });
-
-    newDayContainer.classList.add('calendar-date');
-    newDayContainer.appendChild(newDayButton);
-
-    if (isDisabled) {
-      newDayContainer.setAttribute('disabled', 'disabled');
-    }
-    if (isToday) {
-      newDayContainer.classList.add('is-today');
-    }
-    if (isSelected) {
-      newDayContainer.classList.add('is-active');
-    }
-    if (isBetween) {
-      newDayContainer.classList.add('calendar-range');
-    }
-    if (isSelectedIn) {
-      newDayContainer.classList.add('range-start');
-    }
-    if (isSelectedOut) {
-      newDayContainer.classList.add('range-end');
-    }
-
-    return newDayContainer;
-  }
-
-  renderNav(year, month) {
-    var _this = this;
-    var calendarNav = document.createElement('div');
-    calendarNav.classList.add('calendar-nav');
-
-    var previousButtonContainer = document.createElement('div');
-    previousButtonContainer.classList.add('calendar-nav-left');
-    this.previousYearButton = document.createElement('div');
-    this.previousYearButton.classList.add('button');
-    this.previousYearButton.classList.add('is-text');
-    var previousButtonIcon = document.createElement('i');
-    previousButtonIcon.classList.add('fa');
-    previousButtonIcon.classList.add('fa-backward');
-    this.previousYearButton.appendChild(previousButtonIcon);
-    this.previousYearButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      _this.prevYear();
-    });
-    previousButtonContainer.appendChild(this.previousYearButton);
-
-    this.previousMonthButton = document.createElement('div');
-    this.previousMonthButton.classList.add('button');
-    this.previousMonthButton.classList.add('is-text');
-    var previousMonthButtonIcon = document.createElement('i');
-    previousMonthButtonIcon.classList.add('fa');
-    previousMonthButtonIcon.classList.add('fa-chevron-left');
-    this.previousMonthButton.appendChild(previousMonthButtonIcon);
-    this.previousMonthButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      _this.prevMonth();
-    });
-    previousButtonContainer.appendChild(this.previousMonthButton);
-
-
-    var calendarTitle = document.createElement('div');
-    calendarTitle.innerHTML = datepicker_langs[this.options.lang].months[month] + ' ' + year;
-
-    var nextButtonContainer = document.createElement('div');
-    nextButtonContainer.classList.add('calendar-nav-right');
-    this.nextMonthButton = document.createElement('div');
-    this.nextMonthButton.classList.add('button');
-    this.nextMonthButton.classList.add('is-text');
-    var nextMonthButtonIcon = document.createElement('i');
-    nextMonthButtonIcon.classList.add('fa');
-    nextMonthButtonIcon.classList.add('fa-chevron-right');
-    this.nextMonthButton.appendChild(nextMonthButtonIcon);
-    this.nextMonthButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      _this.nextMonth();
-    });
-    nextButtonContainer.appendChild(this.nextMonthButton);
-    this.nextYearButton = document.createElement('div');
-    this.nextYearButton.classList.add('button');
-    this.nextYearButton.classList.add('is-text');
-    var nextYearButtonIcon = document.createElement('i');
-    nextYearButtonIcon.classList.add('fa');
-    nextYearButtonIcon.classList.add('fa-forward');
-    this.nextYearButton.appendChild(nextYearButtonIcon);
-    this.nextYearButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      _this.nextYear();
-    });
-    nextButtonContainer.appendChild(this.nextYearButton);
-
-    calendarNav.appendChild(previousButtonContainer);
-    calendarNav.appendChild(calendarTitle);
-    calendarNav.appendChild(nextButtonContainer);
-
-    return calendarNav;
-  }
-
-  renderHeader() {
-    var calendarHeader = document.createElement('div');
-    calendarHeader.classList.add('calendar-header');
-
-    for (var i = 0; i < 7; i++) {
-      var newDay = document.createElement('div');
-      newDay.classList.add('calendar-date');
-      newDay.innerHTML = this.renderDayName(i, true);
-      calendarHeader.appendChild(newDay);
-    }
-
-    return calendarHeader;
-  }
-
-  renderBody() {
-    var calendarBody = document.createElement('div');
-    calendarBody.classList.add('calendar-body');
-
-    return calendarBody;
-  }
-
-  renderCalendar() {
-    var now = new Date();
-
-    var calendarNav = this.renderNav(this.year, this.month);
-    var calendarHeader = this.renderHeader();
-    var calendarBody = this.renderBody();
-
-    this.calendarContainer.appendChild(calendarNav);
-    this.calendarContainer.appendChild(calendarHeader);
-    this.calendarContainer.appendChild(calendarBody);
-
-    var days = this.getDaysInMonth(this.year, this.month),
-      before = new Date(this.year, this.month, 1).getDay();
-
-    if (typeof this.options.onRender != 'undefined' &&
-      this.options.onRender != null &&
-      this.options.onRender) {
-      this.options.onRender(this);
-    }
-
-    if (datepicker_langs[this.options.lang].weekStart > 0) {
-      before -= datepicker_langs[this.options.lang].weekStart;
-      if (before < 0) {
-        before += 7;
-      }
-    }
-
-    var cells = days + before,
-      after = cells;
-    while (after > 7) {
-      after -= 7;
-    }
-
-    cells += 7 - after;
-    for (var i = 0; i < cells; i++) {
-      var day = new Date(this.year, this.month, 1 + ( i - before )),
-        isBetween = false,
-        isSelected = false,
-        isSelectedIn = false,
-        isSelectedOut = false,
-        isToday = this.compareDates(day, now),
-        isEmpty = i < before || i >= ( days + before ),
-        isDisabled = false;
-
-      if (!isSelected) {
-        isSelectedIn = false;
-        isSelectedOut = false;
-      }
-
-      if (day.getMonth() !== this.month) {
-        isDisabled = true;
-      }
-
-      calendarBody.append(this.renderDay(day.getDate(), this.month, this.year, isSelected, isToday, isDisabled, isEmpty, isBetween, isSelectedIn, isSelectedOut));
-    }
-  }
-
-  prevMonth() {
-    this.month -= 1;
-    this.adjustCalendar();
-    this.renderCalendar();
-  }
-
-  nextMonth() {
-    this.month += 1;
-    this.adjustCalendar();
-    this.renderCalendar();
-  }
-
-  prevYear() {
-    this.year -= 1;
-    this.adjustCalendar();
-    this.renderCalendar();
-  }
-
-  nextYear() {
-    this.year += 1;
-    this.adjustCalendar();
-    this.renderCalendar();
-  }
-
-  show() {
-    if (typeof this.options.onOpen != 'undefined' &&
-      this.options.onOpen != null &&
-      this.options.onOpen) {
-      this.options.onOpen(this);
-    }
-    this.datePickerContainer.classList.add('is-active');
-    if (!this.options.overlay) {
-      this.adjustPosition();
-    }
-    this.open = true;
-  }
-
-  hide() {
-    this.open = false;
-    if (typeof this.options.onClose != 'undefined' &&
-      this.options.onClose != null &&
-      this.options.onClose) {
-      this.options.onClose(this);
-    }
-    this.datePickerContainer.classList.remove('is-active');
-  }
-
-  adjustCalendar() {
-    if (this.month < 0) {
-      this.year -= Math.ceil(Math.abs(this.month) / 12);
-      this.month += 12;
-    }
-    if (this.month > 11) {
-      this.year += Math.floor(Math.abs(this.month) / 12);
-      this.month -= 12;
-    }
-    this.calendarContainer.innerHTML = '';
-    return this;
-  }
-
-  adjustPosition() {
-    var width = this.calendarContainer.offsetWidth,
-      height = this.calendarContainer.offsetHeight,
-      viewportWidth = window.innerWidth || document.documentElement.clientWidth,
-      viewportHeight = window.innerHeight || document.documentElement.clientHeight,
-      scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
-      left, top, clientRect;
-
-    if (typeof this.element.getBoundingClientRect === 'function') {
-      clientRect = this.element.getBoundingClientRect();
-      left = clientRect.left + window.pageXOffset;
-      top = clientRect.bottom + window.pageYOffset;
-    } else {
-      left = this.element.offsetLeft;
-      top = this.element.offsetTop + this.element.offsetHeight;
-      while (( this.element = this.element.offsetParent )) {
-        left += this.element.offsetLeft;
-        top += this.element.offsetTop;
-      }
-    }
-
-    this.calendarContainer.style.position = 'absolute';
-    this.calendarContainer.style.left = left + 'px';
-    this.calendarContainer.style.top = top + 'px';
-  }
-
-  destroy() {
-    this.calendarContainer.remove();
-  }
-
-  /**
-   * Returns date according to passed format
-   *
-   * @param {Date}   dt     Date object
-   * @param {String} format Format string
-   *      d    - day of month
-   *      dd   - 2-digits day of month
-   *      D    - day of week
-   *      m    - month number
-   *      mm   - 2-digits month number
-   *      M    - short month name
-   *      MM   - full month name
-   *      yy   - 2-digits year number
-   *      yyyy - 4-digits year number
-   */
-  getFormatedDate(dt, format) {
-    var items = {
-      d: dt.getDate(),
-      dd: dt.getDate(),
-      D: dt.getDay(),
-      m: dt.getMonth() + 1,
-      mm: dt.getMonth() + 1,
-      M: dt.getMonth(),
-      MM: dt.getMonth(),
-      yy: dt.getFullYear().toString().substr(-2),
-      yyyy: dt.getFullYear()
-    };
-
-    items.dd < 10 && ( items.dd = '0' + items.dd );
-    items.mm < 10 && ( items.mm = '0' + items.mm );
-    items.D = datepicker_langs[this.options.lang].weekdays[items.D ? items.D - 1 : 6];
-    items.M = datepicker_langs[this.options.lang].monthsShort[items.M];
-    items.MM = datepicker_langs[this.options.lang].months[items.MM];
-
-    return format.replace(/(?:[dmM]{1,2}|D|yyyy|yy)/g, function (m) {
-      return typeof items[m] !== 'undefined' ? items[m] : m;
-    });
-  }
-
-  /**
-   * Returns true if date picker is visible now
-   *
-   * @returns {Boolean}
-   */
-  isActive() {
-    return this.calendarContainer.classList.contains('is-active');
-  }
-
-  isDate(obj) {
-    return ( /Date/ ).test(Object.prototype.toString.call(obj)) && !isNaN(obj.getTime());
-  }
-
-  isLeapYear(year) {
-    // solution by Matti Virkkunen: http://stackoverflow.com/a/4881951
-    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
-  }
-
-  getDaysInMonth(year, month) {
-    return [31, this.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
-  }
-
-  compareDates(a, b) {
-    // weak date comparison (use setToStartOfDay(date) to ensure correct result)
-    return a.getTime() === b.getTime();
-  }
-}
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports) {
-
-class Carousel {
-  constructor(element) {
-    this.element = element;
-
-    this.init();
-  }
-
-  init() {
-    this.carouselContent = this.element.querySelector('.carousel-content');
-    this.items = this.carouselContent.querySelectorAll('.carousel-item');
-
-    this.element.querySelector('.carousel-nav-left').addEventListener('click', (e) => {
-      this.prevSlide();
-    }, false);
-    this.element.querySelector('.carousel-nav-right').addEventListener('click', (e) => {
-      this.nextSlide();
-    }, false);
-
-    this.setOrder();
-  }
-
-  setOrder(direction){
-    // initialize direction to change order
-    if (direction === 'previous') {
-      direction = 1;
-    } else if (direction === 'next') {
-      direction = -1;
-    }
-
-    let nbItems = this.items.length;
-    if (nbItems) {
-      this.items.forEach((item, index) => {
-        let newValue;
-        if (item.style.order) {
-          newValue = (parseInt(item.style.order, 10) + direction) % nbItems;
-        } else {
-          newValue = ((index + 2) % nbItems);
-        }
-        if (!newValue || newValue !== 2) {
-          item.style['z-index'] = '0';
-          item.classList.remove('is-active');
-        } else {
-          item.style['z-index'] = '1';
-          item.classList.add('is-active');
-        }
-        item.style.order = newValue ? newValue : nbItems;
-      });
-    }
-  }
-
-  prevSlide(evt) {
-    // add reverse
-    this.carouselContent.classList.add('carousel-reverse');
-    // Disable transition to instant change order
-    this.carouselContent.classList.toggle('carousel-animate');
-    // Change order of element
-    // Current order 2 visible become order 1
-    this.setOrder('previous');
-
-    // Enable transition to animate order 1 to order 2
-    setTimeout(() => {
-      this.carouselContent.classList.toggle('carousel-animate');
-    }, 50);
-  }
-
-  nextSlide(evt) {
-    // remove reverse
-    this.carouselContent.classList.remove('carousel-reverse');
-
-    // Disable transition to instant change order
-    this.carouselContent.classList.toggle('carousel-animate');
-    // Change order of element
-    // Current order 2 visible become order 3
-    this.setOrder('next');
-    // Enable transition to animate order 3 to order 2
-    setTimeout(() => {
-      this.carouselContent.classList.toggle('carousel-animate');
-    }, 50);
-  };
-}
-
-window.onload = function() {
-  let carousels = document.querySelectorAll('.carousel, .hero-carousel');
-  if (carousels) {
-    carousels.forEach(element => {
-      new Carousel(element);
-    })
-  }
-};
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-let fetchStyle = function(url) {
-  return new Promise((resolve, reject) => {
-    let link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.onload = function() { resolve(); };
-    link.href = url;
-
-    if (!document.querySelector('link[href="' + url + '"]')) {
-      let headScript = document.querySelector('head');
-      headScript.append(link);
-    }
-  });
-};
-
-class IconPicker {
-  constructor(element, options = {}) {
-    const defaultOptions = {
-      iconSets: [ {
-        name: 'simpleLine', // Name displayed on tab
-        css: 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css', // CSS url containing icons rules
-        prefix: 'icon-', // CSS rules prefix to identify icons
-        displayPrefix: ''
-      },{
-        name: 'fontAwesome', // Name displayed on tab
-        css: 'https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css', // CSS url containing icons rules
-        prefix: 'fa-', // CSS rules prefix to identify icons
-        displayPrefix: 'fa fa-icon'
-      } ]
-    };
-
-
-    this.element = element;
-    this.options = Object.assign({}, defaultOptions, options);
-    this.icons = [];
-    this.id = 'iconPicker' + ( new Date ).getTime();
-    this.init();
-  }
-
-  init() {
-    this.createModal();
-    this.createPreview();
-
-    this.options.iconSets.forEach( iconSet => {
-      fetchStyle(iconSet.css);
-      // Parse CSS file to get array of all available icons
-      fetch(iconSet.css, {mode: 'cors'})
-        .then(res => {
-          return res.text();
-        })
-        .then(css => {
-          this.icons[iconSet.name] = this.parseCSS(css, iconSet.prefix || 'fa-', iconSet.displayPrefix || '');
-          this.modalSetTabs.querySelector('a').click();
-        })
-        ;
-    } );
-  }
-
-  createPreview() {
-    this.preview = document.createElement('div');
-    this.preview.className = 'icon is-large';
-    this.preview.classList.add('iconpicker-preview');
-    let iconPreview = document.createElement('i');
-    iconPreview.className = 'iconpicker-icon-preview';
-    if (this.element.value.length) {
-      let classes = this.element.value.split(' ');
-      classes.forEach( cls => {
-        iconPreview.classList.add( cls );
-      });
-    }
-    this.preview.appendChild(iconPreview);
-
-    this.preview.addEventListener('click', e => {
-      e.preventDefault();
-
-      this.modal.classList.add('is-active');
-    });
-
-    this.element.parentNode.insertBefore(this.preview, this.element.nextSibling);
-  }
-
-  parseCSS( css, prefix = 'fa-', displayPrefix = '' ) {
-    const iconPattern = new RegExp('\\.' + prefix + '([^\\.!:]*)::?before\\s*{\\s*content:\\s*["|\']\\\\[^\'|"]*["|\'];?\\s*}', 'g');
-    const index = 1;
-    let icons = [], icon, match;
-
-    while ( match = iconPattern.exec(css)) {
-      icon = {
-        prefix: prefix,
-        selector: prefix + match[index].trim(':'),
-        name: this.ucwords(match[index]).trim(':'),
-        filter: match[index].trim(':'),
-        displayPrefix: displayPrefix
-      }
-      icons[match[index]] = icon;
-    }
-
-    if (Object.getOwnPropertyNames(this.icons).length == 0) {
-      console.warn( "No icons found in CSS file" );
-    }
-    return icons;
-  }
-
-  ucwords (str) {
-    return (str + '').replace(/^(.)|\s+(.)/g, function ($1) {
-      return $1.toUpperCase();
-    });
-  }
-
-  drawIcons(iconSet) {
-    this.iconsList.innerHTML = '';
-
-    if (iconSet) {
-      for (let [iconName, icon] of Object.entries(iconSet)) {
-        this.iconsList.appendChild(this.createIconPreview(icon));
-      }
-    }
-  }
-
-  createIconPreview(icon, prefix = 'fa-') {
-    let iconLink = document.createElement('a');
-    iconLink.dataset.title = icon['name'];
-    iconLink.setAttribute('title', icon['name']);
-    iconLink.dataset.icon = icon['selector'];
-    iconLink.dataset.filter = icon['filter'];
-    let iconPreview = document.createElement('i');
-    iconPreview.className = 'iconpicker-icon-preview';
-    if (icon['displayPrefix'].length) {
-      prefix = icon['displayPrefix'].split(' ');
-      prefix.forEach( pfx => {
-        iconPreview.classList.add( pfx );
-      });
-    }
-    iconPreview.classList.add( icon['selector'] );
-    iconLink.appendChild(iconPreview);
-    iconLink.addEventListener('click', e => {
-      e.preventDefault();
-      this.preview.innerHTML = '';
-      this.element.value = e.target.classList;
-      this.preview.appendChild(e.target.cloneNode(true));
-      this.modal.classList.remove('is-active');
-    })
-    return iconLink;
-  }
-
-  createModal() {
-    this.modal = document.createElement('div');
-    this.modal.className = 'modal';
-    this.modal.classList.add( 'iconpicker-modal' );
-    this.modal.id = this.id;
-    let modalBackground = document.createElement('div');
-    modalBackground.className = 'modal-background';
-    let modalCard = document.createElement('div');
-    modalCard.className = 'modal-card';
-
-    let modalHeader = document.createElement('header');
-    modalHeader.className = 'modal-card-head';
-    let modalHeaderTitle = document.createElement('p');
-    modalHeaderTitle.className = 'modal-card-title';
-    modalHeaderTitle.innerHTML = 'iconPicker';
-    this.modalHeaderSearch = document.createElement('input');
-    this.modalHeaderSearch.setAttribute('type', 'search');
-    this.modalHeaderSearch.setAttribute('placeholder', 'Search');
-    this.modalHeaderSearch.className = 'iconpicker-search';
-    this.modalHeaderSearch.addEventListener('input', e => {
-      this.filter(e.target.value);
-    });
-    let modalHeaderClose = document.createElement('button');
-    modalHeaderClose.className = 'delete';
-    modalHeaderClose.addEventListener('click', e => {
-      e.preventDefault();
-
-      this.modal.classList.remove('is-active');
-    });
-
-    modalCard.appendChild(modalHeader);
-
-    this.modalBody = document.createElement('section');
-    this.modalBody.className = 'modal-card-body';
-
-    if (this.options.iconSets.length >= 1) {
-      let modalSets = document.createElement('div');
-      modalSets.className = 'iconpicker-sets';
-      modalSets.classList.add('tabs');
-      this.modalSetTabs = document.createElement('ul');
-      this.options.iconSets.forEach(iconSet => {
-        let modalSetTab = document.createElement('li');
-        let modalSetTabLink = document.createElement('a');
-        modalSetTabLink.dataset.iconset = iconSet.name;
-        modalSetTabLink.innerHTML = iconSet.name;
-        modalSetTabLink.addEventListener('click', e => {
-          e.preventDefault();
-
-          this.modalSetTabs.querySelectorAll('.is-active').forEach( el => {
-            el.classList.remove('is-active');
-          });
-
-          e.target.parentNode.classList.add('is-active');
-          this.drawIcons(this.icons[e.target.dataset.iconset]);
-          this.filter(this.modalHeaderSearch.value);
-        })
-        modalSetTab.appendChild(modalSetTabLink);
-        this.modalSetTabs.appendChild(modalSetTab);
-      });
-      modalSets.appendChild(this.modalSetTabs);
-      modalCard.appendChild(modalSets);
-    }
-
-    this.iconsList = document.createElement('div');
-    this.iconsList.className = 'iconpicker-icons';
-
-    modalHeader.appendChild(modalHeaderTitle);
-    modalHeader.appendChild(this.modalHeaderSearch);
-    modalHeader.appendChild(modalHeaderClose);
-
-    this.modalBody.appendChild(this.iconsList);
-    modalCard.appendChild(this.modalBody);
-
-    this.modal.appendChild(modalBackground);
-    this.modal.appendChild(modalCard);
-    document.body.appendChild(this.modal);
-  }
-
-  filter(value = '') {
-    if (value === '') {
-      this.iconsList.querySelectorAll('[data-filter]').forEach( el => {
-        el.classList.remove('is-hidden');
-      });
-      return;
-    }
-    this.iconsList.querySelectorAll('[data-filter]').forEach( el => {
-      el.classList.remove('is-hidden');
-    });
-    this.iconsList.querySelectorAll('[data-filter]:not([data-filter*="' + value + '"])').forEach( el => {
-      el.classList.add('is-hidden');
-    });
-  }
-}
-
-if (typeof iconPickerOptions === undefined || iconPickerOptions === null) {
-  let iconPickerOptions =  {};
-}
-console.log(iconPickerOptions);
-let iconPickers = document.querySelectorAll('[data-action="iconPicker"]');
-if (iconPickers) {
-  iconPickers.forEach(element => {
-    if (!element.dataset.iconPicker) {
-      element.dataset.iconPicker = new IconPicker(element, iconPickerOptions || {});
-    }
-  })
-}
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-function closest(el, selector) {
-  var matchesFn;
-
-  // find vendor prefix
-  [ 'matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector' ].some( function( fn ) {
-    if ( typeof document.body[ fn ] == 'function' ) {
-      matchesFn = fn;
-      return true;
-    }
-    return false;
-  } );
-
-  var parent;
-
-  // traverse parents
-  while ( el ) {
-      parent = el.parentElement;
-      if ( parent && parent[ matchesFn ]( selector ) ) {
-        return parent;
-      }
-      el = parent;
-  }
-
-  return null;
-}
-
-document.addEventListener( 'DOMContentLoaded', function () {
-  // Get all document sliders
-  var showQuickview = document.querySelectorAll( '[data-show="quickview"]' );
-  [].forEach.call( showQuickview, function ( show ) {
-    var quickview = document.getElementById( show.dataset[ 'target' ] );
-    if ( quickview ) {
-      // Add event listener to update output when slider value change
-      show.addEventListener( 'click', function( event ) {
-        quickview.classList.add( 'is-active' );
-      } );
-    }
-  } );
-
-  // Get all document sliders
-  var dismissQuickView = document.querySelectorAll( '[data-dismiss="quickview"]' );
-  [].forEach.call( dismissQuickView, function ( dismiss ) {
-    var quickview = closest( dismiss, '.quickview' );
-    if ( quickview ) {
-      // Add event listener to update output when slider value change
-      dismiss.addEventListener( 'click', function( event ) {
-        quickview.classList.remove( 'is-active' );
-      } );
-    }
-  } );
-} );
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-// Find output DOM associated to the DOM element passed as parameter
-function findOutputForSlider( element ) {
-   var idVal = element.id;
-   outputs = document.getElementsByTagName( 'output' );
-   for( var i = 0; i < outputs.length; i++ ) {
-     if ( outputs[ i ].htmlFor == idVal )
-       return outputs[ i ];
-   }
-}
-
-function getSliderOutputPosition( slider ) {
-  // Update output position
-  var newPlace,
-      minValue;
-
-  var style = window.getComputedStyle( slider, null );
-  // Measure width of range input
-  sliderWidth = parseInt( style.getPropertyValue( 'width' ), 10 );
-
-  // Figure out placement percentage between left and right of input
-  if ( !slider.getAttribute( 'min' ) ) {
-    minValue = 0;
-  } else {
-    minValue = slider.getAttribute( 'min' );
-  }
-  var newPoint = ( slider.value - minValue ) / ( slider.getAttribute( 'max' ) - minValue );
-
-  // Prevent bubble from going beyond left or right (unsupported browsers)
-  if ( newPoint < 0 ) {
-    newPlace = 0;
-  } else if ( newPoint > 1 ) {
-    newPlace = sliderWidth;
-  } else {
-    newPlace = sliderWidth * newPoint;
-  }
-
-  return {
-    'position': newPlace + 'px'
-  }
-}
-
-document.addEventListener( 'DOMContentLoaded', function () {
-  // Get all document sliders
-  var sliders = document.querySelectorAll( 'input[type="range"].slider' );
-  [].forEach.call( sliders, function ( slider ) {
-    var output = findOutputForSlider( slider );
-    if ( output ) {
-      if ( slider.classList.contains( 'has-output-tooltip' ) ) {
-        // Get new output position
-        var newPosition = getSliderOutputPosition( slider );
-
-        // Set output position
-        output.style[ 'left' ] = newPosition.position;
-      }
-
-      // Add event listener to update output when slider value change
-      slider.addEventListener( 'input', function( event ) {
-        if ( event.target.classList.contains( 'has-output-tooltip' ) ) {
-          // Get new output position
-          var newPosition = getSliderOutputPosition( event.target );
-
-          // Set output position
-          output.style[ 'left' ] = newPosition.position;
-        }
-
-        // Update output with slider value
-        output.value = event.target.value;
-      } );
-    }
-  } );
-} );
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports) {
-
-class StepsWizard {
-  constructor( element = null, options = {} ) {
-    this.options = Object.assign( {}, {
-      'selector': '.step-item',
-      'selector_content': '.step-content',
-      'previous_selector': '[data-nav="previous"]',
-      'next_selector': '[data-nav="next"]',
-      'active_class': 'is-active',
-      'completed_class': 'is-completed',
-      'beforeNext': null,
-      'onShow': null,
-      'onFinish': null,
-      'onError': null
-    }, options );
-
-    this.element = element;
-    this.steps = element.querySelectorAll( this.options.selector );
-    this.contents = element.querySelectorAll( this.options.selector_content );
-    this.previous_btn = element.querySelector( this.options.previous_selector );
-    this.next_btn = element.querySelector( this.options.next_selector );
-
-    this.init();
-  }
-
-  init() {
-    for ( var i = 0; i < this.steps.length; i++ ) {
-      var step = this.steps[ i ];
-
-      step.setAttribute( 'data-step-id', i );
-    }
-
-    this.bind();
-
-    this.start();
-  }
-
-  bind() {
-    var _this = this;
-
-    if ( this.previous_btn != null ) {
-      this.previous_btn.addEventListener( 'click', function( e ) {
-        _this.previous_step();
-      } );
-    }
-
-    if ( this.next_btn != null ) {
-      this.next_btn.addEventListener( 'click', function( e ) {
-        _this.next_step();
-      } );
-    }
-  }
-
-  start() {
-    this.activate_step( 0 );
-    this.updateActions( this.steps[ 0 ] );
-  }
-
-  get_current_step_id() {
-    for ( var i = 0; i < this.steps.length; i++ ) {
-      var step = this.steps[ i ];
-
-      if ( step.classList.contains( this.options.active_class ) ) {
-        return parseInt( step.getAttribute( 'data-step-id' ) );
-      }
-    }
-
-    return null;
-  }
-
-  updateActions( step ) {
-    var stepId = parseInt( step.getAttribute( 'data-step-id' ) );
-    if ( stepId == 0 ) {
-      if ( this.previous_btn != null ) {
-        this.previous_btn.setAttribute( 'disabled', 'disabled' );
-      }
-      if ( this.next_btn != null ) {
-        this.next_btn.removeAttribute( 'disabled', 'disabled' );
-      }
-    } else if ( stepId == ( this.steps.length - 1 ) ) {
-      if ( this.previous_btn != null ) {
-        this.previous_btn.removeAttribute( 'disabled', 'disabled' );
-      }
-      if ( this.next_btn != null ) {
-        this.next_btn.setAttribute( 'disabled', 'disabled' );
-      }
-    } else {
-      if ( this.previous_btn != null ) {
-        this.previous_btn.removeAttribute( 'disabled', 'disabled' );
-      }
-      if ( this.next_btn != null ) {
-        this.next_btn.removeAttribute( 'disabled', 'disabled' );
-      }
-    }
-  }
-
-  next_step() {
-    var current_id = this.get_current_step_id();
-
-    if ( current_id == null ) {
-      return;
-    }
-
-    var next_id = current_id + 1,
-        errors = [];
-
-    if ( typeof this.options.beforeNext != 'undefined' &&
-        this.options.beforeNext != null &&
-        this.options.beforeNext ) {
-      errors = this.options.beforeNext( current_id );
-    }
-
-    if ( typeof errors == 'undefined' ) {
-      errors = [];
-    }
-
-    if ( errors.length > 0 ) {
-      for ( var i = 0; i < errors.length; i++ ) {
-        if ( typeof this.options.onError != 'undefined' &&
-            this.options.onError != null &&
-            this.options.onError ) {
-          this.options.onError( errors[ i ] );
-        }
-      }
-
-      return;
-    }
-
-    if ( next_id >= this.steps.length ) {
-      if ( typeof this.options.onFinish != 'undefined' &&
-          this.options.onFinish != null &&
-          this.options.onFinish ) {
-        this.options.onFinish( current_id );
-      }
-      this.deactivate_step( current_id );
-    } else {
-      this.complete_step( current_id );
-      this.activate_step( next_id );
-    }
-  }
-
-  previous_step() {
-    var current_id = this.get_current_step_id();
-    if ( current_id == null ) {
-      return;
-    }
-
-    this.uncomplete_step( current_id - 1 );
-    this.activate_step( current_id - 1 );
-  }
-
-  /**
-   * Activate a single step,
-   * will deactivate all other steps.
-   */
-  activate_step( step_id ) {
-    this.updateActions( this.steps[ step_id ] );
-
-    for ( var i = 0; i < this.steps.length; i++ ) {
-      var _step = this.steps[ i ];
-
-      if ( _step == this.steps[ step_id ] ) {
-        continue;
-      }
-
-      this.deactivate_step( i );
-    }
-
-    this.steps[ step_id ].classList.add( this.options.active_class );
-    if ( typeof this.contents[ step_id ] !== 'undefined' ) {
-      this.contents[ step_id ].classList.add( this.options.active_class );
-    }
-
-    if ( typeof this.options.onShow != 'undefined' &&
-        this.options.onShow != null &&
-        this.options.onShow ) {
-      this.options.onShow( step_id );
-    }
-  }
-
-  complete_step( step_id ) {
-    this.steps[ step_id ].classList.add( this.options.completed_class );
-  }
-
-  uncomplete_step( step_id ) {
-    this.steps[ step_id ].classList.remove( this.options.completed_class );
-  }
-
-  deactivate_step( step_id ) {
-    this.steps[ step_id ].classList.remove( this.options.active_class );
-    if ( typeof this.contents[ step_id ] !== 'undefined' ) {
-      this.contents[ step_id ].classList.remove( this.options.active_class );
-    }
-  }
-}
-
-document.addEventListener( 'DOMContentLoaded', function () {
-  var stepsWizard = new StepsWizard( document.getElementById( 'stepsDemo' ) );
-} );
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-class Tagify {
-  constructor(element, options = {}) {
-    let defaultOptions = {
-      disabled: false,
-      delimiter: ',',
-      allowDelete: true,
-      lowercase: false,
-      uppercase: false,
-      duplicates: true
-    }
-    this.element = element;
-    this.options = Object.assign({}, defaultOptions, options);
-
-    this.init();
-  }
-
-  init() {
-    if (!this.options.disabled) {
-      this.tags = [];
-      this.container = document.createElement('div');
-      this.container.className = 'tagsinput';
-      this.container.classList.add('field');
-      this.container.classList.add('is-grouped');
-      this.container.classList.add('is-grouped-multiline');
-      this.container.classList.add('input');
-
-      let inputType = this.element.getAttribute('type');
-    	if (!inputType || inputType === 'tags') {
-    		inputType = 'text';
-      }
-      this.input = document.createElement('input');
-      this.input.setAttribute('type', inputType);
-      this.container.appendChild(this.input);
-
-      let sib = this.element.nextSibling;
-      this.element.parentNode[sib ? 'insertBefore':'appendChild'](this.container, sib);
-      this.element.style.cssText = 'position:absolute;left:0;top:0;width:1px;height:1px;opacity:0.01;';
-      this.element.tabIndex = -1;
-
-      this.enable();
-    }
-  }
-
-  enable() {
-    if (!this.enabled && !this.options.disabled) {
-
-      this.element.addEventListener('focus', () => {
-        this.container.classList.add('focus');
-        this.select();
-      });
-
-      this.input.addEventListener('focus', () => {
-    		this.container.classList.add('focus');
-    		this.select();
-      });
-      this.input.addEventListener('blur', () => {
-    		this.container.classList.remove('focus');
-    		this.select();
-    		this.savePartial();
-      });
-      this.input.addEventListener('keydown', (e) => {
-        let key = e.keyCode || e.which,
-          selectedTag,
-          activeTag = this.container.querySelector('.is-active'),
-          last = (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).pop(),
-          atStart = this.caretAtStart(e);
-
-        if (activeTag) {
-          selectedTag = this.container.querySelector('[data-tag="' + activeTag.innerHTML + '"]');
-        }
-        this.setInputWidth();
-
-        if (key === 13 || key === this.options.delimiter.charCodeAt(0) || key === 9) {
-          if (!this.input.value && key !== this.options.delimiter.charCodeAt(0)) {
-            return;
-          }
-          this.savePartial();
-        } else if (key === 46 && selectedTag) {
-    			if (selectedTag.nextSibling !== this.input) {
-            this.select(selectedTag.nextSibling);
-          }
-    			this.container.removeChild(selectedTag);
-          delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
-    			this.setInputWidth();
-    			this.save();
-        } else if (key === 8) {
-          if (selectedTag) {
-    				this.select(selectedTag.previousSibling);
-    				this.container.removeChild(selectedTag);
-            delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
-    				this.setInputWidth();
-    				this.save();
-    			}
-    			else if (last && atStart) {
-    				this.select(last);
-    			}
-    			else {
-    				return;
-          }
-        } else if (key === 37) {
-    			if (selectedTag) {
-    				if (selectedTag.previousSibling) {
-    					select(selectedTag.previousSibling);
-    				}
-    			} else if (!atStart) {
-    				return;
-    			} else {
-    				this.select(last);
-    			}
-    		}
-    		else if (key === 39) {
-    			if (!selectedTag) {
-            return;
-          }
-    			this.select(selectedTag.nextSibling);
-    		}
-    		else {
-    			return this.select();
-        }
-
-        e.preventDefault();
-        return false;
-      });
-      this.input.addEventListener('input', () => {
-        this.element.value = this.getValue();
-        this.element.dispatchEvent(new Event('input'));
-      });
-      this.input.addEventListener('paste', () => setTimeout(savePartial, 0));
-
-      this.container.addEventListener('mousedown', (e) => { this.refocus(e); });
-      this.container.addEventListener('touchstart', (e) => { this.refocus(e); });
-
-      this.savePartial(this.element.value);
-
-      this.enabled = true;
-    }
-  }
-
-  disable() {
-    if (this.enabled && !this.options.disabled) {
-      this.reset();
-
-      this.enabled = false;
-    }
-  }
-
-  select(el) {
-		let sel = this.container.querySelector('.is-active');
-		if (sel) {
-      sel.classList.remove('is-active');
-    }
-		if (el) {
-      el.classList.add('is-active');
-    }
-  }
-
-  addTag(text) {
-    if (~text.indexOf(this.options.delimiter)) {
-      text = text.split(this.options.delimiter);
-    }
-    if (Array.isArray(text)) {
-      return text.forEach((text) => {
-        this.addTag(text)
-      });
-    }
-
-    let tag = text && text.trim();
-    if (!tag) {
-      return false;
-    }
-
-    if (this.element.getAttribute('lowercase') || this.options['lowercase'] == 'true') {
-      tag = tag.toLowerCase();
-    }
-    if (this.element.getAttribute('uppercase') || this.options['uppercase'] == 'true') {
-      tag = tag.toUpperCase();
-    }
-    if (this.element.getAttribute('duplicates') == 'true' || this.options['duplicates'] || this.tags.indexOf(tag) === -1) {
-      this.tags.push(tag);
-
-      let newTagWrapper = document.createElement('div');
-      newTagWrapper.className = 'control';
-      newTagWrapper.setAttribute('data-tag', tag);
-
-      let newTag = document.createElement('div');
-      newTag.className = 'tags';
-      newTag.classList.add('has-addons');
-
-      let newTagContent = document.createElement('span');
-      newTagContent.className = 'tag';
-      newTagContent.innerHTML = tag;
-
-      newTag.appendChild(newTagContent);
-      if (this.options.allowDelete) {
-        let newTagDeleteButton = document.createElement('a');
-        newTagDeleteButton.className = 'tag';
-        newTagDeleteButton.classList.add('is-delete');
-        newTagDeleteButton.addEventListener('click', (e) => {
-          let selectedTag,
-            activeTag = e.target.parentNode,
-            last = (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).pop(),
-            atStart = this.caretAtStart(e);
-
-          if (activeTag) {
-            selectedTag = this.container.querySelector('[data-tag="' + activeTag.innerText + '"]');
-          }
-
-          if (selectedTag) {
-    				this.select(selectedTag.previousSibling);
-    				this.container.removeChild(selectedTag);
-            delete this.tags[this.tags.indexOf(selectedTag.getAttribute('data-tag'))];
-    				this.setInputWidth();
-    				this.save();
-    			}
-    			else if (last && atStart) {
-    				this.select(last);
-    			}
-    			else {
-    				return;
-          }
-        });
-        newTag.appendChild(newTagDeleteButton);
-      }
-      newTagWrapper.appendChild(newTag);
-
-      this.container.insertBefore( newTagWrapper, this.input);
-    }
-  }
-
-  getValue() {
-    return this.tags.join(this.options.delimiter);
-  }
-
-  setValue(value) {
-    (Array.prototype.slice.call(this.container.querySelectorAll('.tag'))).forEach((tag) => {
-      delete this.tags[this.tags.indexOf(tag.innerHTML)];
-      this.container.removeChild(tag);
-    });
-    this.savePartial(value);
-  }
-
-  setInputWidth() {
-    let last = (Array.prototype.slice.call(this.container.querySelectorAll('.control'))).pop();
-
-    if (!this.container.offsetWidth) {
-      return;
-    }
-    this.input.style.width = Math.max(this.container.offsetWidth - (last ? (last.offsetLeft + last.offsetWidth) : 30) - 30, this.container.offsetWidth / 4) + 'px';
-  }
-
-  savePartial(value) {
-    if (typeof value !== 'string' && !Array.isArray(value)) {
-      value = this.input.value;
-    }
-    if (this.addTag(value) !== false) {
-			this.input.value = '';
-			this.save();
-			this.setInputWidth();
-    }
-  }
-
-  save() {
-    this.element.value = this.tags.join(this.options.delimiter);
-    this.element.dispatchEvent(new Event('change'));
-  }
-
-  caretAtStart(el) {
-		try {
-			return el.selectionStart === 0 && el.selectionEnd === 0;
-		}
-		catch(e) {
-			return el.value === '';
-		}
-  }
-
-  refocus(e) {
-		if (e.target.classList.contains('tag')) {
-      this.select(e.target);
-    }
-		if (e.target === this.input) {
-      return this.select();
-    }
-		this.input.focus();
-		e.preventDefault();
-		return false;
-  }
-
-  reset() {
-    this.tags = [];
-  }
-
-  destroy() {
-    this.disable();
-    this.reset();
-    this.element = null;
-  }
-}
-
-let tagInputs = document.querySelectorAll('input[type="tags"]');
-if (tagInputs) {
-  tagInputs.forEach(element => {
-    new Tagify(element);
-  })
-}
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

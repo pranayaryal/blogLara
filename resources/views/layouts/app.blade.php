@@ -66,23 +66,20 @@
           @endif
         </header>
 
-        <div class="content">
+        <div class="contents">
           @yield('content')
+        <div>
+
+        <div class="subscribe">
+          @include('mailing-list')
         </div>
 
-        <footer>
-          <div class="columns">
-            <div class="column is-one-half">
-              Copyright &copy; {{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
-            </div>
-            <div class="column is-one-half">
-              @include('mailing-list')
-            </div>
-          </div>
+        <footer class="site-footer">
+          &copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
         </footer>
       </div>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
+      <!-- Scripts -->
+      <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
