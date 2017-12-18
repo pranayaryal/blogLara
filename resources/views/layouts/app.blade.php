@@ -75,9 +75,9 @@
           </span>
         </a>
 
+        @if(Auth::check())
         <nav class="nav">
           <ul class="nav_menu">
-            @if(Auth::check())
               <li><a href="/">Home</a></li>
               <li><a href="/admin">Posts</a></li>
               <li><a href="/profile">Profile</a></li>
@@ -91,12 +91,19 @@
                   {{ csrf_field() }}
                 </form>
               </li>
-            @else
-              <!-- non-logged in links -->
-            @endif
+              <li>
+                <form id="search-form" action="{{ url('/search') }}" method="POST">
+                  {{ csrf_field() }}
+                  <input name="query">
+                  <input type="submit" class="button">
+                </form>
+              </li>
           </ul>
           <button class="nav_button"><i class="icon-plus"></i></button>
         </nav>
+        @else
+          <!-- non-logged in links -->
+        @endif
     	</header>
 
       @yield('content')
