@@ -77,8 +77,8 @@
 
         <nav class="nav">
           <ul class="nav_menu">
-            <li><a href="/">Home</a></li>
             @if(Auth::check())
+              <li><a href="/">Home</a></li>
               <li><a href="/admin">Posts</a></li>
               <li><a href="/profile">Profile</a></li>
               <li><a href="{{ url('/logout') }}"
