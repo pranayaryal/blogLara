@@ -8,6 +8,7 @@ class SearchController extends Controller
 {
     public function search() {
         $query = request('query');
+ 
         $posts = \App\Post::search($query)->get();
         $profiles = \App\Profile::search($query)->get();
 
