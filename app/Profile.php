@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 
 class Profile extends Model
 {
-    use Notifiable;
+    use Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.

@@ -7,10 +7,11 @@ use App\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\SlugTrait;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    use SlugTrait;
+    use SlugTrait, Searchable;
 
     /**
      * The attributes that are mass assignable.
