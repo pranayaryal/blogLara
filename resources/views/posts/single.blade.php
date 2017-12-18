@@ -29,10 +29,12 @@
   @endif
 
   <div class="entry_block entry_block--content">
-  @if(!empty($full_content) && $full_content)
-    {!! $post->content !!}
-  @else
-    {!! $post->excerpt !!}
-  @endif
+    <div class="content">
+      @if(!empty($full_content) && $full_content)
+        {!! $post->content !!}
+      @else
+        {!! $post->excerpt !!}
+      @endif
+    </div>
   </div>
 </article>
