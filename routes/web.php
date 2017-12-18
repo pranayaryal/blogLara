@@ -38,3 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
     // list all lfm routes here...
 });
+
+// Search
+Route::get('/search/{query}', 'SearchController@search');
+
