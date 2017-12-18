@@ -17618,35 +17618,28 @@ img {
   padding: 0 40px 160px 40px;
 }
 
-.brand {
+.masthead {
   position: fixed;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
   top: 40px;
   left: 40px;
-  z-index: 9;
 }
 
-.brand a {
+.brand {
+  z-index: 9;
   display: inline-block;
   line-height: 0;
 }
 
-.brand a span {
+.brand span {
   display: inline-block;
 }
 
-.brand a .acorn svg {
+.brand .acorn svg {
   width: 40px;
   height: 40px;
 }
 
 .nav {
-  position: fixed;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  top: 80px;
-  left: 40px;
   font-family: "Clarendon LT W01 Light", Georgia, "Times New Roman", Times, serif;
   line-height: 1.6em;
   z-index: 9;
@@ -17732,7 +17725,7 @@ img {
   color: black;
 }
 
-.shell {
+.contents {
   max-width: 800px;
   margin: 0 auto;
 }

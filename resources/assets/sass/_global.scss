@@ -42,38 +42,30 @@ img {
 	padding: 0 40px 160px 40px;
 }
 
-.brand {
+.masthead {
 	position:fixed;
-	-webkit-transform: translate3d(0, 0, 0);
-	transform : translate3d(0, 0, 0);
 	top: 40px;
-    left: 40px;
+	left: 40px;
+}
+
+.brand {
 	z-index:9;
+	display: inline-block;
+	line-height: 0;
 
-	a {
+	span {
 		display: inline-block;
-		line-height: 0;
-
-		span {
-			display: inline-block;
-		}
-		.acorn {
-			svg {
-				width: 40px;
-				height: 40px;
-			}
+	}
+	.acorn {
+		svg {
+			width: 40px;
+			height: 40px;
 		}
 	}
-
 }
 
 .nav {
-	position:fixed;
-	-webkit-transform: translate3d(0, 0, 0);
-	transform : translate3d(0, 0, 0);
-	top: 80px;
-    left: 40px;
-    font-family: $font-family-serif;
+  font-family: $font-family-serif;
 	line-height: 1.6em;
 	z-index:9;
 
@@ -153,7 +145,7 @@ img {
 	}
 }
 
-.shell {
+.contents {
 	max-width: 800px;
 	margin: 0 auto;
 }
