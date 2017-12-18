@@ -6,6 +6,9 @@
  */
 
 require('./bootstrap');
+require('./fontawesome/fontawesome.min');
+require('./fontawesome/fa-solid.min');
+require('./fontawesome/fa-brands.min');
 
 
 // Global scope Vue Filters
