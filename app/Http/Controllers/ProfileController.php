@@ -10,17 +10,21 @@ class ProfileController extends Controller
 {
     public function show($slug)
     {
-        $profile = Profile::whereSlug($slug)->firstOrFail();
-        $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->get();
-        return view('profile.show', compact(['profile', 'posts']));
+            $profile = Profile::whereSlug($slug)->firstOrFail();
+            $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->get();
+            return view('profile.show', compact(['profile', 'posts']));
     }
 
     public function create(Profile $profile)
     {
-        $user = auth()->user();
-        $profile = $profile->firstOrNew(['user_id' => auth()->user()->id]);
-        $profile->user()->associate($user);
-        return view('profile.form', compact('profile'));
+        try {
+            $user = auth()->user();
+            $profile = $profile->firstOrNew(['user_id' => auth()->user()->id]);
+            $profile->user()->associate($user);
+            return view('profile.form', compact('profile'));
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 
     public function store(Profile $profile)

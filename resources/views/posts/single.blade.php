@@ -1,13 +1,14 @@
 <article class="entry">
   <header class="entry_header">
-      @if (isset($no_link) && !empty($no_link))
-      <h2 class="entry_title">{{ $post->title }} @if (auth::check())
-      <a href="/posts/{{ $post->id }}/edit" class="btn btn-sm btn-primary">Edit</a>
-      @endif</h2>
+      @if(auth::check())
+          <?php $link = "/posts/$post->id/edit"; ?>
       @else
-      <h2 class="entry_title"><a href="/posts/{{ $post->slug }}">{{ $post->title }}@if (auth::check())
-      <a href="/posts/{{ $post->id }}/edit" class="btn btn-sm btn-primary">Edit</a>
-      @endif</a></h2>
+          <?php $link = $post->slug; ?>
+      @endif
+      @if (isset($no_link) && !empty($no_link))
+      <h2 class="entry_title">{{ $post->title }}</h2>
+      @else
+      <h2 class="entry_title"><a href="/{{ $link }}">{{ $post->title }}</a></h2>
       @endif
 
       <div class="entry_meta">
