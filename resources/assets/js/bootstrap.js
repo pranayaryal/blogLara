@@ -2,6 +2,13 @@
 window._ = require('lodash');
 
 /**
+ * FontAwesome 5
+ */
+require('./fontawesome/fontawesome.min');
+require('./fontawesome/fa-solid.min');
+require('./fontawesome/fa-brands.min');
+
+/**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
