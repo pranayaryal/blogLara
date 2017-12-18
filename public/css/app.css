@@ -8515,8 +8515,8 @@ img {
   color: black;
 }
 
-.entries {
-  max-width: 760px;
+.shell {
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -8565,7 +8565,6 @@ img {
 
 .entry_header {
   margin: 0 auto 30px;
-  max-width: 800px;
 }
 
 .entry_title {
@@ -8635,7 +8634,6 @@ img {
 }
 
 .user {
-  max-width: 720px;
   margin: 0 auto;
   position: relative;
   padding-left: 160px;
