@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function search($query) {
-        $results = [];
         
-        $results[] = \App\Post::search($query)->get();
-        $results[] = \App\Profile::search($query)->get();
+        $posts = \App\Post::search($query)->get();
+        $profiles = \App\Profile::search($query)->get();
+
+        $results = collect($posts, $profiles);
     
-        return $results;
+        return view('search.results', compact('results', 'query'));
     }
 }
