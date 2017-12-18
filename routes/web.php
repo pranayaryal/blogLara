@@ -26,9 +26,9 @@ Route::get('category/{slug}', 'CategoriesController@show');
 
 // Posts
 Route::get('/', 'PostsController@index');
-Route::get('/{slug}', 'PostsController@show');
 Route::get('post', 'PostsController@create')->middleware('auth');
 Route::post('post', 'PostsController@store')->middleware('auth');
+Route::get('/{slug}', 'PostsController@show');
 Route::get('posts/{post}/edit', 'PostsController@edit')->middleware('auth');
 Route::put('posts/{post}/edit', 'PostsController@store')->middleware('auth');
 Route::delete('posts/{post}/delete', 'PostsController@delete')->middleware('auth');
