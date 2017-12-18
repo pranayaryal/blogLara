@@ -70,7 +70,7 @@
           @yield('content')
         <div>
 
-        <div class="mail">
+        <div class="subscribe">
           @include('mailing-list')
         </div>
 
