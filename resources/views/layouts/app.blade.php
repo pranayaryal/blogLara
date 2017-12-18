@@ -106,7 +106,9 @@
         @endif
     	</header>
 
-      @yield('content')
+      <div class="shell">
+        @yield('content')
+      </div>
 
       <footer>
         <div class="row">
