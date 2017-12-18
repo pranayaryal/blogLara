@@ -1,12 +1,8 @@
 
-* {
-	transition: all 0.3s ease-in-out;
-
-	&:focus {
-		outline: none;
-	}
-
+*:focus {
+	outline: none;
 }
+
 body {
 	font-size: $font-size-base;
 	font-weight: $font-weight-base;
@@ -284,6 +280,7 @@ img {
 	height: 140px;
 }
 .user_name {
+	font-size: 30px;
 	margin: 0;
 	color: black;
 }
@@ -301,22 +298,16 @@ img {
 		display: inline-block;
 
 		a {
-			background-color: $brand-primary;
 			display: inline-block;
-			border-radius: 100%;
-			width: 25px;
-			height: 25px;
 			color: black;
-			text-align: center;
-			font-size: 14px;
-			line-height: 24px;
+			font-size: 18px;
 
 			i {
 				vertical-align: middle;
 			}
 
 			&:hover {
-				background-color: black;
+				background-color: transparent;
 				color: $brand-primary;
 			}
 		}

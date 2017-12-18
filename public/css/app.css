@@ -17572,11 +17572,6 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
   color: #fff;
 }
 
-* {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
 *:focus {
   outline: none;
 }
@@ -17861,6 +17856,7 @@ img {
 }
 
 .user_name {
+  font-size: 30px;
   margin: 0;
   color: black;
 }
@@ -17882,15 +17878,9 @@ img {
 }
 
 .user_social li a {
-  background-color: #bbb900;
   display: inline-block;
-  border-radius: 100%;
-  width: 25px;
-  height: 25px;
   color: black;
-  text-align: center;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 18px;
 }
 
 .user_social li a i {
@@ -17898,7 +17888,7 @@ img {
 }
 
 .user_social li a:hover {
-  background-color: black;
+  background-color: transparent;
   color: #bbb900;
 }
 
