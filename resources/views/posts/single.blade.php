@@ -19,20 +19,20 @@
       </div>
   </header>
 
+  @if(!empty($post->featured_image))
   <div class="entry_block entry_block--image">
     <picture>
       <source srcset="{{ $post->featured_image }}" media="(min-width: 1280px)">
       <img srcset="{{ $post->featured_image }}" alt="">
     </picture>
   </div>
-
-  @if(!empty($full_content) && $full_content)
-  <div class="entry_block entry_block--content">
-    {!! $post->content !!}
-  </div>
-  @else
-<div class="entry_block entry_block--content">
-    {!! $post->excerpt !!}
-  </div>
   @endif
+
+  <div class="entry_block entry_block--content">
+  @if(!empty($full_content) && $full_content)
+    {!! $post->content !!}
+  @else
+    {!! $post->excerpt !!}
+  @endif
+  </div>
 </article>
