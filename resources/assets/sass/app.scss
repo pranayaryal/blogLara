@@ -1,12 +1,8 @@
 
-// Font
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,500,500i");
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
+@import "bulma";
 @import "variables";
-
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-// Global
 @import "global";
