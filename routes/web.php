@@ -13,24 +13,25 @@
 
 Auth::routes();
 
-// Posts
-Route::get('/', 'PostsController@index');
-Route::get('posts/{slug}', 'PostsController@show');
-Route::get('post', 'PostsController@create')->middleware('auth');
-Route::post('post', 'PostsController@store')->middleware('auth');
-Route::get('posts/{post}/edit', 'PostsController@edit')->middleware('auth');
-Route::put('posts/{post}/edit', 'PostsController@store')->middleware('auth');
-Route::delete('posts/{post}/delete', 'PostsController@delete')->middleware('auth');
 Route::get('/admin', 'PostsController@admin');
-
-// Categories
-Route::resource('category', 'CategoriesController')->middleware('auth')->except('show');
-Route::get('category/{slug}', 'CategoriesController@show');
 
 // Profiles
 Route::get('profile', 'ProfileController@create')->middleware('auth');
 Route::match(['put', 'post'], 'profile', 'ProfileController@store')->middleware('auth');
 Route::get('profile/{slug}', 'ProfileController@show');
+
+// Categories
+Route::resource('category', 'CategoriesController')->middleware('auth')->except('show');
+Route::get('category/{slug}', 'CategoriesController@show');
+
+// Posts
+Route::get('/', 'PostsController@index');
+Route::get('/{slug}', 'PostsController@show');
+Route::get('post', 'PostsController@create')->middleware('auth');
+Route::post('post', 'PostsController@store')->middleware('auth');
+Route::get('posts/{post}/edit', 'PostsController@edit')->middleware('auth');
+Route::put('posts/{post}/edit', 'PostsController@store')->middleware('auth');
+Route::delete('posts/{post}/delete', 'PostsController@delete')->middleware('auth');
 
 // FileManager
 Route::group(['middleware' => 'auth'], function () {
