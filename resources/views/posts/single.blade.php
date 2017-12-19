@@ -39,3 +39,6 @@
     </div>
   </div>
 </article>
+<div class="subscribe">
+    @include('mailing-list')
+</div>
