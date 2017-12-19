@@ -58,8 +58,10 @@
               <li>
                 <form id="search-form" action="{{ url('/search') }}" method="POST">
                   {{ csrf_field() }}
-                  <input name="query">
-                  <input type="submit" class="button">
+                  <div class="field has-addons">
+                    <div class="control"><input class="input" type="text" name="query"></div>
+                    <div class="control"><input type="submit" class="button is-primary"></div>
+                  </div>
                 </form>
               </li>
           </ul>
