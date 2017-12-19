@@ -10,9 +10,11 @@ class ProfileController extends Controller
 {
     public function show($slug)
     {
-            $profile = Profile::whereSlug($slug)->firstOrFail();
+            $profile = Profile::whereSlug($slug)->with('user')->firstOrFail();
             $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->get();
-            return view('profile.show', compact(['profile', 'posts']));
+            $description = !empty($profile->bio) ? strip_tags($profile->bio) : $profile->user->name . ' - ' . $profile->title;
+            $title = $profile->user->name . ' | ' . $profile->title . ' | ' . 'Doe-Anderson';
+            return view('profile.show', compact(['profile', 'posts', 'description', 'title']));
     }
 
     public function create(Profile $profile)
