@@ -9,7 +9,7 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <title>{{ !empty($title) ? $title : 'Doe-Anderson Digital Department | Louisville, KY' }}</title>
-      <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}"
+      <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
       <!-- Styles -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">

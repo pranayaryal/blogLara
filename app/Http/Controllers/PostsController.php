@@ -29,7 +29,7 @@ class PostsController extends Controller
         $no_link = true;
         $full_content = true;
         $post = Post::whereSlug($slug)->with('category')->firstOrFail();
-        $description = !empty($post->seo_description) ? $post->seo_description : $post->excerpt;
+        $description = !empty($post->seo_description) ? $post->seo_description : strip_tags($post->excerpt);
         $title = !empty($post->seo_title) ? $post->seo_title : $post->title . ' | Posted in ' . $post->category->name . ' | Doe-Anderson';
         return view('posts.show', compact('post', 'no_link', 'full_content', 'description', 'title'));
     }
