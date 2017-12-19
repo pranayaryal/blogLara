@@ -59,6 +59,8 @@ class PostsController extends Controller
         $post->status_id = request('status_id');
         $post->title = request('title');
         $post->user_id = request('user_id');
+        $post->seo_title = request('seo_title');
+        $post->seo_description = request('seo_description');
 
         if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
             $image = request()->all()['featured_image'];
