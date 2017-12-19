@@ -6,7 +6,7 @@
             @else
                 <?php $link = $post->slug; ?>
             @endif
-            <a href="/{{ $link }}">{{ $post->title }}</a>
+            <a href="{{ $link }}">{{ $post->title }}</a>
         </h2>
         <div class="entry_meta">
             <div class="author_avatar" style="background-image:url({{ $post->author->profile->avatar }});"></div>

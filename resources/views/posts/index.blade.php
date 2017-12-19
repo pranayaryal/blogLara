@@ -7,5 +7,9 @@
     @endif
 
     @each('posts.single', $posts, 'post')
+
+    <div class="subscribe">
+        @include('mailing-list')
+    </div>
 </div>
 @endsection

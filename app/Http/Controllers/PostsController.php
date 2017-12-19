@@ -29,7 +29,9 @@ class PostsController extends Controller
         $no_link = true;
         $full_content = true;
         $post = Post::whereSlug($slug)->firstOrFail();
-        return view('posts.show', compact('post', 'no_link', 'full_content'));
+        $description = !empty($post->seo_description) ? $post->seo_description : $post->excerpt;
+        $title = !empty($post->seo_title) ? $post->seo_title : $post->title . ' | Doe-Anderson';
+        return view('posts.show', compact('post', 'no_link', 'full_content', 'description', 'title'));
     }
 
     public function edit(Post $post)

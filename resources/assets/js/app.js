@@ -18,8 +18,8 @@ window.Vue = require('vue');
 Vue.component('subscriber', require('./components/subscriber/Subscriber.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#mailing_list'
 });
 
 
-require('./bulma-extensions');
+// require('./bulma-extensions');

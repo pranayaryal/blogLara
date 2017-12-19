@@ -8,7 +8,8 @@
       <!-- CSRF Token -->
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <title>{{ config('app.name', 'Laravel') }} {{ app()->version() }}</title>
+      <title>{{ !empty($title) ? $title : 'Doe-Anderson Digital Department | Louisville, KY' }}</title>
+      <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}"
 
       <!-- Styles -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -66,10 +67,6 @@
       <div class="contents">
         @yield('content')
       <div>
-
-      <div class="subscribe">
-        @include('mailing-list')
-      </div>
 
       <footer class="site-footer">
         &copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
