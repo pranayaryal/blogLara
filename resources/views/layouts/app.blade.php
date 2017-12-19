@@ -8,7 +8,7 @@
       <!-- CSRF Token -->
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <title>{{ !empty($title) ? $title : 'Doe-Anderson Digital Department | Louisville, KY' }}</title>
+      <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
       <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
       <!-- Styles -->
