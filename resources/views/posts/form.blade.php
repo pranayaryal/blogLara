@@ -37,13 +37,13 @@
 
     <div class="columns">
         <!-- Category -->
-        <div class="field column is-one-half">
+        <div class="field column is-one-third">
             <label class="label control-label">Category</label>
             <div class="control">
                 <div class="select">
                     <select name="category_id">
                         @foreach ($categoryOptions as $category)
-                        <option value="{{ $category->id }}" @if (isset($post->category->id) && !empty($post->category->id)) {{ $post->category->id === $category->id ? 'selected' : '' }} @endif>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" @if (isset($post->category->id) && !empty($post->category->id)) {{ $post->category->id === $category->id ? 'selected' : '' }} @endif>{{ ucfirst($category->name) }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -51,16 +51,24 @@
         </div>
 
         <!-- Status -->
-        <div class="field column is-one-half">
+        <div class="field column is-one-third">
             <label class="label control-label">Status</label>
             <div class="control">
                 <div class="select">
                     <select name="status_id">
                         @foreach ($statusOptions as $status)
-                        <option value="{{ $status->id }}" @if (isset($post->status->id) && !empty($post->status->id)){{ $post->status->id === $status->id ? 'selected' : '' }} @endif>{{ $status->name }}</option>
+                        <option value="{{ $status->id }}" @if (isset($post->status->id) && !empty($post->status->id)){{ $post->status->id === $status->id ? 'selected' : '' }} @endif>{{ ucfirst($status->name) }}</option>
                         @endforeach
                     </select>
                 </div>
+            </div>
+        </div>
+
+        <!-- Canonical -->
+        <div class="field column is-one-third">
+            <label class="label control-label">Canonical link</label>
+            <div class="control">
+                <input class="checkbox" name="canonical" type="checkbox" {{ $post->canonical === 1 ? 'checked' : '' }}>
             </div>
         </div>
     </div>

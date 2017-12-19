@@ -11,6 +11,10 @@
       <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
       <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
+      @if(isset($post->canonical))
+        <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
+      @endif
+
       <!-- Styles -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   </head>

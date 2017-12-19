@@ -63,6 +63,7 @@ class PostsController extends Controller
         $post->user_id = request('user_id');
         $post->seo_title = request('seo_title');
         $post->seo_description = request('seo_description');
+        $post->canonical = !empty(request('canonical')) ? 1 : null;
 
         if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
             $image = request()->all()['featured_image'];
