@@ -8,7 +8,7 @@
       @if (isset($no_link) && !empty($no_link))
       <h2 class="entry_title">{{ $post->title }}</h2>
       @else
-      <h2 class="entry_title"><a href="/{{ $link }}">{{ $post->title }}</a></h2>
+      <h2 class="entry_title"><a href="{{ $link }}">{{ $post->title }}</a></h2>
       @endif
 
       <div class="entry_meta">

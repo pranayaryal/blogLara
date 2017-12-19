@@ -65,12 +65,28 @@
         </div>
     </div>
 
+    <div class="columns">
+        <div class="field column is-one-half">
+            <label class="label control-label">SEO Title</label>
+            <div class="control">
+                <input class="input" type="text" name="seo_title" placeholder="CTA | Title | Doe-Anderson" value="{{ old('seo_title') }}">
+            </div>
+        </div>
+
+        <div class="field column is-one-half">
+            <label class="label control-label">SEO Description</label>
+            <div class="control">
+                <textarea class="textarea" type="text" name="seo_description">Give some a reason to click</textarea>
+            </div>
+        </div>
+    </div>
+
     <!-- post content -->
     <div class="field">
         <label class="label control-label">Content</label>
 
         <div class="control">
-            <textarea class="textarea" name="content" rows="15">{{ $post->content }}</textarea>
+            <textarea class="textarea tiny-mce" name="content" rows="15">{{ $post->content }}</textarea>
         </div>
     </div>
 
@@ -79,7 +95,7 @@
         <label class="label control-label">Excerpt</label>
 
         <div class="control">
-            <textarea name="excerpt" rows="15">{{ $post->excerpt }}</textarea>
+            <textarea class="textarea tiny-mce" name="excerpt" rows="15">{{ $post->excerpt }}</textarea>
         </div>
     </div>
 
