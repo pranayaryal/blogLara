@@ -963,7 +963,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(58);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -990,8 +990,18 @@ window.Vue = __webpack_require__(37);
 Vue.component('subscriber', __webpack_require__(40));
 
 var app = new Vue({
-  el: '#mailing_list'
+    el: '#mailing_list'
 });
+
+// Search Toggle
+var searchToggle = document.querySelectorAll('.search-button, .search-overlay');
+var searchBox = document.querySelector('.site-search');
+for (var i = 0; i < searchToggle.length; i++) {
+    searchToggle[i].addEventListener('click', searchOpen, false);
+}
+function searchOpen() {
+    document.body.classList.toggle('site-search-open');
+}
 
 // require('./bulma-extensions');
 
@@ -41672,16 +41682,7 @@ if (false) {
 }
 
 /***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
+/* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

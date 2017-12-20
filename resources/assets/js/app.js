@@ -21,5 +21,14 @@ const app = new Vue({
     el: '#mailing_list'
 });
 
+// Search Toggle
+var searchToggle = document.querySelectorAll('.search-button, .search-overlay');
+var searchBox = document.querySelector('.site-search');
+for (var i = 0; i < searchToggle.length; i++) {
+    searchToggle[i].addEventListener('click',searchOpen,false);
+}
+function searchOpen(){
+    document.body.classList.toggle('site-search-open');
+}
 
 // require('./bulma-extensions');
