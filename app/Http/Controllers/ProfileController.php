@@ -58,8 +58,6 @@ class ProfileController extends Controller
         $profile->github = request('github');
 
         try {
-            $profile->avatar = '';
-
             if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
                 $path = '/images/profile/' . $profile->slug . '/avatar';
                 $image->move(public_path() . $path, $image->getClientOriginalName());

@@ -2,7 +2,7 @@
 @section('content')
 <div class="author">
   <div class="user">
-    <div class="user_avatar" style="background-image: url( {{ $profile->avatar }} )"></div>
+    <div class="user_avatar" style="background-image: url( '{{ $profile->avatar }}' )"></div>
 
     <div class="user_details">
     <h2 class="user_name">{{ $profile->user->name }}</h2>
