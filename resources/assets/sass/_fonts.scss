@@ -1,0 +1,25 @@
+/*
+This CSS resource incorporates links to font software which is the valuable copyrighted
+property of Monotype Imaging and/or its suppliers. You may not attempt to copy, install,
+redistribute, convert, modify or reverse engineer this font software. Please contact Monotype
+Imaging with any questions regarding Web Fonts:  http://www.fonts.com
+*/
+
+@import url("https://fast.fonts.net/t/1.css?apiType=css&projectid=70efd657-214e-4d18-87a4-1bbdbf148a06");
+
+@font-face{
+  font-family:"Clarendon® W01_n2";
+    src:url("../../assets/fonts/9862421f-a7e4-4a08-9ca8-79a1fbae9402.eot?#iefix") format("eot")
+}
+
+@font-face{
+  font-family:"Clarendon® W01";
+    src:url("../../assets/fonts/9862421f-a7e4-4a08-9ca8-79a1fbae9402.eot?#iefix");
+    src:url("../../assets/fonts/9862421f-a7e4-4a08-9ca8-79a1fbae9402.eot?#iefix") format("eot"),
+        url("../../assets/fonts/e4dec283-7af8-44cc-8baa-41fd71695531.woff2") format("woff2"),
+        url("../../assets/fonts/47ce892d-e00c-49f3-b2c7-52332731d02d.woff") format("woff"),
+        url("../../assets/fonts/53d1345d-9a4d-4ff6-8720-5569a24bc7e4.ttf") format("truetype"),
+        url("../../assets/fonts/e9682088-c246-469e-a760-505dc555664c.svg#e9682088-c246-469e-a760-505dc555664c") format("svg");
+  font-weight: 200;
+  font-style: normal;
+}

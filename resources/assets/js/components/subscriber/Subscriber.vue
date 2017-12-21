@@ -4,18 +4,15 @@
 
 <template>
     <div>
-        <h3>Join the mailing list.</h3>
+        <h3>subscriberForm()</h3>
+        <p>Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas.</p>
 
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="input" v-model="subscriberForm.email">
+                <label class="sr-only">Email address</label>
+                <input type="email" class="input is-medium" v-model="subscriberForm.email" placeholder="Email address">
             </div>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="input" v-model="subscriberForm.name">
-            </div>
-            <input type="submit" class="btn btn-sm btn-primary" @click="store">
+            <input type="submit" class="button is-primary is-medium is-expanded" @click="store">
         </form>
     </div>
 </template>

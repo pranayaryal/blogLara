@@ -80,22 +80,24 @@
           @endif
         </div>
 
-        <div class="navbar-end">
-          <a class="navbar-item search-button">
-            <span class="icon">
-              <i class="fas fa-md fa-search"></i>
-            </span>
-          </a>
-          <a class="navbar-item is-hidden-desktop-only" href="https://github.com/doeanderson" target="_blank">
-            <span class="icon">
-              <i class="fab fa-md fa-github"></i>
-            </span>
-          </a>
-          <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/doeanderson" target="_blank">
-            <span class="icon">
-              <i class="fab fa-md fa-twitter"></i>
-            </span>
-          </a>
+        <div class="navbar-menu is-active">
+          <div class="navbar-end">
+            <a class="navbar-item search-button">
+              <span class="icon">
+                <i class="fas fa-md fa-search"></i>
+              </span>
+            </a>
+            <a class="navbar-item" href="https://github.com/doeanderson" target="_blank">
+              <span class="icon">
+                <i class="fab fa-md fa-github"></i>
+              </span>
+            </a>
+            <a class="navbar-item" href="https://twitter.com/doeanderson" target="_blank">
+              <span class="icon">
+                <i class="fab fa-md fa-twitter"></i>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -108,7 +110,13 @@
 
     <footer class="site-footer">
       <div class="container">
-        &copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
+        @if(!Auth::check())
+        <div class="subscribe" id="mailing_list">
+            @include('mailing-list')
+        </div>
+        @endif
+
+        <p class="copyright">&copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.</p>
       </div>
     </footer>
   </div>
