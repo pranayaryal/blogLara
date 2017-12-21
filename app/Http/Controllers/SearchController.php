@@ -13,7 +13,9 @@ class SearchController extends Controller
         $profiles = \App\Profile::search($query)->get();
 
         $results = collect($posts, $profiles);
+
+        $title = 'Searching results for: ' . $query . ' | Doe-Anderson';
     
-        return view('search.results', compact('results', 'query'));
+        return view('search.results', compact('results', 'query', 'title'));
     }
 }

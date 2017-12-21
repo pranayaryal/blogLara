@@ -13,7 +13,6 @@
 
 Auth::routes();
 
-Route::get('/admin', 'PostsController@admin');
 
 // Profiles
 Route::get('profile', 'ProfileController@create')->middleware('auth');
@@ -25,6 +24,7 @@ Route::resource('category', 'CategoriesController')->middleware('auth')->except(
 Route::get('category/{slug}', 'CategoriesController@show');
 
 // Posts
+Route::get('/admin', 'PostsController@admin')->middleware('auth');
 Route::get('/', 'PostsController@index');
 Route::get('post', 'PostsController@create')->middleware('auth');
 Route::post('post', 'PostsController@store')->middleware('auth');

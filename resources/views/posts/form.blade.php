@@ -3,6 +3,10 @@
 
 @include('errors')
 
+<a href="/{{ $post->slug }}" class="button" target="_BLANK">View Post</a>
+<br>
+<hr>
+
 <form class="" role="form" action="{{ $action }}" method="POST" enctype="multipart/form-data">
     <!-- title -->
     {{ csrf_field() }}
@@ -27,11 +31,11 @@
         <label class="label control-label">Featured Image</label>
 
         <div class="control">
-            <input class="input" id="create-post-title" type="file" name="featured_image">
+            <input class="input" id="create-post-title" type="file" name="featured_image" value="{{ $post->featured_image }}">
         </div>
 
         @if (!empty($post->featured_image))
-            <img src="{{ $post->featured_image }}" alt="">
+            <img src="{{ $post->featured_image }}">
         @endif
     </div>
 
@@ -77,14 +81,14 @@
         <div class="field column is-one-half">
             <label class="label control-label">SEO Title</label>
             <div class="control">
-                <input class="input" type="text" name="seo_title" placeholder="CTA | Title | Doe-Anderson" value="{{ old('seo_title') }}">
+                <input class="input" type="text" name="seo_title" placeholder="CTA | Title | Doe-Anderson" value="{{ !empty(old('seo_title')) ? old('seo_title') : $post->seo_title }}">
             </div>
         </div>
 
         <div class="field column is-one-half">
             <label class="label control-label">SEO Description</label>
             <div class="control">
-                <textarea class="textarea" type="text" name="seo_description">Give some a reason to click</textarea>
+                <textarea class="textarea" type="text" name="seo_description">{{ !empty(old('seo_description')) ? old('seo_description') : $post->seo_description }}</textarea>
             </div>
         </div>
     </div>

@@ -34,11 +34,12 @@
         <label class="label control-label" for="avatar">Avatar</label>
 
         <div class="control">
-            <input type="file" class="input" name="avatar">
+            <input type="file" class="input" name="avatar" value="{{ $profile->avatar }}">
         </div>
 
-        @if (!empty($post->featured_image))
-            <img src="{{ $post->featured_image }}" alt="">
+        @if (!empty($profile->avatar))
+            <img src="{{ $profile->avatar }}" alt="">
+
         @endif
     </div>
 
