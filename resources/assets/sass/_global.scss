@@ -16,9 +16,11 @@
 
 body {
 	font-size: $font-size-base;
-	font-weight: $font-weight-base;
+  font-weight: $font-weight-base;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  color: rgba(0,0,0,.84);
+  line-height: 1.7;
 
 	@media (max-width:600px) {
 		font-size: 16px;
@@ -27,6 +29,7 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
   font-family: font(serif);
+  font-weight: 300;
 }
 
 a {
@@ -357,14 +360,7 @@ label {
 }
 
 .content {
-
-	h1, h2, h3, h4, h5, h6 {
-		margin-bottom: 1em;
-
-		&:not(:first-child) {
-			margin-top: 1.5em;
-		}
-	}
+  font-size: 20px;
 
 	p, dl, ol, ul, blockquote, pre, table {
 
@@ -404,11 +400,7 @@ label {
 
 	strong {
 		color: $brand-primary;
-		font-weight: 600;
-
-		em {
-			font-weight: 600;
-		}
+		font-weight: normal;
 	}
 
 	div {
@@ -455,6 +447,7 @@ label {
     margin: 0 0 10px;
     font-size: 34px;
     font-family: monospace;
+    font-weight: normal;
   }
 
   p {
@@ -492,7 +485,7 @@ label {
 
 .site-footer {
   margin: 40px 0 160px;
-  
+
   .copyright {
     margin: 20px 0 0;
     font-size: 14px;
