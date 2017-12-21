@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="entries">
+<div class="posts">
     @if(!empty($category_name))
-        <h2>Showing posts in: {{ $category_name }}</h2>
+        <h2>{{ $category_name }}</h2>
     @endif
 
-    @each('posts.listItem', $posts, 'post')
+    @each('posts.single', $posts, 'post')
 
     <div class="subscribe">
         @include('mailing-list')
