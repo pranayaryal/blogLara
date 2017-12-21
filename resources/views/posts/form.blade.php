@@ -3,6 +3,10 @@
 
 @include('errors')
 
+<a href="/{{ $post->slug }}" class="button" target="_BLANK">View Post</a>
+<br>
+<hr>
+
 <form class="" role="form" action="{{ $action }}" method="POST" enctype="multipart/form-data">
     <!-- title -->
     {{ csrf_field() }}
