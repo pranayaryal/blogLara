@@ -14,14 +14,14 @@ article:last-child {
 </style>
 
 <template>
-    <article class="entry">
-        <header class="entry_header">
+    <article class="post">
+        <header class="post_header">
             <a @click="deleteChild(post.id)">Delete</a>
-            <h4 class="entry_title"><a rel="bookmark" @click="editChild(post)">{{ post.title }} <span v-if="post.status_id !== 3"> &mdash;</span> {{ post.status_id | humanize_status }}</a></h4>
-            <div class="entry_meta">
+            <h4 class="post_title"><a rel="bookmark" @click="editChild(post)">{{ post.title }} <span v-if="post.status_id !== 3"> &mdash;</span> {{ post.status_id | humanize_status }}</a></h4>
+            <div class="post_meta">
                 <div class="author_name">Warwick Anderson</div>
                 <div class="category">Posted in: <span v-for="category in categories" v-if="category.id === post.category_id">{{ category.name }}</span></div>
-                <time class="entry_date">{{ post.created_at | fromNow }}</time>
+                <time class="post_date">{{ post.created_at | fromNow }}</time>
             </div>
         </header>
     </article>

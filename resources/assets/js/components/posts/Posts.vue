@@ -1,8 +1,8 @@
 <style scoped></style>
 
 <template>
-    <div class="entries">
-        <div class="entries_header">
+    <div class="posts">
+        <div class="posts_header">
           <h3 v-if="this.view !== false">{{ this.view | currentView }}</h3>
         </div>
         <template v-for="(post, index) in posts">
