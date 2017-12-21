@@ -22,8 +22,8 @@ $doe-colors: (  green: #bbb900,
                 black: #241628);
 
 // Typography
-$doe-fonts: ( headline : unquote("'Clarendon LT W01 Light', Georgia, 'Times New Roman', Times, serif"),
-          common:  unquote("BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"));
+$doe-fonts: ( serif : unquote("'Clarendon LT W01 Light', Georgia, 'Times New Roman', Times, serif"),
+          sans-serif:  unquote("BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"));
 
 $font-family-serif: "Clarendon LT W01 Light", Georgia, "Times New Roman", Times, serif;
 $font-family-sans-serif: "Roboto", "Proxima N W01 Light", HelveticaNeue-Light, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -48,6 +48,6 @@ $grey-dark: color(black);
 
 // Navbar
 $navbar-background-color: transparent;
-$navbar-height: 5rem;
+$navbar-height: 6rem;
 $navbar-item-color: color(black);
 $navbar-item-hover-color: color(green);
