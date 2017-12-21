@@ -19,8 +19,8 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author'])->get();
-        return view('posts.index', compact('posts', 'full_content'));
+        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->get();
+        return view('posts.index', compact('posts'));
     }
 
     public function show($slug)
@@ -28,7 +28,7 @@ class PostsController extends Controller
         // return $this->Post->singlePost($post);
         $no_link = true;
         $full_content = true;
-        $post = Post::whereSlug($slug)->with('category')->firstOrFail();
+        $post = Post::whereSlug($slug)->with(['category', 'author'])->firstOrFail();
         $description = !empty($post->seo_description) ? $post->seo_description : strip_tags($post->excerpt);
         $title = !empty($post->seo_title) ? $post->seo_title : $post->title . ' | Posted in ' . $post->category->name . ' | Doe-Anderson';
         return view('posts.show', compact('post', 'no_link', 'full_content', 'description', 'title'));

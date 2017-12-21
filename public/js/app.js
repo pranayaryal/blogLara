@@ -963,7 +963,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(58);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -1057,6 +1057,11 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+$('.search-button, .search-overlay').click(function () {
+  $('body').toggleClass('site-search-open');
+  $('.search-form input').focus();
+});
 
 /***/ }),
 /* 12 */
@@ -41672,16 +41677,7 @@ if (false) {
 }
 
 /***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
+/* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

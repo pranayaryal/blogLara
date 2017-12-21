@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="panel-body">
-               <div class="entries">
+               <div class="posts">
                 <edit-post v-for="post in posts" :key="post.id" :post="post" :edit-child="edit" :delete-child="destroy" :categories="createForm.categories"></edit-post>
                </div>
             </div>

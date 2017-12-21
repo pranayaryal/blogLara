@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- CSRF Token -->
-      <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
-      <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
+  <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
+  <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
-      @if(isset($post->canonical))
-        <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
-      @endif
+  @if(isset($post->canonical))
+    <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
+  @endif
 
-      <!-- Styles -->
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  </head>
-  <body>
-    <div id="app">
-      <header class="masthead">
-        <a class="brand" href="/">
-          <span class="acorn">
+  <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="site-search">
+      <form class="search-form" action="{{ url('/search') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="field has-addons">
+          <div class="control">
+            <button class="button is-white  is-large">
+              <span class="icon">
+                <i class="fas fa-md fa-search"></i>
+              </span>
+            </button>
+          </div>
+          <div class="control is-expanded">
+            <input class="input is-large" type="text" name="query" placeholder="Search">
+          </div>
+        </div>
+      </form>
+
+      <div class="search-overlay"></div>
+    </div>
+
+    <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item navbar-acorn" href="/">
             <svg pointer-events="all" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="30" viewBox="0 0 29 30" enable-background="new 0 0 29 30" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
               <path d="M28.1,17.6c-0.2,1.4-1.9,2.8-1.9,2.8c-0.6,1-2.3,1.7-2.3,1.7c-1.6,1.4-2.9,1-2.9,1s-0.9,0.7-1.7,1.3
               c-0.8,0.7-1.7,1.9-2.5,2.6c-2.2,1.9-3.8,2.6-5.5,2.9s-3.5,0-5.6-0.6c-2.1-0.6-3.5,0-3.5,0c-0.2-0.3-0.8-0.7-0.8-0.7
@@ -37,49 +58,62 @@
               c-0.6,0.7-1.7,1.4-2.3,2.1c-0.7,0.6-3.1,3.3-3.6,6C2,21,2.8,23.3,3.2,23.7c0.3,0.4,0.6,2.1,0.8,2.3s3,0.3,4.7,0.3s3.9-1.1,5.7-3.1
               s2.3-3.9,3.8-4.1c1.4-0.3,3-0.2,3.6-1.3C22,16.7,20.2,14.7,16.6,12.7z"/>
             </svg>
-          </span>
-        </a>
+          </a>
 
-        @if(Auth::check())
-        <nav class="nav">
-          <ul class="nav_menu">
-              <li><a href="/">Home</a></li>
-              <li><a href="/admin">Posts</a></li>
-              <li><a href="/profile">Profile</a></li>
-              <li><a href="{{ url('/logout') }}"
-                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  Logout
-                </a>
+          @if(Auth::check())
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">Admin</a>
 
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/post">New Post</a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/admin">Manage Posts</a>
+              <a class="navbar-item" href="/profile">Edit Profile</a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="{{ url('/logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
-                </form>
-              </li>
-              <li>
-                <form id="search-form" action="{{ url('/search') }}" method="POST">
-                  {{ csrf_field() }}
-                  <div class="field has-addons">
-                    <div class="control"><input class="input" type="text" name="query"></div>
-                    <div class="control"><input type="submit" class="button is-primary"></div>
-                  </div>
-                </form>
-              </li>
-          </ul>
-          <button class="nav_button"><i class="icon-plus"></i></button>
-        </nav>
-        @endif
-      </header>
+              </form>
+            </div>
+          </div>
+          @endif
+        </div>
 
-      <div class="contents">
+        <div class="navbar-end">
+          <a class="navbar-item search-button">
+            <span class="icon">
+              <i class="fas fa-md fa-search"></i>
+            </span>
+          </a>
+          <a class="navbar-item is-hidden-desktop-only" href="https://github.com/doeanderson" target="_blank">
+            <span class="icon">
+              <i class="fab fa-md fa-github"></i>
+            </span>
+          </a>
+          <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/doeanderson" target="_blank">
+            <span class="icon">
+              <i class="fab fa-md fa-twitter"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="contents">
+      <div class="container">
         @yield('content')
-      <div>
-
-      <footer class="site-footer">
-        &copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
-      </footer>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-  </body>
+    <footer class="site-footer">
+      <div class="container">
+        &copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>

@@ -2,7 +2,8 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import "bulma";
+// Partials
+@import "mixins";
 @import "variables";
+@import "bulma";
 @import "global";

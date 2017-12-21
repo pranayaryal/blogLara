@@ -1,0 +1,9 @@
+// Getting color values
+@function color($color) {
+  @return map-get($doe-colors, $color);
+}
+
+// Getting font values
+@function font($font) {
+  @return map-get($doe-fonts, $font);
+}

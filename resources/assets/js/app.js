@@ -21,5 +21,4 @@ const app = new Vue({
     el: '#mailing_list'
 });
 
-
 // require('./bulma-extensions');
