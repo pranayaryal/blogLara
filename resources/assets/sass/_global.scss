@@ -367,7 +367,11 @@ label {
 		&:not(:last-child) {
 			margin-bottom: 1.4em;
 		}
-	}
+  }
+
+  a {
+    border-bottom: 2px solid color(green);
+  }
 
 	.table thead th {
 		color: $brand-primary;
@@ -383,19 +387,6 @@ label {
 
 	> *:last-child {
 		margin-bottom: 0;
-	}
-
-	a {
-
-		&:not(.button) {
-			border-bottom: 1px solid transparent;
-			color: $brand-primary;
-			text-decoration: none;
-
-			&:hover {
-				border-color: $brand-primary;
-			}
-		}
 	}
 
 	strong {
