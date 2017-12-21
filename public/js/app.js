@@ -41552,9 +41552,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
 
 function subscriberFormInitialState() {
     return {
@@ -41603,11 +41600,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v("Join the mailing list.")]),
+    _c("h3", [_vm._v("subscriberForm()")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas."
+      )
+    ]),
     _vm._v(" "),
     _c("form", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
       _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Email")]),
+        _c("label", { staticClass: "sr-only" }, [_vm._v("Email address")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -41618,8 +41621,8 @@ var render = function() {
               expression: "subscriberForm.email"
             }
           ],
-          staticClass: "input",
-          attrs: { type: "text" },
+          staticClass: "input is-medium",
+          attrs: { type: "email", placeholder: "Email address" },
           domProps: { value: _vm.subscriberForm.email },
           on: {
             input: function($event) {
@@ -41632,34 +41635,8 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.subscriberForm.name,
-              expression: "subscriberForm.name"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text" },
-          domProps: { value: _vm.subscriberForm.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.subscriberForm, "name", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
       _c("input", {
-        staticClass: "btn btn-sm btn-primary",
+        staticClass: "button is-primary is-medium is-expanded",
         attrs: { type: "submit" },
         on: { click: _vm.store }
       })
