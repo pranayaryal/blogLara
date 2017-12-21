@@ -17952,6 +17952,10 @@ label {
   margin-bottom: 1.4em;
 }
 
+.content a {
+  border-bottom: 2px solid #bbb900;
+}
+
 .content .table thead th {
   color: #bbb900;
   font-weight: 500;
@@ -17963,16 +17967,6 @@ label {
 
 .content > *:last-child {
   margin-bottom: 0;
-}
-
-.content a:not(.button) {
-  border-bottom: 1px solid transparent;
-  color: #bbb900;
-  text-decoration: none;
-}
-
-.content a:not(.button):hover {
-  border-color: #bbb900;
 }
 
 .content strong {
