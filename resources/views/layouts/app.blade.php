@@ -20,7 +20,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="site-search">
+    <div class="site-search" style="display: none;">
       <form class="search-form" action="{{ url('/search') }}" method="POST">
         {{ csrf_field() }}
         <div class="field has-addons">
