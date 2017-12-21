@@ -55,10 +55,10 @@ img {
 
 .site-search {
 	position: relative;
-	z-index: 40;
+  z-index: 40;
+  display: block!important;
 
 	.search-form {
-    display: block !important;
 		position: fixed;
 		top: 0;
 		left: 0;
