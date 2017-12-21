@@ -1,15 +1,6 @@
 <article class="post">
   <header class="post_header">
-      @if(auth::check())
-          <?php $link = "/posts/$post->id/edit"; ?>
-      @else
-          <?php $link = $post->slug; ?>
-      @endif
-      @if (isset($no_link) && !empty($no_link))
-      <h2 class="post_title">{{ $post->title }}</h2>
-      @else
-      <h2 class="post_title"><a href="{{ $link }}">{{ $post->title }}</a></h2>
-      @endif
+      <h2 class="post_title"><a href="{{ $post->slug }}">{{ $post->title }}</a>@if(auth::check()) <a class="button" href="/posts/{{ $post->id }}/edit">Edit</a>@endif</h2>
 
       <div class="post_meta">
         <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}');"></div>
