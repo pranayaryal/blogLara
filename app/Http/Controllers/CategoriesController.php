@@ -50,7 +50,8 @@ class CategoriesController extends Controller
         $cateogry = Category::whereSlug($slug)->firstOrFail();
         $posts = Post::where('category_id', $cateogry->id)->get();
         $category_name = $cateogry->name;
-        return view('posts.category', compact('posts', 'by_category', 'category_name'));
+        $title = 'Posts in category: ' . $category_name . ' | Doe-Anderson';
+        return view('posts.category', compact('posts', 'by_category', 'category_name', 'title'));
     }
 
     /**

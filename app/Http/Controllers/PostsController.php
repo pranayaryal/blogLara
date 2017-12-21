@@ -70,8 +70,6 @@ class PostsController extends Controller
         }
 
         try {
-            $post->featured_image = '';
-
             if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
                 $path = '/images/posts/' . $post->id . '/featured';
                 $image->move(public_path() . $path, $image->getClientOriginalName());
