@@ -25,7 +25,8 @@ Route::get('category/{slug}', 'CategoriesController@show');
 
 // Posts
 Route::get('/admin', 'PostsController@admin')->middleware('auth');
-Route::get('/', 'PostsController@index');
+Route::get('/posts', function () { return redirect('/'); });
+Route::get('/', 'PostsController@index')->name('home');
 Route::get('post', 'PostsController@create')->middleware('auth');
 Route::post('post', 'PostsController@store')->middleware('auth');
 Route::get('/{slug}', 'PostsController@show');

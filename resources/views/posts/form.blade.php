@@ -111,9 +111,22 @@
         </div>
     </div>
 
-    <div class="control col-md-offset-3">
+    
+    <div class="buttons">
         <input class="button is-primary" type="submit" value="{{ $action === '/post' ? 'Create' : 'Edit' }} ">
+
+        <a href="/posts/{{ $post->id }}/delete"      
+            onclick="event.preventDefault();     
+            document.getElementById('delete-form-{{ $post->id }}').submit();"     
+            class="button is-danger">       
+            Delete        
+        </a>
     </div>
+</form>
+
+<form id="delete-form-{{ $post->id }}" action="/posts/{{ $post->id }}/delete" method="POST" style="display: none;">       
+    {{ method_field('DELETE') }}      
+    {{ csrf_field() }}        
 </form>
 @endsection
 @include('tinymce');

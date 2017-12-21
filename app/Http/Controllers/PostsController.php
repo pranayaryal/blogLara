@@ -86,10 +86,10 @@ class PostsController extends Controller
     public function delete(Post $post)
     {
         if (!$post->delete()) {
-            return response()->json('Error: Post not deleted');
+            return redirect()->back();
         }
 
-        return response()->json('Post deleted');
+        return redirect('/');
     }
 
     // Views
