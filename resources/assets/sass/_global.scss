@@ -367,6 +367,27 @@ label {
 	color: color(black);
 }
 
+.card {
+
+  &.card--auth {
+
+    h1 {
+      font-size: 38px;
+      margin: 0 0 30px;
+      text-align: center;
+    }
+  }
+
+  .card-brand {
+    text-align: center;
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
 .content {
   font-size: 20px;
 

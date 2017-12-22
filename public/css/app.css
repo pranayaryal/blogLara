@@ -17952,6 +17952,21 @@ label {
   color: #241628;
 }
 
+.card.card--auth h1 {
+  font-size: 38px;
+  margin: 0 0 30px;
+  text-align: center;
+}
+
+.card .card-brand {
+  text-align: center;
+}
+
+.card .card-brand svg {
+  width: 50px;
+  height: 50px;
+}
+
 .content {
   font-size: 20px;
 }
