@@ -4,7 +4,7 @@
       <a href="{{ $post->slug }}">{{ $post->title }}</a>
     </h2>
     <div class="post_meta">
-      <div class="author_avatar" style="background-image:url({{ $post->author->profile->avatar }})"></div>
+      <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}')"></div>
       <div class="post_details">
         <a 
           class="author_name" 
