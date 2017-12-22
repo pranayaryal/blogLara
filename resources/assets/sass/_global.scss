@@ -30,19 +30,23 @@ body {
 h1,h2,h3,h4,h5,h6 {
   font-family: font(serif);
   font-weight: 300;
+  line-height: 1.3;
 }
 
 a {
-  background-color: transparent;
-  cursor: pointer;
-  color: #313336;
-  transition: all 100ms ease;
 
-	&:hover {
-		background-color: $brand-primary;
-		color: color(black);
-		text-decoration: none;
-	}
+  &:not(.button) {
+    background-color: transparent;
+    cursor: pointer;
+    color: #313336;
+    transition: all 100ms ease;
+
+    &:hover {
+      background-color: $brand-primary;
+      color: color(black);
+      text-decoration: none;
+    }
+  }
 }
 
 img {
@@ -164,9 +168,9 @@ img {
 .posts {
 
 	> h2 {
-		font-size: 62px;
+		font-size: 56px;
 		color: color(black);
-    margin: 0 0 80px;
+    margin: 0 0 120px;
     text-align: center;
 	}
 
@@ -180,8 +184,9 @@ img {
 }
 
 .post {
+  position: relative;
   max-width: 760px;
-  margin: 0 auto;
+  margin: 0 auto 160px;
 
   > * {
     margin-bottom: 40px;
@@ -192,6 +197,7 @@ img {
 	}
 
   &.post--list {
+    margin-bottom: 30px;
 
     .post_header {
       margin: 0;
@@ -221,24 +227,24 @@ img {
 			.post_date {
 				margin-left: 10px;
 			}
-
     }
-
   }
-
 }
 
 .post_title {
-	margin: 0 0 15px;
+	margin: 0 0 25px;
 	font-size: 42px;
 	color: color(black);
 
 	a {
-		color: color(black);
 
-		&:hover {
-			background-color: $brand-primary;
-		}
+    &:not(.button) {
+      color: color(black);
+
+      &:hover {
+        background-color: $brand-primary;
+      }
+    }
 	}
 }
 
@@ -281,8 +287,10 @@ img {
   width: calc(100% + 14vw);
 }
 
-.post--list {
-  margin-bottom: 20px;
+.post_control {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .user {
