@@ -80,24 +80,22 @@
           @endif
         </div>
 
-        <div class="navbar-menu is-active">
-          <div class="navbar-end">
-            <a class="navbar-item search-button">
-              <span class="icon">
-                <i class="fas fa-md fa-search"></i>
-              </span>
-            </a>
-            <a class="navbar-item" href="https://github.com/doeanderson" target="_blank">
-              <span class="icon">
-                <i class="fab fa-md fa-github"></i>
-              </span>
-            </a>
-            <a class="navbar-item" href="https://twitter.com/doeanderson" target="_blank">
-              <span class="icon">
-                <i class="fab fa-md fa-twitter"></i>
-              </span>
-            </a>
-          </div>
+        <div class="navbar-end">
+          <a class="navbar-item search-button">
+            <span class="icon">
+              <i class="fas fa-md fa-search"></i>
+            </span>
+          </a>
+          <a class="navbar-item" href="https://github.com/doeanderson" target="_blank">
+            <span class="icon">
+              <i class="fab fa-md fa-github"></i>
+            </span>
+          </a>
+          <a class="navbar-item" href="https://twitter.com/doeanderson" target="_blank">
+            <span class="icon">
+              <i class="fab fa-md fa-twitter"></i>
+            </span>
+          </a>
         </div>
       </div>
     </nav>
