@@ -17715,6 +17715,12 @@ body.site-search-open .search-overlay {
   visibility: visible;
 }
 
+.navbar > .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .navbar .navbar-acorn svg {
   width: 30px;
   height: 30px;
@@ -17727,9 +17733,31 @@ body.site-search-open .search-overlay {
   fill: #bbb900;
 }
 
+.navbar .navbar-end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-left: auto;
+}
+
 .navbar .navbar-end .navbar-item {
   padding-left: 0.6rem;
   padding-right: 0.6rem;
+}
+
+.navbar .navbar-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .contents {

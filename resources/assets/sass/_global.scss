@@ -125,6 +125,10 @@ img {
 
 .navbar {
 
+	> .container {
+		display: flex;
+	}
+
 	.navbar-acorn {
 
 		svg {
@@ -140,11 +144,20 @@ img {
   }
 
 	.navbar-end {
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-end;
+    margin-left: auto;
 
 		.navbar-item {
 			padding-left: 0.6rem;
       padding-right: 0.6rem;
 		}
+	}
+
+	.navbar-item {
+		display: flex;
+		align-items: center;
 	}
 }
 
