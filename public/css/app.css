@@ -17598,9 +17598,9 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   padding: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
@@ -17611,14 +17611,14 @@ body {
   font-size: 18px;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.004);
   color: rgba(0, 0, 0, 0.84);
   line-height: 1.7;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   body {
-    font-size: 16px;
+    font-size: 1em;
   }
 }
 
@@ -17647,7 +17647,7 @@ img {
 }
 
 #app {
-  padding: 0 20px;
+  padding: 0 1.2em;
 }
 
 .site-search {
@@ -17662,9 +17662,9 @@ img {
   left: 0;
   right: 0;
   background-color: white;
-  padding: 0 40px;
-  -webkit-box-shadow: 0 2px 38px 0 rgba(0, 0, 0, 0.08);
-          box-shadow: 0 2px 38px 0 rgba(0, 0, 0, 0.08);
+  padding: 0 2.5rem;
+  -webkit-box-shadow: 0 0.125rem 2.375rem 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 0.125rem 2.375rem 0 rgba(0, 0, 0, 0.08);
   z-index: 2;
   -webkit-transform: translateY(-150%);
           transform: translateY(-150%);
@@ -17679,7 +17679,7 @@ body.site-search-open .search-form {
 }
 
 .site-search .search-form button, .site-search .search-form input {
-  height: 5rem;
+  height: 80px;
   border: 0;
   border-radius: 0;
   -webkit-box-shadow: none;
@@ -17722,8 +17722,8 @@ body.site-search-open .search-overlay {
 }
 
 .navbar .navbar-acorn svg {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   fill: #241628;
   -webkit-transition: all 100ms ease;
   transition: all 100ms ease;
@@ -17747,8 +17747,8 @@ body.site-search-open .search-overlay {
 }
 
 .navbar .navbar-end .navbar-item {
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
+  padding-left: 9.6px;
+  padding-right: 9.6px;
 }
 
 .navbar .navbar-item {
@@ -17760,12 +17760,21 @@ body.site-search-open .search-overlay {
           align-items: center;
 }
 
+.navbar .navbar-item:hover {
+  color: #bbb900;
+  background-color: transparent;
+}
+
+.navbar .navbar-item:hover svg {
+  fill: #bbb900;
+}
+
 .contents {
-  margin: 100px 0 160px;
+  margin: 6.25rem 0 10rem;
 }
 
 .contents > div {
-  margin-bottom: 60px;
+  margin-bottom: 3.75rem;
 }
 
 .contents > div:last-of-type {
@@ -17773,33 +17782,33 @@ body.site-search-open .search-overlay {
 }
 
 .author {
-  max-width: 760px;
+  max-width: 47.5rem;
   margin: 0 auto;
 }
 
 .posts > h2 {
-  font-size: 56px;
+  font-size: 3.5rem;
   color: #241628;
-  margin: 0 0 120px;
+  margin: 0 0 7.5rem;
   text-align: center;
 }
 
 .posts .posts_header {
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 .posts .posts_header h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .post {
   position: relative;
-  max-width: 760px;
-  margin: 0 auto 160px;
+  max-width: 47.5rem;
+  margin: 0 auto 10rem;
 }
 
 .post > * {
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 .post:last-of-type {
@@ -17807,7 +17816,7 @@ body.site-search-open .search-overlay {
 }
 
 .post.post--list {
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
 }
 
 .post.post--list .post_header {
@@ -17815,21 +17824,21 @@ body.site-search-open .search-overlay {
 }
 
 .post.post--list .post_title {
-  margin-bottom: 8px;
-  font-size: 20px;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .post.post--list .post_meta {
-  padding-left: 26px;
+  padding-left: 1.625rem;
 }
 
 .post.post--list .post_meta .author_avatar {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .post.post--list .post_meta .author_name {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .post.post--list .post_meta .post_details, .post.post--list .post_meta .post_date {
@@ -17837,12 +17846,12 @@ body.site-search-open .search-overlay {
 }
 
 .post.post--list .post_meta .post_date {
-  margin-left: 10px;
+  margin-left: 0.625rem;
 }
 
 .post_title {
-  margin: 0 0 25px;
-  font-size: 42px;
+  margin: 0 0 1.5625rem;
+  font-size: 2.625rem;
   color: #241628;
 }
 
@@ -17856,9 +17865,9 @@ body.site-search-open .search-overlay {
 
 .post_meta {
   position: relative;
-  padding-left: 50px;
+  padding-left: 3.125rem;
   line-height: 1.2;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .post_meta .author_avatar {
@@ -17866,12 +17875,12 @@ body.site-search-open .search-overlay {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   position: absolute;
   top: 0;
   left: 0;
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .post_meta .post_details, .post_meta .post_time {
@@ -17880,12 +17889,12 @@ body.site-search-open .search-overlay {
 
 .post_meta .author_name, .post_meta .category_name {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   text-transform: capitalize;
 }
 
 .post_meta .post_date {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .post_image {
@@ -17900,10 +17909,10 @@ body.site-search-open .search-overlay {
 }
 
 .user {
-  margin-bottom: 80px;
+  margin-bottom: 5rem;
   position: relative;
-  padding-left: 140px;
-  min-height: 120px;
+  padding-left: 8.75rem;
+  min-height: 7.5rem;
   line-height: 1.8em;
 }
 
@@ -17918,7 +17927,7 @@ body.site-search-open .search-overlay {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 120px;
+  min-height: 7.5rem;
 }
 
 .user_avatar {
@@ -17926,40 +17935,40 @@ body.site-search-open .search-overlay {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   position: absolute;
   top: 0;
   left: 0;
-  width: 120px;
-  height: 120px;
+  width: 7.5rem;
+  height: 7.5rem;
 }
 
 .user_name {
-  font-size: 30px;
+  font-size: 1.875rem;
   margin: 0;
   color: #241628;
 }
 
 .user_title {
-  margin: 5px 0 0;
+  margin: 0.3125rem 0 0;
   color: #241628;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .user_social {
-  margin: 5px 0 0;
+  margin: 0.3125rem 0 0;
   padding: 0;
 }
 
 .user_social li {
-  margin-right: 3px;
+  margin-right: 0.1875rem;
   display: inline-block;
 }
 
 .user_social li a {
   display: inline-block;
   color: #241628;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .user_social li a i {
@@ -17972,8 +17981,8 @@ body.site-search-open .search-overlay {
 }
 
 .user_bio {
-  margin: 20px 0 0;
-  font-size: 17px;
+  margin: 1.25rem 0 0;
+  font-size: 1.0625rem;
 }
 
 label {
@@ -17981,8 +17990,8 @@ label {
 }
 
 .card.card--auth h1 {
-  font-size: 38px;
-  margin: 0 0 30px;
+  font-size: 2.375rem;
+  margin: 0 0 1.875rem;
   text-align: center;
 }
 
@@ -17991,12 +18000,12 @@ label {
 }
 
 .card .card-brand svg {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 .content {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .content p:not(:last-child), .content dl:not(:last-child), .content ol:not(:last-child), .content ul:not(:last-child), .content blockquote:not(:last-child), .content pre:not(:last-child), .content table:not(:last-child) {
@@ -18004,7 +18013,7 @@ label {
 }
 
 .content a {
-  border-bottom: 2px solid #bbb900;
+  border-bottom: 0.125rem solid #bbb900;
 }
 
 .content .table thead th {
@@ -18013,7 +18022,7 @@ label {
 }
 
 .content ul li, .content ol li {
-  margin-bottom: 3px;
+  margin-bottom: 0.1875rem;
 }
 
 .content > *:last-child {
@@ -18030,10 +18039,10 @@ label {
 }
 
 .content blockquote {
-  padding: 30px;
-  border-left: 4px solid #bbb900;
+  padding: 1.875rem;
+  border-left: 0.25rem solid #bbb900;
   font-style: italic;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.8em;
 }
 
@@ -18055,32 +18064,32 @@ label {
 
 .subscribe {
   background-color: rgba(0, 0, 0, 0.04);
-  max-width: 900px;
-  margin: 160px auto 0;
-  padding: 90px 100px;
+  max-width: 54rem;
+  margin: 10rem auto 0;
+  padding: 5rem 2rem;
   text-align: center;
 }
 
 .subscribe h3 {
-  margin: 0 0 10px;
-  font-size: 34px;
+  margin-bottom: 0.6rem;
   font-family: monospace;
   font-weight: normal;
+  font-size: 2rem;
 }
 
 .subscribe p {
-  max-width: 400px;
-  margin: 0 auto 60px;
+  max-width: 25rem;
+  margin: 0 auto 3.75rem;
 }
 
 .subscribe form {
-  max-width: 450px;
+  max-width: 26rem;
   margin: 0 auto;
 }
 
 .subscribe form input[type=email], .subscribe form input[type=text] {
-  margin-bottom: 20px;
-  border-width: 0 0 2px 0;
+  margin-bottom: 1.25rem;
+  border-width: 0 0 0.125rem 0;
   border-color: #241628;
   border-style: solid;
   border-radius: 0;
@@ -18102,13 +18111,13 @@ label {
 }
 
 .site-footer {
-  margin: 40px 0 160px;
+  margin: 2.5rem 0 10rem;
 }
 
 .site-footer .copyright {
-  margin: 20px 0 0;
-  font-size: 14px;
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.0375rem;
   text-align: center;
 }
