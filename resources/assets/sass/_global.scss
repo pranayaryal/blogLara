@@ -167,7 +167,7 @@ a {
 }
 
 .contents {
-  margin: 6.25rem 0 10rem;
+  margin: 6.25rem 0 2rem;
 
 	> div {
 		margin-bottom: 3.75rem;
@@ -179,7 +179,7 @@ a {
 }
 
 .author {
-  max-width: 47.5rem;
+  max-width: 47rem;
   margin: 0 auto;
 }
 
@@ -415,14 +415,6 @@ label {
 }
 
 .content {
-  font-size: 1.25rem;
-
-	p, dl, ol, ul, blockquote, pre, table {
-
-		&:not(:last-child) {
-			margin-bottom: 1.4em;
-		}
-  }
 
   a {
     border-bottom: 0.125rem solid color(green);
@@ -484,7 +476,7 @@ label {
 
 .subscribe {
   background-color: rgba(0,0,0,0.04);
-  max-width: 54rem;
+  max-width: 56rem;
   margin: 10rem auto 0;
   padding: 5rem 2rem;
 	text-align: center;
