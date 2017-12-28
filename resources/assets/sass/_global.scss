@@ -49,10 +49,6 @@ a {
   }
 }
 
-img {
-	max-width: 100%;
-}
-
 #app {
   padding: 0 1.2em;
 }
@@ -306,7 +302,15 @@ img {
 
 .post_image {
   margin-left: -7vw;
-  width: calc(100% + 14vw);
+	width: calc(100% + 14vw);
+
+	picture {
+
+		img {
+			max-width: 100%;
+			width: 100%;
+		}
+	}
 }
 
 .post_control {
