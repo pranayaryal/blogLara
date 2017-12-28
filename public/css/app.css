@@ -17642,10 +17642,6 @@ a:not(.button):hover {
   text-decoration: none;
 }
 
-img {
-  max-width: 100%;
-}
-
 #app {
   padding: 0 1.2em;
 }
@@ -17900,6 +17896,11 @@ body.site-search-open .search-overlay {
 .post_image {
   margin-left: -7vw;
   width: calc(100% + 14vw);
+}
+
+.post_image picture img {
+  max-width: 100%;
+  width: 100%;
 }
 
 .post_control {
