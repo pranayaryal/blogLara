@@ -23,6 +23,11 @@ Route::get('profile/{slug}', 'ProfileController@show');
 Route::resource('category', 'CategoriesController')->middleware('auth')->except('show');
 Route::get('category/{slug}', 'CategoriesController@show');
 
+// Privacy Policy
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+});
+
 // Posts
 Route::get('/admin', 'PostsController@admin')->middleware('auth');
 Route::get('/posts', function () { return redirect('/'); });
