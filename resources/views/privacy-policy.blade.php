@@ -8,7 +8,7 @@
 
   <div class="post_content">
     <div class="content">
-      <p>Protecting your private information is our priority. This Statement of Privacy applies to http://www.doeanderson.com and Doe-Anderson and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Doe-Anderson include http://www.doeanderson.com. By using the Doe-Anderson website, you consent to the data practices described in this statement.</p>
+      <p>Protecting your private information is our priority. This Statement of Privacy applies to <a href="http://www.doeanderson.com">http://www.doeanderson.com</a> and Doe-Anderson and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Doe-Anderson include <a href="http://www.doeanderson.com">http://www.doeanderson.com</a>. By using the Doe-Anderson website, you consent to the data practices described in this statement.</p>
 
       <h3>Collection of Your Personal Information</h3>
 
