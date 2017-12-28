@@ -11,6 +11,8 @@
   <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
   <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
   @if(isset($post->canonical))
     <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
   @endif
