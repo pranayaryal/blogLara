@@ -17608,7 +17608,7 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
 }
 
 body {
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.004);
