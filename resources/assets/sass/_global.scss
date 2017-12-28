@@ -522,12 +522,22 @@ label {
 
 .site-footer {
   margin: 2.5rem 0 10rem;
+	text-align: center;
 
   .copyright {
-    margin: 1.25rem 0 0;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.0375rem;
-    text-align: center;
-  }
+	}
+
+	.nav-utility {
+    margin: 0.5rem 0 0;
+    text-transform: uppercase;
+		font-size: 0.8rem;
+
+		li {
+			margin: 0 0.3rem;
+			display: inline-block;
+		}
+	}
 }
