@@ -108,12 +108,6 @@
 
     <footer class="site-footer">
       <div class="container">
-        @if(!Auth::check())
-        <div class="subscribe" id="mailing_list">
-            @include('mailing-list')
-        </div>
-        @endif
-
         <p class="copyright">&copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.</p>
       </div>
     </footer>

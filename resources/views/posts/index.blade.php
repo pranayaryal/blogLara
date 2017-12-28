@@ -8,4 +8,8 @@
 
     @each('posts.single', $posts, 'post')
 </div>
+
+<div class="subscribe" id="mailing_list">
+    @include('mailing-list')
+</div>
 @endsection

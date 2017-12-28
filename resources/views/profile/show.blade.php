@@ -35,4 +35,8 @@
 <div class="posts">
     @each('posts.listItem', $posts, 'post')
 </div>
+
+<div class="subscribe" id="mailing_list">
+    @include('mailing-list')
+</div>
 @endsection
