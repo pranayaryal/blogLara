@@ -10,7 +10,35 @@
       "emoticons template paste textcolor colorpicker textpattern"
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    // Use HTML5
+    schema: "html5",
     relative_urls: false,
+    // Enable advanced image options
+    image_advtab: true,
+    // Enable image captions
+    image_caption: true,
+    // Enable assigning classes to images
+    image_class_list: [
+      {title: 'Default', value: 'image'},
+      {title: 'Full width', value: 'image-full'},
+      {title: 'Pull left', value: 'image-left'},
+      {title: 'Pull right', value: 'image-right'}
+    ],
+    // Remove fixed dimensions from images
+    image_dimensions: false,
+    // Add containers to formats
+    style_formats: [
+      { title: 'Containers', items: [
+        { title: 'section', block: 'section', wrapper: true, merge_siblings: false },
+        { title: 'article', block: 'article', wrapper: true, merge_siblings: false },
+        { title: 'blockquote', block: 'blockquote', wrapper: true },
+        { title: 'hgroup', block: 'hgroup', wrapper: true },
+        { title: 'aside', block: 'aside', wrapper: true },
+        { title: 'figure', block: 'figure', wrapper: false }
+      ] }
+    ],
+    visualblocks_default_state: true,
+    end_container_on_empty_block: true,
     file_browser_callback : function(field_name, url, type, win) {
       var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
       var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
