@@ -6,12 +6,22 @@
     plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",
       "searchreplace wordcount visualblocks visualchars code fullscreen",
-      "insertdatetime media nonbreaking save table contextmenu directionality",
-      "emoticons template paste textcolor colorpicker textpattern"
+      "insertdatetime media save table contextmenu directionality",
+      "emoticons template paste textcolor colorpicker textpattern code codesample"
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    toolbar: "insertfile undo redo | code codesample styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
     // Use HTML5
     schema: "html5",
+    // Code sample settinss
+    codesample_languages: [
+      {text: 'HTML/XML', value: 'markup'},
+      {text: 'JavaScript', value: 'javascript'},
+      {text: 'CSS', value: 'css'},
+      {text: 'PHP', value: 'php'},
+      {text: 'Ruby', value: 'ruby'},
+      {text: 'Python', value: 'python'},
+    ],
+    // Full URLs
     relative_urls: false,
     // Enable advanced image options
     image_advtab: true,
