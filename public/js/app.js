@@ -41671,12 +41671,13 @@ function notificationInitialState() {
 
     methods: {
         store: function store() {
-            this.persistPost('/api/subscriber', this.subscriberForm);
+            this.validateEmail(this.subscriberForm);
         },
         persistPost: function persistPost(uri, form) {
             var _this = this;
 
             axios.post(uri, form).then(function (response) {
+                _this.notification.isError = false;
                 _this.notification.message = response.data;
                 _this.notification.isVisable = true;
             }).catch(function (response) {
@@ -41689,6 +41690,15 @@ function notificationInitialState() {
         },
         toggleNotificationState: function toggleNotificationState() {
             this.notification.isVisable = !this.notification.isVisable;
+        },
+        validateEmail: function validateEmail(form) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
+                this.persistPost('/api/subscriber', form);
+            } else {
+                this.notification.message = 'Please enter a valid email.';
+                this.notification.isVisable = true;
+                this.notification.isError = true;
+            }
         }
     }
 });

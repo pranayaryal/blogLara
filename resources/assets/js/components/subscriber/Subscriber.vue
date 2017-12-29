@@ -46,11 +46,12 @@
         },
         methods: {
             store() {
-                this.persistPost('/api/subscriber', this.subscriberForm);
+                this.validateEmail(this.subscriberForm);
             },
             persistPost(uri, form) {
                 axios.post(uri, form)
                     .then(response => {
+                        this.notification.isError = false;
                         this.notification.message = response.data;
                         this.notification.isVisable = true;
                     })
@@ -64,6 +65,15 @@
             },
             toggleNotificationState() {
                 this.notification.isVisable = !this.notification.isVisable
+            },
+            validateEmail(form) {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
+                    this.persistPost('/api/subscriber', form);
+                } else {
+                    this.notification.message = 'Please enter a valid email.';
+                    this.notification.isVisable = true;
+                    this.notification.isError = true;
+                }
             }
         }
     }
