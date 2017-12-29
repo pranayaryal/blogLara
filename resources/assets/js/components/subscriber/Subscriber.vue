@@ -53,6 +53,12 @@
                     .then(response => {
                         this.notification.isError = false;
                         this.notification.message = response.data;
+                        
+                        if (response.data.error == true) {
+                            this.notification.isError = true;
+                            this.notification.message = response.data.message;
+                        }
+
                         this.notification.isVisable = true;
                     })
                     .catch(response => {

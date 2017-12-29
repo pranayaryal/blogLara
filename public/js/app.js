@@ -41679,6 +41679,12 @@ function notificationInitialState() {
             axios.post(uri, form).then(function (response) {
                 _this.notification.isError = false;
                 _this.notification.message = response.data;
+
+                if (response.data.error == true) {
+                    _this.notification.isError = true;
+                    _this.notification.message = response.data.message;
+                }
+
                 _this.notification.isVisable = true;
             }).catch(function (response) {
                 if (_typeof(response.data) === 'object') {

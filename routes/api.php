@@ -41,7 +41,10 @@ Route::post('/subscriber', function () {
         );
 
         if (!empty($sub->id)) {
-            return response()->json('This email is already subscribed, thanks for the enthusiasm though.');    
+            return response()->json([
+                'message' => 'This email is already subscribed, thanks for the enthusiasm though.',
+                'error' => true
+            ]);    
         }
 
         $sub->name = request('name');
