@@ -41641,34 +41641,51 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 function subscriberFormInitialState() {
     return {
-        email: '',
-        name: ''
+        email: ''
+    };
+}
+
+function notificationInitialState() {
+    return {
+        isError: false,
+        isVisable: false,
+        message: ''
     };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            subscriberForm: subscriberFormInitialState()
+            subscriberForm: subscriberFormInitialState(),
+            notification: notificationInitialState()
         };
-    },
-    mounted: function mounted() {
-        this.prepareComponent();
     },
 
     methods: {
-        prepareComponent: function prepareComponent() {
-            console.log('mounted');
-        },
         store: function store() {
-            this.persistPost('post', '/api/subscriber', this.subscriberForm);
+            this.validateEmail(this.subscriberForm);
         },
-        persistPost: function persistPost(method, uri, form) {
-            this.$http[method](uri, form).then(function (response) {
-                console.log(response.data);
+        persistPost: function persistPost(uri, form) {
+            var _this = this;
+
+            axios.post(uri, form).then(function (response) {
+                _this.notification.isError = false;
+                _this.notification.message = response.data;
+
+                if (response.data.error == true) {
+                    _this.notification.isError = true;
+                    _this.notification.message = response.data.message;
+                }
+
+                _this.notification.isVisable = true;
             }).catch(function (response) {
                 if (_typeof(response.data) === 'object') {
                     form.errors = _.flatten(_.toArray(response.data));
@@ -41676,6 +41693,18 @@ function subscriberFormInitialState() {
                     form.errors = ['Something went wrong. Please try again.'];
                 }
             });
+        },
+        toggleNotificationState: function toggleNotificationState() {
+            this.notification.isVisable = !this.notification.isVisable;
+        },
+        validateEmail: function validateEmail(form) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
+                this.persistPost('/api/subscriber', form);
+            } else {
+                this.notification.message = 'Please enter a valid email.';
+                this.notification.isVisable = true;
+                this.notification.isError = true;
+            }
         }
     }
 });
@@ -41697,7 +41726,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("form", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
+    _c("div", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "sr-only" }, [_vm._v("Email address")]),
         _vm._v(" "),
@@ -41729,7 +41758,26 @@ var render = function() {
         attrs: { type: "submit" },
         on: { click: _vm.store }
       })
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "notification is-primary",
+        class: {
+          "is-danger": _vm.notification.isError,
+          "is-hidden": !_vm.notification.isVisable
+        }
+      },
+      [
+        _c("button", {
+          staticClass: "delete",
+          on: { click: _vm.toggleNotificationState }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.notification.message))])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

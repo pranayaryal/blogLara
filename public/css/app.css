@@ -11975,13 +11975,13 @@ label {
   margin: 0 auto 3.75rem;
 }
 
-.subscribe form {
+.subscribe .form-horizontal {
   max-width: 26rem;
   margin: 0 auto;
 }
 
-.subscribe form input[type=email],
-.subscribe form input[type=text] {
+.subscribe .form-horizontal input[type=email],
+.subscribe .form-horizontal input[type=text] {
   margin-bottom: 1.25rem;
   border-width: 0 0 0.125rem 0;
   border-color: #241628;
@@ -11994,14 +11994,14 @@ label {
   background-color: transparent;
 }
 
-.subscribe form input[type=email]:focus,
-.subscribe form input[type=text]:focus {
+.subscribe .form-horizontal input[type=email]:focus,
+.subscribe .form-horizontal input[type=text]:focus {
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.subscribe form input[type=submit] {
+.subscribe .form-horizontal input[type=submit] {
   width: 100%;
 }
 
