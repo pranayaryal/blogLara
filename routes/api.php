@@ -39,6 +39,8 @@ Route::post('/subscriber', function () {
             'name' => request('name'),
             'email' => request('email')]
         );
+
+        return ['You have successfully registered.'];
     } catch (Exception $e) {
         dd($e);
     }

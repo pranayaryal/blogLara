@@ -7,42 +7,50 @@
         <h3>subscriberForm()</h3>
         <p>Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas.</p>
 
-        <form class="form-horizontal" role="form">
+        <div class="form-horizontal" role="form">
             <div class="form-group">
                 <label class="sr-only">Email address</label>
                 <input type="email" class="input is-medium" v-model="subscriberForm.email" placeholder="Email address">
             </div>
             <input type="submit" class="button is-primary is-medium is-expanded" @click="store">
-        </form>
+        </div>
+
+        <div :class="notifcationClasses">
+            <button class="delete"></button>
+            {{ subscriberMessage }}
+        </div>
     </div>
 </template>
 
 <script>
     function subscriberFormInitialState() {
         return {
-            email: '',
-            name: ''
+            email: ''
+        }
+    }
+
+    function notificationInitialState() {
+        return {
+            notifcationClasses: 'notification is-primary is-hidden',
+            subscriberMessage: ''
         }
     }
 
     export default {
         data() {
             return {
-                subscriberForm: subscriberFormInitialState()
+                subscriberForm: subscriberFormInitialState(),
+                notifcation: notificationInitialState()
             }
         },
-        mounted() {
-            this.prepareComponent()
-        },
         methods: {
-            prepareComponent() {console.log('mounted')},
             store() {
-                this.persistPost('post', '/api/subscriber', this.subscriberForm);
+                this.persistPost('/api/subscriber', this.subscriberForm);
             },
-            persistPost(method, uri, form) {
-                this.$http[method](uri, form)
+            persistPost(uri, form) {
+                axios.post(uri, form)
                     .then(response => {
-                        console.log(response.data);
+                        alert(response.data);
                     })
                     .catch(response => {
                         if (typeof response.data === 'object') {

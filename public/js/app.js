@@ -41641,34 +41641,40 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 function subscriberFormInitialState() {
     return {
-        email: '',
-        name: ''
+        email: ''
+    };
+}
+
+function notificationInitialState() {
+    return {
+        notifcationClasses: 'notification is-primary is-hidden',
+        subscriberMessage: ''
     };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            subscriberForm: subscriberFormInitialState()
+            subscriberForm: subscriberFormInitialState(),
+            notifcation: notificationInitialState()
         };
-    },
-    mounted: function mounted() {
-        this.prepareComponent();
     },
 
     methods: {
-        prepareComponent: function prepareComponent() {
-            console.log('mounted');
-        },
         store: function store() {
-            this.persistPost('post', '/api/subscriber', this.subscriberForm);
+            this.persistPost('/api/subscriber', this.subscriberForm);
         },
-        persistPost: function persistPost(method, uri, form) {
-            this.$http[method](uri, form).then(function (response) {
-                console.log(response.data);
+        persistPost: function persistPost(uri, form) {
+            axios.post(uri, form).then(function (response) {
+                alert(response.data);
             }).catch(function (response) {
                 if (_typeof(response.data) === 'object') {
                     form.errors = _.flatten(_.toArray(response.data));
@@ -41697,7 +41703,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("form", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
+    _c("div", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "sr-only" }, [_vm._v("Email address")]),
         _vm._v(" "),
@@ -41729,6 +41735,11 @@ var render = function() {
         attrs: { type: "submit" },
         on: { click: _vm.store }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { class: _vm.notifcationClasses }, [
+      _c("button", { staticClass: "delete" }),
+      _vm._v("\n        " + _vm._s(_vm.subscriberMessage) + "\n    ")
     ])
   ])
 }
