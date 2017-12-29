@@ -4,7 +4,13 @@
 
 <template>
     <div>
+         <div class="notification is-primary" v-bind:class="{ 'is-danger': notification.isError, 'is-hidden': !notification.isVisable }">
+            <button class="delete" @click="toggleNotificationState"></button>
+            <span>{{ notification.message }}</span>
+        </div>
+
         <h3>subscriberForm()</h3>
+        
         <p>Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas.</p>
 
         <div class="form-horizontal" role="form">
@@ -13,11 +19,6 @@
                 <input type="email" class="input is-medium" v-model="subscriberForm.email" placeholder="Email address">
             </div>
             <input type="submit" class="button is-primary is-medium is-expanded" @click="store">
-        </div>
-
-        <div class="notification is-primary" v-bind:class="{ 'is-danger': notification.isError, 'is-hidden': !notification.isVisable }">
-            <button class="delete" @click="toggleNotificationState"></button>
-            <span>{{ notification.message }}</span>
         </div>
     </div>
 </template>

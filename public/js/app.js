@@ -41646,6 +41646,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 function subscriberFormInitialState() {
     return {
@@ -41718,6 +41719,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "notification is-primary",
+        class: {
+          "is-danger": _vm.notification.isError,
+          "is-hidden": !_vm.notification.isVisable
+        }
+      },
+      [
+        _c("button", {
+          staticClass: "delete",
+          on: { click: _vm.toggleNotificationState }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.notification.message))])
+      ]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("subscriberForm()")]),
     _vm._v(" "),
     _c("p", [
@@ -41758,26 +41778,7 @@ var render = function() {
         attrs: { type: "submit" },
         on: { click: _vm.store }
       })
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "notification is-primary",
-        class: {
-          "is-danger": _vm.notification.isError,
-          "is-hidden": !_vm.notification.isVisable
-        }
-      },
-      [
-        _c("button", {
-          staticClass: "delete",
-          on: { click: _vm.toggleNotificationState }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.notification.message))])
-      ]
-    )
+    ])
   ])
 }
 var staticRenderFns = []
