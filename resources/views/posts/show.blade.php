@@ -2,8 +2,8 @@
 
 @section('content')
   @include('posts.single', ['post' => $post])
-@endsection
 
-<div class="subscribe" id="mailing_list">
-    @include('mailing-list')
-</div>
+  <div class="subscribe" id="mailing_list">
+      @include('mailing-list')
+  </div>
+@endsection

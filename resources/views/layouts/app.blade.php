@@ -111,6 +111,13 @@
     <footer class="site-footer">
       <div class="container">
         <p class="copyright">&copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.</p>
+
+        <nav class="nav-utility">
+          <ul>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://www.doeanderson.com/">doeanderson.com</a></li>
+          </ul>
+        </nav>
       </div>
     </footer>
   </div>
