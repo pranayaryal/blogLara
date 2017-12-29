@@ -15,9 +15,9 @@
             <input type="submit" class="button is-primary is-medium is-expanded" @click="store">
         </div>
 
-        <div :class="notifcationClasses">
-            <button class="delete"></button>
-            {{ subscriberMessage }}
+        <div class="notification is-primary" v-bind:class="{ 'is-danger': notification.isError, 'is-hidden': !notification.isVisable }">
+            <button class="delete" @click="toggleNotificationState"></button>
+            <span>{{ notification.message }}</span>
         </div>
     </div>
 </template>
@@ -31,8 +31,9 @@
 
     function notificationInitialState() {
         return {
-            notifcationClasses: 'notification is-primary is-hidden',
-            subscriberMessage: ''
+            isError: false,
+            isVisable: false,
+            message: ''
         }
     }
 
@@ -40,7 +41,7 @@
         data() {
             return {
                 subscriberForm: subscriberFormInitialState(),
-                notifcation: notificationInitialState()
+                notification: notificationInitialState(),
             }
         },
         methods: {
@@ -50,7 +51,8 @@
             persistPost(uri, form) {
                 axios.post(uri, form)
                     .then(response => {
-                        alert(response.data);
+                        this.notification.message = response.data;
+                        this.notification.isVisable = true;
                     })
                     .catch(response => {
                         if (typeof response.data === 'object') {
@@ -59,6 +61,9 @@
                             form.errors = ['Something went wrong. Please try again.'];
                         }
                     });
+            },
+            toggleNotificationState() {
+                this.notification.isVisable = !this.notification.isVisable
             }
         }
     }

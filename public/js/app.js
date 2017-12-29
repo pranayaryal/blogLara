@@ -41655,8 +41655,9 @@ function subscriberFormInitialState() {
 
 function notificationInitialState() {
     return {
-        notifcationClasses: 'notification is-primary is-hidden',
-        subscriberMessage: ''
+        isError: false,
+        isVisable: false,
+        message: ''
     };
 }
 
@@ -41664,7 +41665,7 @@ function notificationInitialState() {
     data: function data() {
         return {
             subscriberForm: subscriberFormInitialState(),
-            notifcation: notificationInitialState()
+            notification: notificationInitialState()
         };
     },
 
@@ -41673,8 +41674,11 @@ function notificationInitialState() {
             this.persistPost('/api/subscriber', this.subscriberForm);
         },
         persistPost: function persistPost(uri, form) {
+            var _this = this;
+
             axios.post(uri, form).then(function (response) {
-                alert(response.data);
+                _this.notification.message = response.data;
+                _this.notification.isVisable = true;
             }).catch(function (response) {
                 if (_typeof(response.data) === 'object') {
                     form.errors = _.flatten(_.toArray(response.data));
@@ -41682,6 +41686,9 @@ function notificationInitialState() {
                     form.errors = ['Something went wrong. Please try again.'];
                 }
             });
+        },
+        toggleNotificationState: function toggleNotificationState() {
+            this.notification.isVisable = !this.notification.isVisable;
         }
     }
 });
@@ -41737,10 +41744,24 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("div", { class: _vm.notifcationClasses }, [
-      _c("button", { staticClass: "delete" }),
-      _vm._v("\n        " + _vm._s(_vm.subscriberMessage) + "\n    ")
-    ])
+    _c(
+      "div",
+      {
+        staticClass: "notification is-primary",
+        class: {
+          "is-danger": _vm.notification.isError,
+          "is-hidden": !_vm.notification.isVisable
+        }
+      },
+      [
+        _c("button", {
+          staticClass: "delete",
+          on: { click: _vm.toggleNotificationState }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.notification.message))])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

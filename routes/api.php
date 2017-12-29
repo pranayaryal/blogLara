@@ -35,13 +35,23 @@ Route::post('/save-profile', 'ProfileController@saveProfile');
 // Mailing list
 Route::post('/subscriber', function () {
     try {
-        App\Subscriber::create([
+        $sub = App\Subscriber::firstOrNew([
             'name' => request('name'),
             'email' => request('email')]
         );
 
-        return ['You have successfully registered.'];
+        if (!empty($sub->id)) {
+            return response()->json('This email is already subscribed, thanks for the enthusiasm though.');    
+        }
+
+        $sub->name = request('name');
+        $sub->email = request('email');
+
+        if ($sub->save()) {
+            return response()->json('You have successfully registered.');
+        }
+
     } catch (Exception $e) {
-        dd($e);
+        return response()->json('There was an error.');
     }
 });
