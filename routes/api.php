@@ -51,7 +51,10 @@ Route::post('/subscriber', function () {
         $sub->email = request('email');
 
         if ($sub->save()) {
-            return response()->json('You have successfully registered.');
+            return response()->json([
+                'message' => 'You have successfully registered.',
+                'error' => false
+            ]);
         }
 
     } catch (Exception $e) {

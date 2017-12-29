@@ -4,13 +4,15 @@
 
 <template>
     <div>
-         <div class="notification is-primary" v-bind:class="{ 'is-danger': notification.isError, 'is-hidden': !notification.isVisable }">
-            <button class="delete" @click="toggleNotificationState"></button>
-            <span>{{ notification.message }}</span>
-        </div>
+         <transition name="slide-fade">
+            <div v-if="notification.isVisable" class="notification is-primary" v-bind:class="{ 'is-danger': notification.isError }">
+                <button class="delete" @click="toggleNotificationState"></button>
+                <span>{{ notification.message }}</span>
+            </div>
+        </transition>
 
         <h3>subscriberForm()</h3>
-        
+
         <p>Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas.</p>
 
         <div class="form-horizontal" role="form">
@@ -52,15 +54,13 @@
             persistPost(uri, form) {
                 axios.post(uri, form)
                     .then(response => {
-                        this.notification.isError = false;
-                        this.notification.message = response.data;
-                        
-                        if (response.data.error == true) {
-                            this.notification.isError = true;
-                            this.notification.message = response.data.message;
-                        }
-
+                        this.notification.isError = response.data.error;
+                        this.notification.message = response.data.message;
                         this.notification.isVisable = true;
+
+                        if (!this.notification.isError) {
+                            this.clearForm();
+                        }
                     })
                     .catch(response => {
                         if (typeof response.data === 'object') {
@@ -72,6 +72,9 @@
             },
             toggleNotificationState() {
                 this.notification.isVisable = !this.notification.isVisable
+            },
+            clearForm() {
+                this.subscriberForm.email = '';
             },
             validateEmail(form) {
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
