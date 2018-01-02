@@ -57,8 +57,3 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
-
-$('.search-button, .search-overlay').click(function() {
-  $('body').toggleClass('site-search-open');
-  $('.search-form input').focus();
-});

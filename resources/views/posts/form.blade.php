@@ -98,7 +98,7 @@
         <label class="label control-label">Content</label>
 
         <div class="control">
-            <textarea class="textarea tiny-mce" name="content" rows="15">{{ $post->content }}</textarea>
+            <textarea class="textarea tiny-mce" name="content" rows="15">{{ htmlentities($post->content) }}</textarea>
         </div>
     </div>
 
@@ -107,7 +107,7 @@
         <label class="label control-label">Excerpt</label>
 
         <div class="control">
-            <textarea class="textarea tiny-mce" name="excerpt" rows="15">{{ $post->excerpt }}</textarea>
+            <textarea class="textarea tiny-mce" name="excerpt" rows="15">{{ htmlentities($post->excerpt) }}</textarea>
         </div>
     </div>
 

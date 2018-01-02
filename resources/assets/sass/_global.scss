@@ -201,7 +201,7 @@ a {
 		color: color(black);
     margin: 0 0 7.5rem;
 		text-align: center;
-		
+
 		@media (max-width: 54.5rem) {
 			font-size: 2.5rem;
 		}
@@ -557,7 +557,7 @@ label {
     margin: 0 auto 3.75rem;
   }
 
-  form {
+  .form-horizontal {
     max-width: 26rem;
     margin: 0 auto;
 
@@ -604,4 +604,18 @@ label {
 			display: inline-block;
 		}
 	}
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
