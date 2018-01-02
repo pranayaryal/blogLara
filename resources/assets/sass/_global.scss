@@ -22,8 +22,8 @@ body {
   color: rgba(0,0,0,.84);
   line-height: 1.7;
 
-	@media (max-width:37.5rem) {
-		font-size: 1em;
+	@media (max-width: 37.5rem) {
+		font-size: 1.1em;
 	}
 }
 
@@ -169,11 +169,22 @@ a {
 .contents {
   margin: 6.25rem 0 2rem;
 
-	> div {
-		margin-bottom: 3.75rem;
+	.container {
 
-		&:last-of-type {
-			margin-bottom: 0;
+		> div {
+			margin-bottom: 8rem;
+
+			@media (max-width: 29.5rem) {
+				margin-bottom: 6rem;
+			}
+
+			&.author {
+				margin-bottom: 4rem;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
@@ -185,11 +196,19 @@ a {
 
 .posts {
 
-	> h2 {
+	> h1 {
 		font-size: 3.5rem;
 		color: color(black);
     margin: 0 0 7.5rem;
-    text-align: center;
+		text-align: center;
+		
+		@media (max-width: 54.5rem) {
+			font-size: 2.5rem;
+		}
+
+		@media (max-width: 29.5rem) {
+			font-size: 2rem;
+		}
 	}
 
   .posts_header {
@@ -198,21 +217,28 @@ a {
     h3 {
       font-size: 1.25rem;
     }
-  }
+	}
+
+	.post {
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .post {
   position: relative;
   max-width: 47rem;
-  margin: 0 auto 10rem;
+	margin: 0 auto 8rem;
+
+	@media (max-width: 29.5rem) {
+		margin-bottom: 6rem;
+	}
 
   > * {
     margin-bottom: 2.5rem;
   }
-
-	&:last-of-type {
-		margin-bottom: 0;
-	}
 
   &.post--list {
     margin-bottom: 1.875rem;
@@ -250,9 +276,17 @@ a {
 }
 
 .post_title {
-	margin: 0 0 1.5625rem;
-	font-size: 2.625rem;
+	margin: 0 0 1.5rem;
+	font-size: 2.6rem;
 	color: color(black);
+
+	@media (max-width: 54.5rem) {
+		font-size: 2.2rem;
+	}
+
+	@media (max-width: 29.5rem) {
+		font-size: 1.8rem;
+	}
 
 	a {
 
@@ -320,11 +354,18 @@ a {
 }
 
 .user {
-	margin-bottom: 5rem;
 	position: relative;
 	padding-left: 8.75rem;
 	min-height: 7.5rem;
 	line-height: 1.8em;
+
+	@media (max-width: 29.5rem) {
+		padding-left: 6.75rem;
+	}
+
+	@media (max-width: 25rem) {
+		padding-left: 0;
+	}
 }
 
 .user_details {
@@ -345,6 +386,20 @@ a {
 	left: 0;
 	width: 7.5rem;
 	height: 7.5rem;
+
+	@media (max-width: 29.5rem) {
+		width: 5.5rem;
+		height: 5.5rem;
+	}
+
+	@media (max-width: 25rem) {
+		position: relative;
+		top: auto;
+		left: auto;
+		width: 6.5rem;
+		height: 6.5rem;
+		margin-bottom: 1.2rem;
+	}
 }
 
 .user_name {
@@ -477,15 +532,24 @@ label {
 .subscribe {
   background-color: rgba(0,0,0,0.04);
   max-width: 56rem;
-  margin: 10rem auto 0;
+  margin: 0 auto;
   padding: 5rem 2rem;
 	text-align: center;
+
+	@media (max-width: 475px) {
+		margin-left: -1.2rem;
+		margin-right: -1.2rem;
+	}
 
   h3 {
     margin-bottom: 0.6rem;
     font-family: monospace;
 		font-weight: normal;
 		font-size: 2rem;
+
+		@media (max-width: 475px) {
+			font-size: 1.6rem;
+		}
   }
 
   p {

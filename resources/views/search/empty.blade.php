@@ -1,3 +1,5 @@
 <article class="post">
-    <h1>No results found</h1>
+    <div class="content">
+        <h2 class="has-text-centered">We've got nothing. Try something else.</h2>
+    </div>
 </article>

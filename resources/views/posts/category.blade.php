@@ -3,7 +3,7 @@
 @section('content')
 <div class="posts">
     @if(!empty($category_name))
-        <h2>{{ ucfirst($category_name) }}</h2>
+        <h1>{{ ucfirst($category_name) }}</h1>
     @endif
 
     @each('posts.single', $posts, 'post')
