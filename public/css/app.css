@@ -11501,7 +11501,7 @@ body {
 
 @media (max-width: 37.5rem) {
   body {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 }
 
@@ -11659,11 +11659,21 @@ body.site-search-open .search-overlay {
   margin: 6.25rem 0 2rem;
 }
 
-.contents > div {
-  margin-bottom: 3.75rem;
+.contents .container > div {
+  margin-bottom: 8rem;
 }
 
-.contents > div:last-of-type {
+@media (max-width: 29.5rem) {
+  .contents .container > div {
+    margin-bottom: 6rem;
+  }
+}
+
+.contents .container > div.author {
+  margin-bottom: 4rem;
+}
+
+.contents .container > div:last-of-type {
   margin-bottom: 0;
 }
 
@@ -11672,11 +11682,23 @@ body.site-search-open .search-overlay {
   margin: 0 auto;
 }
 
-.posts > h2 {
+.posts > h1 {
   font-size: 3.5rem;
   color: #241628;
   margin: 0 0 7.5rem;
   text-align: center;
+}
+
+@media (max-width: 54.5rem) {
+  .posts > h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 29.5rem) {
+  .posts > h1 {
+    font-size: 2rem;
+  }
 }
 
 .posts .posts_header {
@@ -11687,18 +11709,24 @@ body.site-search-open .search-overlay {
   font-size: 1.25rem;
 }
 
+.posts .post:last-of-type {
+  margin-bottom: 0;
+}
+
 .post {
   position: relative;
   max-width: 47rem;
-  margin: 0 auto 10rem;
+  margin: 0 auto 8rem;
+}
+
+@media (max-width: 29.5rem) {
+  .post {
+    margin-bottom: 6rem;
+  }
 }
 
 .post > * {
   margin-bottom: 2.5rem;
-}
-
-.post:last-of-type {
-  margin-bottom: 0;
 }
 
 .post.post--list {
@@ -11737,9 +11765,21 @@ body.site-search-open .search-overlay {
 }
 
 .post_title {
-  margin: 0 0 1.5625rem;
-  font-size: 2.625rem;
+  margin: 0 0 1.5rem;
+  font-size: 2.6rem;
   color: #241628;
+}
+
+@media (max-width: 54.5rem) {
+  .post_title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 29.5rem) {
+  .post_title {
+    font-size: 1.8rem;
+  }
 }
 
 .post_title a:not(.button) {
@@ -11803,11 +11843,22 @@ body.site-search-open .search-overlay {
 }
 
 .user {
-  margin-bottom: 5rem;
   position: relative;
   padding-left: 8.75rem;
   min-height: 7.5rem;
   line-height: 1.8em;
+}
+
+@media (max-width: 29.5rem) {
+  .user {
+    padding-left: 6.75rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  .user {
+    padding-left: 0;
+  }
 }
 
 .user_details {
@@ -11835,6 +11886,24 @@ body.site-search-open .search-overlay {
   left: 0;
   width: 7.5rem;
   height: 7.5rem;
+}
+
+@media (max-width: 29.5rem) {
+  .user_avatar {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  .user_avatar {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin-bottom: 1.2rem;
+  }
 }
 
 .user_name {
@@ -11958,9 +12027,16 @@ label {
 .subscribe {
   background-color: rgba(0, 0, 0, 0.04);
   max-width: 56rem;
-  margin: 10rem auto 0;
+  margin: 0 auto;
   padding: 5rem 2rem;
   text-align: center;
+}
+
+@media (max-width: 475px) {
+  .subscribe {
+    margin-left: -1.2rem;
+    margin-right: -1.2rem;
+  }
 }
 
 .subscribe h3 {
@@ -11968,6 +12044,12 @@ label {
   font-family: monospace;
   font-weight: normal;
   font-size: 2rem;
+}
+
+@media (max-width: 475px) {
+  .subscribe h3 {
+    font-size: 1.6rem;
+  }
 }
 
 .subscribe p {
