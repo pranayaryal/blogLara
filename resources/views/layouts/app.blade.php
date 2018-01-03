@@ -63,7 +63,7 @@
           </a>
 
           @if(Auth::check())
-          <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
             <a class="navbar-link">Admin</a>
 
             <div class="navbar-dropdown is-boxed">
