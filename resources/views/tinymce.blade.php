@@ -27,15 +27,9 @@
     image_advtab: true,
     // Enable image captions
     image_caption: true,
-    // Enable assigning classes to images
-    image_class_list: [
-      {title: 'Default', value: 'image'},
-      {title: 'Full width', value: 'image-full'},
-      {title: 'Pull left', value: 'image-left'},
-      {title: 'Pull right', value: 'image-right'}
-    ],
     // Remove fixed dimensions from images
     image_dimensions: false,
+    contentEditable: true,
     // Add containers to formats
     style_formats: [
       { title: 'Containers', items: [
@@ -44,8 +38,36 @@
         { title: 'blockquote', block: 'blockquote', wrapper: true },
         { title: 'hgroup', block: 'hgroup', wrapper: true },
         { title: 'aside', block: 'aside', wrapper: true },
-        { title: 'figure', block: 'figure', wrapper: false }
+        { title: 'figure', block: 'figure', wrapper: false },
       ] }
+    ],
+    templates: [
+      { title: 'Pull Right',
+        content: `
+          <div class="image-right">
+            <img src="https://satyr.io/500x300/" />
+            <small>This is a caption.</small>
+          </div>
+        `
+      },
+      { title: 'Pull Left',
+        content: `
+          <div class="image-left">
+            <img src="https://satyr.io/500x300/" />
+            <small>This is a caption.</small>
+          </div>
+        `
+      },
+      { title: 'Full Width',
+        content: `
+          <div class="image-full">
+            <div class="image-full-photo">
+              <img src="https://satyr.io/500x300/" />
+            </div>
+            <small>This is a caption.</small>
+          </div>
+        `
+      },
     ],
     visualblocks_default_state: true,
     end_container_on_empty_block: true,
