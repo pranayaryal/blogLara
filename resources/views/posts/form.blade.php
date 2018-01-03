@@ -68,7 +68,7 @@
           <div class="field">
             <label class="label control-label">Description</label>
             <div class="control">
-              <textarea class="textarea" type="text" name="seo_description">{{ !empty(old('seo_description')) ? old('seo_description') : $post->seo_description }}</textarea>
+              <textarea class="textarea" type="text" name="seo_description" placeholder="This is your SEO description. Try to keep it between 50-300 characters.">{{ !empty(old('seo_description')) ? old('seo_description') : $post->seo_description }}</textarea>
             </div>
           </div>
         </div>
