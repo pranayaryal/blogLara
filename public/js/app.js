@@ -41560,68 +41560,70 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 function subscriberFormInitialState() {
-    return {
-        email: ''
-    };
+  return {
+    email: ''
+  };
 }
 
 function notificationInitialState() {
-    return {
-        isError: false,
-        isVisable: false,
-        message: ''
-    };
+  return {
+    isError: false,
+    isSuccess: false,
+    message: ''
+  };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            subscriberForm: subscriberFormInitialState(),
-            notification: notificationInitialState()
-        };
+  data: function data() {
+    return {
+      subscriberForm: subscriberFormInitialState(),
+      notification: notificationInitialState(),
+      inputError: false
+    };
+  },
+
+  methods: {
+    store: function store() {
+      this.validateEmail(this.subscriberForm);
     },
+    persistPost: function persistPost(uri, form) {
+      var _this = this;
 
-    methods: {
-        store: function store() {
-            this.validateEmail(this.subscriberForm);
-        },
-        persistPost: function persistPost(uri, form) {
-            var _this = this;
+      axios.post(uri, form).then(function (response) {
+        _this.notification.isError = response.data.error;
+        _this.notification.message = response.data.message;
 
-            axios.post(uri, form).then(function (response) {
-                _this.notification.isError = response.data.error;
-                _this.notification.message = response.data.message;
-                _this.notification.isVisable = true;
-
-                if (!_this.notification.isError) {
-                    _this.clearForm();
-                }
-            }).catch(function (response) {
-                if (_typeof(response.data) === 'object') {
-                    form.errors = _.flatten(_.toArray(response.data));
-                } else {
-                    form.errors = ['Something went wrong. Please try again.'];
-                }
-            });
-        },
-        toggleNotificationState: function toggleNotificationState() {
-            this.notification.isVisable = !this.notification.isVisable;
-        },
-        clearForm: function clearForm() {
-            this.subscriberForm.email = '';
-        },
-        validateEmail: function validateEmail(form) {
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
-                this.persistPost('/api/subscriber', form);
-            } else {
-                this.notification.message = 'Please enter a valid email.';
-                this.notification.isVisable = true;
-                this.notification.isError = true;
-            }
+        if (_this.notification.isError == false) {
+          _this.notification.isSuccess = true;
         }
+      }).catch(function (response) {
+        if (_typeof(response.data) === 'object') {
+          form.errors = _.flatten(_.toArray(response.data));
+        } else {
+          form.errors = ['Something went wrong. Please try again.'];
+        }
+      });
+    },
+    clearForm: function clearForm() {
+      this.subscriberForm.email = '';
+    },
+    validateEmail: function validateEmail(form) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
+        this.persistPost('/api/subscriber', form);
+      } else {
+        this.notification.message = 'Please enter a valid email.';
+        this.notification.isError = true;
+      }
     }
+  }
 });
 
 /***/ }),
@@ -41635,26 +41637,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("transition", { attrs: { name: "slide-fade" } }, [
-        _vm.notification.isVisable
-          ? _c(
-              "div",
-              {
-                staticClass: "notification is-primary",
-                class: { "is-danger": _vm.notification.isError }
-              },
-              [
-                _c("button", {
-                  staticClass: "delete",
-                  on: { click: _vm.toggleNotificationState }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.notification.message))])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
       _c("h3", [_vm._v("subscriberForm()")]),
       _vm._v(" "),
       _c("p", [
@@ -41663,38 +41645,82 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-horizontal", attrs: { role: "form" } }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "sr-only" }, [_vm._v("Email address")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.subscriberForm.email,
-                expression: "subscriberForm.email"
-              }
-            ],
-            staticClass: "input is-medium",
-            attrs: { type: "email", placeholder: "Email address" },
-            domProps: { value: _vm.subscriberForm.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.subscriberForm, "email", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "button is-primary is-medium is-expanded",
-          attrs: { type: "submit" },
-          on: { click: _vm.store }
-        })
+      _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
+        _vm.notification.isSuccess === false
+          ? _c(
+              "div",
+              { key: "form", staticClass: "form", attrs: { role: "form" } },
+              [
+                _c("div", { staticClass: "field" }, [
+                  _c("label", { staticClass: "sr-only" }, [
+                    _vm._v("Email address")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "control" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.subscriberForm.email,
+                          expression: "subscriberForm.email"
+                        }
+                      ],
+                      staticClass: "input is-medium",
+                      class: { "is-danger": _vm.notification.isError },
+                      attrs: { type: "email", placeholder: "Email address" },
+                      domProps: { value: _vm.subscriberForm.email },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k($event.keyCode, "enter", 13, $event.key)
+                          ) {
+                            return null
+                          }
+                          _vm.store($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.subscriberForm,
+                            "email",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.notification.isError
+                      ? _c("p", { staticClass: "help is-danger" }, [
+                          _vm._v(_vm._s(_vm.notification.message))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [
+                  _c("div", { staticClass: "control" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button is-primary is-medium is-expanded",
+                        attrs: { type: "submit" },
+                        on: { click: _vm.store }
+                      },
+                      [_vm._v("Subscribe")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          : _c(
+              "div",
+              { key: "notification", staticClass: "notification is-primary" },
+              [_c("h4", [_vm._v(_vm._s(_vm.notification.message))])]
+            )
       ])
     ],
     1

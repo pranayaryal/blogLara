@@ -553,16 +553,19 @@ label {
   }
 
   p {
-    max-width: 25rem;
-    margin: 0 auto 3.75rem;
+
+		&:not(.help) {
+			max-width: 25rem;
+			margin: 0 auto 3.75rem;
+		}
   }
 
-  .form-horizontal {
+  .form {
     max-width: 26rem;
-    margin: 0 auto;
+		margin: 0 auto;
+		text-align: left;
 
     input[type=email], input[type=text] {
-      margin-bottom: 1.25rem;
       border-width: 0 0 0.125rem 0;
       border-color: color(black);
       border-style: solid;
@@ -575,13 +578,25 @@ label {
       &:focus {
         outline: none;
         box-shadow: none;
-      }
+			}
+
+			&.is-danger {
+				border-color: #ff3860;
+			}
     }
 
-    input[type=submit] {
-      width: 100%;
+    button {
+			width: 100%;
+			font-family: font(serif);
     }
-  }
+	}
+
+	.notification {
+		display: inline-block;
+		margin: 0 auto;
+		padding: 1.25rem 1.5rem;
+		text-align: center;
+	}
 }
 
 .site-footer {
@@ -608,14 +623,11 @@ label {
 
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
+.fade-enter,
+.fade-leave-to { opacity: 0 }
+
+.fade-leave,
+.fade-enter-to { opacity: 1 }
+
+.fade-enter-active,
+.fade-leave-active { transition: opacity 300ms }

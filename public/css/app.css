@@ -12052,19 +12052,19 @@ label {
   }
 }
 
-.subscribe p {
+.subscribe p:not(.help) {
   max-width: 25rem;
   margin: 0 auto 3.75rem;
 }
 
-.subscribe .form-horizontal {
+.subscribe .form {
   max-width: 26rem;
   margin: 0 auto;
+  text-align: left;
 }
 
-.subscribe .form-horizontal input[type=email],
-.subscribe .form-horizontal input[type=text] {
-  margin-bottom: 1.25rem;
+.subscribe .form input[type=email],
+.subscribe .form input[type=text] {
   border-width: 0 0 0.125rem 0;
   border-color: #241628;
   border-style: solid;
@@ -12076,15 +12076,28 @@ label {
   background-color: transparent;
 }
 
-.subscribe .form-horizontal input[type=email]:focus,
-.subscribe .form-horizontal input[type=text]:focus {
+.subscribe .form input[type=email]:focus,
+.subscribe .form input[type=text]:focus {
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.subscribe .form-horizontal input[type=submit] {
+.subscribe .form input[type=email].is-danger,
+.subscribe .form input[type=text].is-danger {
+  border-color: #ff3860;
+}
+
+.subscribe .form button {
   width: 100%;
+  font-family: 'Clarendon\AE   W01', Georgia, 'Times New Roman', Times, serif;
+}
+
+.subscribe .notification {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
 }
 
 .site-footer {
@@ -12113,21 +12126,20 @@ label {
 
 /* durations and timing functions.              */
 
-.slide-fade-enter-active {
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-}
-
-.slide-fade-leave-active {
-  -webkit-transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter,
-.slide-fade-leave-to {
-  -webkit-transform: translateX(10px);
-          transform: translateX(10px);
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
+}
+
+.fade-leave,
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
 
 /**
