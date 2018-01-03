@@ -621,8 +621,40 @@ label {
 	}
 }
 
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+.page-title {
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+
+.card {
+	margin-bottom: 0.75rem;
+
+	.card-header {
+		background-color: #fafafa;
+	}
+
+	.card-header-title {
+		font-weight: normal;
+		border-bottom: 1px solid #E2E2ED;
+		font-size: 1rem;
+		padding: 0.75rem 0.75rem 0.65rem;
+	}
+
+	.card-content {
+		padding: 1rem;
+
+		label {
+			font-weight: normal;
+			font-family: font(serif);
+		}
+	}
+
+	.mce-panel {
+		border: 0;
+		box-shadow: none;
+	}
+}
+
 .fade-enter,
 .fade-leave-to { opacity: 0 }
 

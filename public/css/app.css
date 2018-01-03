@@ -4209,7 +4209,7 @@ a.box:active {
   color: #363636;
   display: block;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .label:not(:last-child) {
@@ -12122,9 +12122,40 @@ label {
   display: inline-block;
 }
 
-/* Enter and leave animations can use different */
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
 
-/* durations and timing functions.              */
+.card {
+  margin-bottom: 0.75rem;
+}
+
+.card .card-header {
+  background-color: #fafafa;
+}
+
+.card .card-header-title {
+  font-weight: normal;
+  border-bottom: 1px solid #E2E2ED;
+  font-size: 1rem;
+  padding: 0.75rem 0.75rem 0.65rem;
+}
+
+.card .card-content {
+  padding: 1rem;
+}
+
+.card .card-content label {
+  font-weight: normal;
+  font-family: 'Clarendon\AE   W01', Georgia, 'Times New Roman', Times, serif;
+}
+
+.card .mce-panel {
+  border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
 
 .fade-enter,
 .fade-leave-to {
