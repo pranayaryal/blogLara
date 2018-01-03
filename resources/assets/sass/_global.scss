@@ -626,6 +626,62 @@ label {
 	margin-bottom: 1.5rem;
 }
 
+.content {
+
+	div {
+
+		&.image-left, &.image-right, &.image-full {
+			display: inline-block;
+			margin-bottom: 2rem;
+			max-width: none;
+		}
+
+		&.image-left, &.image-right {
+			width: calc(30% + 10vw);
+			margin-right: 2rem;
+			margin-left: 2rem;
+		}
+
+		&.image-left {
+			margin-left: -5vw;
+			float: left;
+		}
+		&.image-right {
+			margin-right: -5vw;
+			float: right;
+		}
+
+		&.image-full {
+			display: flex;
+			align-self: center;
+			width: 100%;
+			float: none;
+			margin-left: -5vw;
+			width: calc(100% + 10vw);
+
+			> * {
+				flex: 1 1 auto;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			small {
+				padding-left: 40px;
+				max-width: 250px;
+				width: 100%;
+				text-align: left;
+			}
+		}
+
+		small {
+			font-family: font(serif);
+			font-size: 1.1rem;
+		}
+	}
+}
+
 .card {
 	margin-bottom: 0.75rem;
 
