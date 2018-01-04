@@ -32,4 +32,16 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function getFirstNameAttribute()
+    {
+        $pieces = explode(' ', $this->user->name, 2);
+        return $pieces[0];
+    }
+
+    public function getLastNameAttribute()
+    {
+        $pieces = explode(' ', $this->user->name, 2);
+        return $pieces[1];
+    }
 }
