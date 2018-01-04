@@ -167,7 +167,11 @@ a {
 }
 
 .contents {
-  margin: 6.25rem 0 2rem;
+	margin: 6.25rem 0 2rem;
+
+	@media (max-width: 54.5rem) {
+		margin-top: 3.25rem;
+	}
 
 	.container {
 
@@ -473,17 +477,42 @@ label {
 
   a {
     border-bottom: 0.125rem solid color(green);
-  }
+	}
 
-	.table thead th {
-		color: $brand-primary;
-		font-weight: 500;
+	p,
+  dl,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  table,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+    &:not(:last-child) {
+			margin-bottom: 1.8rem;
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+
+		&:not(:first-child) {
+			margin-top: 3rem;
+		}
 	}
 
 	ul, ol {
 
 		li {
-			margin-bottom: 0.1875rem;
+			margin-bottom: 0.3rem;
 		}
 	}
 
@@ -505,24 +534,7 @@ label {
 	}
 
 	blockquote {
-		padding: 1.875rem;
-		border-left: 0.25rem solid $brand-primary;
-		font-style: italic;
-		font-size: 1.25rem;
-		line-height: 1.8em;
-
-		h1, h2, h3, h4, h5, h6, .btn {
-			font-style: normal;
-		}
-
-		p:last-child {
-			margin: 0;
-		}
-
-		cite {
-			color: $brand-primary;
-		}
-
+		font-size: 1.6rem;
 	}
 
 	img {
@@ -534,13 +546,9 @@ label {
 
 	.image-left, .image-right, .image-full {
 		display: inline-block;
-		margin-bottom: 2rem;
+		margin-bottom: 1.8rem;
 		max-width: none;
 		width: 100%;
-
-		&:not(:first-child) {
-			margin-top: 1.1428em;
-		}
 
 		.image-photo {
 			line-height: 0;
