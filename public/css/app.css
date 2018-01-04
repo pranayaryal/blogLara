@@ -12089,6 +12089,11 @@ label {
   margin-left: 2rem;
 }
 
+.content .image-left:not(:first-child),
+.content .image-right:not(:first-child) {
+  margin-top: 0.55rem;
+}
+
 .content .image-left {
   margin-left: -6vw;
   float: left;
