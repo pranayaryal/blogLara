@@ -9,7 +9,13 @@ trait SlugTrait
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = str_slug($model->title);
+            if (isset($model->title)) {
+                $model->slug = str_slug($model->title);
+            }
+
+            if (isset($model->user->name)) {
+                $model->slug = str_slug($model->user->name);
+            }
 
             $latestSlug =
                 static::whereRaw("slug RLIKE '^{$model->slug}(-[0-9]*)?$'")
