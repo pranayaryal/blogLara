@@ -17,9 +17,11 @@
       {text: 'HTML/XML', value: 'markup'},
       {text: 'JavaScript', value: 'javascript'},
       {text: 'CSS', value: 'css'},
+      {text: 'SCSS', value: 'scss'},
       {text: 'PHP', value: 'php'},
       {text: 'Ruby', value: 'ruby'},
       {text: 'Python', value: 'python'},
+      {text: 'Markdown', value: 'markdown'},
     ],
     // Full URLs
     relative_urls: false,
