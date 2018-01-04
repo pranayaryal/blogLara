@@ -45,26 +45,30 @@
       { title: 'Pull Right',
         content: `
           <div class="image-right">
-            <img src="https://satyr.io/500x300/" />
-            <small>This is a caption.</small>
+            <div class="image-photo">
+              <img src="https://satyr.io/500x300/" alt="">
+            </div>
+            <small class="image-caption">This is a caption.</small>
           </div>
         `
       },
       { title: 'Pull Left',
         content: `
           <div class="image-left">
-            <img src="https://satyr.io/500x300/" />
-            <small>This is a caption.</small>
+            <div class="image-photo">
+              <img src="https://satyr.io/500x300/" alt="">
+            </div>
+            <small class="image-caption">This is a caption.</small>
           </div>
         `
       },
       { title: 'Full Width',
         content: `
           <div class="image-full">
-            <div class="image-full-photo">
-              <img src="https://satyr.io/500x300/" />
+            <div class="image-photo">
+              <img src="https://satyr.io/500x300/" alt="">
             </div>
-            <small>This is a caption.</small>
+            <small class="image-caption">This is a caption.</small>
           </div>
         `
       },
