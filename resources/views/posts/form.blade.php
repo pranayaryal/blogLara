@@ -76,20 +76,6 @@
     </div>
 
     <div class="column">
-      <!-- Create / Save Post -->
-      <div class="field">
-        <div class="control">
-          <input class="button is-primary is-medium is-fullwidth" type="submit" value="{{ $action === '/post' ? 'Create' : 'Update' }} ">
-        </div>
-      </div>
-
-      <!-- View Post -->
-      <div class="field">
-        <div class="control">
-          <a href="/{{ $post->slug }}" class="button is-fullwidth" target="_BLANK">View Post</a>
-        </div>
-      </div>
-
       <div class="card">
         <div class="card-header">
           <h3 class="card-header-title">
@@ -150,14 +136,34 @@
         </div>
       </div>
 
+      <!-- Create / Save Post -->
       <div class="field">
         <div class="control">
-          <a href="/posts/{{ $post->id }}/delete"
-            onclick="event.preventDefault();
-            document.getElementById('delete-form-{{ $post->id }}').submit();"
-            class="button is-danger">
-            Delete Post
-          </a>
+          <input class="button is-primary is-medium is-fullwidth" type="submit" value="{{ $action === '/post' ? 'Create' : 'Update' }} ">
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <!-- View Post -->
+          <div class="field">
+            <div class="control">
+              <a href="/{{ $post->slug }}" class="button is-fullwidth" target="_BLANK">View Post</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <a href="/posts/{{ $post->id }}/delete"
+                onclick="event.preventDefault();
+                document.getElementById('delete-form-{{ $post->id }}').submit();"
+                class="button is-danger is-fullwidth">
+                Delete Post
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
