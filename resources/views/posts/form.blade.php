@@ -101,7 +101,7 @@
           <div class="field">
             <div class="control">
               <label class="checkbox">
-                <input class="checkbox" name="canonical" type="checkbox" {{ $post->canonical === 1 ? 'checked' : '' }}>
+                <input class="checkbox" name="canonical" type="checkbox" {{ $post->canonical === 0 ? '' : 'checked' }}>
                 Canonical link
               </label>
             </div>
@@ -148,7 +148,7 @@
           <!-- View Post -->
           <div class="field">
             <div class="control">
-              <a href="/{{ $post->slug }}" class="button is-fullwidth" target="_BLANK">View Post</a>
+              <a href="/{{ $post->slug }}" class="button is-fullwidth is-small" target="_BLANK">View Post</a>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@
               <a href="/posts/{{ $post->id }}/delete"
                 onclick="event.preventDefault();
                 document.getElementById('delete-form-{{ $post->id }}').submit();"
-                class="button is-danger is-fullwidth">
+                class="button is-danger is-fullwidth is-small">
                 Delete Post
               </a>
             </div>
