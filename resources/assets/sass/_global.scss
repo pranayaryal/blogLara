@@ -335,8 +335,8 @@ a {
 }
 
 .post_image {
-  margin-left: -7vw;
-	width: calc(100% + 14vw);
+  margin-left: -6vw;
+	width: calc(100% + 12vw);
 
 	picture {
 
@@ -628,56 +628,95 @@ label {
 
 .content {
 
-	div {
+	.image-left, .image-right, .image-full {
+		display: inline-block;
+		margin-bottom: 2rem;
+		max-width: none;
+		width: 100%;
 
-		&.image-left, &.image-right, &.image-full {
-			display: inline-block;
-			margin-bottom: 2rem;
-			max-width: none;
+		&:not(:first-child) {
+			margin-top: 1.1428em;
 		}
 
-		&.image-left, &.image-right {
-			width: calc(30% + 10vw);
-			margin-right: 2rem;
-			margin-left: 2rem;
+		.image-photo {
+			line-height: 0;
 		}
 
-		&.image-left {
-			margin-left: -5vw;
-			float: left;
-		}
-		&.image-right {
-			margin-right: -5vw;
-			float: right;
-		}
-
-		&.image-full {
-			display: flex;
-			align-self: center;
-			width: 100%;
-			float: none;
-			margin-left: -5vw;
-			width: calc(100% + 10vw);
-
-			> * {
-				flex: 1 1 auto;
-			}
-
-			img {
-				width: 100%;
-			}
-
-			small {
-				padding-left: 40px;
-				max-width: 250px;
-				width: 100%;
-				text-align: left;
-			}
+		@media (max-width: 54.5rem) {
+			display: block;
+			margin-bottom: 1.1428em;
 		}
 
 		small {
 			font-family: font(serif);
-			font-size: 1.1rem;
+			font-size: 1rem;
+			margin-top: 0.5rem;
+
+			@media (max-width: 54.5rem) {
+				display: block;
+				max-width: 47rem;
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.image-left, .image-right {
+		max-width: calc(40% + 10vw);
+		margin-right: 2rem;
+		margin-left: 2rem;
+	}
+
+	.image-left {
+		margin-left: -6vw;
+		float: left;
+	}
+
+	.image-right {
+		margin-right: -6vw;
+		float: right;
+	}
+
+	.image-full {
+		width: calc(100% + 12vw);
+		margin-left: -6vw;
+
+		small {
+			padding: 0 1.2em;
+			display: block;
+			max-width: 47rem;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	.image-full, .image-left, .image-right {
+
+		@media (max-width: 54.5rem) {
+			width: 100%;
+			max-width: none;
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.image-photo {
+
+			@media (max-width: 54.5rem) {
+				width: calc(100% + 12vw);
+				margin-left: -6vw;
+				max-width: none;
+			}
+		}
+
+		small {
+			padding: 0;
 		}
 	}
 }

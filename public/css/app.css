@@ -2822,7 +2822,7 @@ a.box:active {
 }
 
 .content blockquote {
-  background-color: whitesmoke;
+  background-color: transparent;
   border-left: 5px solid #dbdbdb;
   padding: 1.25em 1.5em;
 }
@@ -11827,8 +11827,8 @@ body.site-search-open .search-overlay {
 }
 
 .post_image {
-  margin-left: -7vw;
-  width: calc(100% + 14vw);
+  margin-left: -6vw;
+  width: calc(100% + 12vw);
 }
 
 .post_image picture img {
@@ -12127,63 +12127,119 @@ label {
   margin-bottom: 1.5rem;
 }
 
-.content div.image-left,
-.content div.image-right,
-.content div.image-full {
+.content .image-left,
+.content .image-right,
+.content .image-full {
   display: inline-block;
   margin-bottom: 2rem;
   max-width: none;
+  width: 100%;
 }
 
-.content div.image-left,
-.content div.image-right {
-  width: calc(30% + 10vw);
+.content .image-left:not(:first-child),
+.content .image-right:not(:first-child),
+.content .image-full:not(:first-child) {
+  margin-top: 1.1428em;
+}
+
+.content .image-left .image-photo,
+.content .image-right .image-photo,
+.content .image-full .image-photo {
+  line-height: 0;
+}
+
+@media (max-width: 54.5rem) {
+  .content .image-left,
+  .content .image-right,
+  .content .image-full {
+    display: block;
+    margin-bottom: 1.1428em;
+  }
+}
+
+.content .image-left small,
+.content .image-right small,
+.content .image-full small {
+  font-family: 'Clarendon\AE   W01', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 54.5rem) {
+  .content .image-left small,
+  .content .image-right small,
+  .content .image-full small {
+    display: block;
+    max-width: 47rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.content .image-left img,
+.content .image-right img,
+.content .image-full img {
+  width: 100%;
+}
+
+.content .image-left,
+.content .image-right {
+  max-width: calc(40% + 10vw);
   margin-right: 2rem;
   margin-left: 2rem;
 }
 
-.content div.image-left {
-  margin-left: -5vw;
+.content .image-left {
+  margin-left: -6vw;
   float: left;
 }
 
-.content div.image-right {
-  margin-right: -5vw;
+.content .image-right {
+  margin-right: -6vw;
   float: right;
 }
 
-.content div.image-full {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
+.content .image-full {
+  width: calc(100% + 12vw);
+  margin-left: -6vw;
+}
+
+.content .image-full small {
+  padding: 0 1.2em;
+  display: block;
+  max-width: 47rem;
   width: 100%;
-  float: none;
-  margin-left: -5vw;
-  width: calc(100% + 10vw);
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.content div.image-full > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+@media (max-width: 54.5rem) {
+  .content .image-full,
+  .content .image-left,
+  .content .image-right {
+    width: 100%;
+    max-width: none;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
-.content div.image-full img {
-  width: 100%;
+@media (max-width: 54.5rem) {
+  .content .image-full .image-photo,
+  .content .image-left .image-photo,
+  .content .image-right .image-photo {
+    width: calc(100% + 12vw);
+    margin-left: -6vw;
+    max-width: none;
+  }
 }
 
-.content div.image-full small {
-  padding-left: 40px;
-  max-width: 250px;
-  width: 100%;
-  text-align: left;
-}
-
-.content div small {
-  font-family: 'Clarendon\AE   W01', Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.1rem;
+.content .image-full small,
+.content .image-left small,
+.content .image-right small {
+  padding: 0;
 }
 
 .card {
