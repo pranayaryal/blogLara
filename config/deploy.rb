@@ -41,7 +41,15 @@ namespace :composer do
   task :images_copy do
       on roles(:composer) do
           puts ("--> Copy images folder from previous release")
-          execute "imagesDir=#{current_path}/images; if [ -d $imagesDir ] || [ -h $imagesDir ]; then cp -a $imagesDir #{release_path}/images; sudo chown -R www-data:www-data #{release_path}/images; fi;"
+          execute "imagesDir=#{current_path}/public/images; if [ -d $imagesDir ] || [ -h $imagesDir ]; then cp -a $imagesDir #{release_path}/public/images; sudo chown -R doe:www-data #{release_path}/public/images; fi;"
+      end
+  end
+
+  desc 'Chown images back to doe user before deploy cleanup'
+  task :images_owner do
+      on roles(:composer) do
+          puts ("--> Chown images folder back to doe user")
+          execute "sudo chown -R doe:doe #{current_path}/public/images"
       end
   end
 end
@@ -84,10 +92,11 @@ namespace :laravel do
 end
 
 namespace :deploy do
-  after :updated, "composer:vendor_copy"
   after :updated, "composer:images_copy"
+  after :updated, "composer:vendor_copy"
   after :updated, "composer:install"
   after :finished, "laravel:migrate"
+#   before 'deploy:symlink:release', "composer:images_owner"
 end
 
 # Default deploy_to directory is /var/www/my_app_name
