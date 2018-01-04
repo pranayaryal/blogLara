@@ -12,3 +12,25 @@ profile:username - string - A short unique string to identify them.
   <meta property="og:description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}" />
   <meta property="og:url" content="{{ isset($post->featured_image) ? request()->root() . $post->featured_image : request()->root() }}" />
   <meta property="og:site_name" content="Doe-Anderson Advertising" />
+
+  {{--  Article specific OpenGraph data (indented to make HMTL output line up properly)  --}}
+@if(isset($post->id))
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="https://www.facebook.com/adaptwithdoe" />
+<meta property="article:section" content="{{ ucfirst($post->category->name) }}" />
+<meta property="article:published_time" content="{{ $post->created_at }}" />
+
+@if(isset($post->updated_at))
+<meta property="article:modified_time" content="{{ $post->updated_at }}" />
+@endif
+
+@if(isset($post->featured_image))
+<meta property="og:image" content="{{ request()->root() . $post->featured_image }}" />
+<meta property="og:image:secure_url" content="{{ request()->root() . $post->featured_image }}" />
+<meta name="twitter:image" content="{{ request()->root() . $post->featured_image }}" />
+@endif
+
+@if(isset($post->author))
+<meta property="article:author" content="{{ request()->root() . '/' . $post->author->profile->slug }}" />
+@endif  
+@endif
