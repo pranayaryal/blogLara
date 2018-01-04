@@ -1,4 +1,4 @@
-server 'digital.doe1915.com', user: 'doe', roles: %w{ app web composer }
+server 'digital.doe1915.com', user: 'doe', roles: %w{ web composer laravel }
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :deploy_to, '/opt/sites/digital.doe1915.com'
 set :keep_releases, 2

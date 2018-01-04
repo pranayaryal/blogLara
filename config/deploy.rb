@@ -17,8 +17,7 @@ append :linked_dirs,
 'storage/framework/cache',
 'storage/framework/sessions',
 'storage/framework/views',
-'storage/logs',
-'public/images'
+'storage/logs'
 
 namespace :composer do
   desc "Running Composer Install"
@@ -35,6 +34,14 @@ namespace :composer do
       on roles(:composer) do
           puts ("--> Copy vendor folder from previous release")
           execute "vendorDir=#{current_path}/vendor; if [ -d $vendorDir ] || [ -h $vendorDir ]; then cp -a $vendorDir #{release_path}/vendor; fi;"
+      end
+  end
+
+  desc 'Copy images directory from last release. Chown them'
+  task :images_copy do
+      on roles(:composer) do
+          puts ("--> Copy images folder from previous release")
+          execute "imagesDir=#{current_path}/images; if [ -d $imagesDir ] || [ -h $imagesDir ]; then cp -a $imagesDir #{release_path}/images; sudo chown -R www-data:www-data #{release_path}/images; fi;"
       end
   end
 end
@@ -74,29 +81,12 @@ namespace :laravel do
           end
       end
   end
-
-  task :set_variables do
-      on roles(:laravel) do
-            puts ("--> Copying environment configuration file")
-            execute "cp #{release_path}/.env.server #{release_path}/.env"
-            puts ("--> Setting environment variables")
-            execute "sed --in-place -f #{fetch(:overlay_path)}/parameters.sed #{release_path}/.env"
-      end
-  end
-
-  task :configure_dot_env do
-  dotenv_file = fetch(:laravel_dotenv_file)
-      on roles (:laravel) do
-      execute :cp, "#{dotenv_file} #{release_path}/.env"
-      end
-  end
 end
 
 namespace :deploy do
   after :updated, "composer:vendor_copy"
+  after :updated, "composer:images_copy"
   after :updated, "composer:install"
-  after :updated, "laravel:fix_permission"
-  after :updated, "laravel:configure_dot_env"
   after :finished, "laravel:migrate"
 end
 
