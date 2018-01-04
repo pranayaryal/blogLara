@@ -4,7 +4,9 @@
       <a href="{{ $post->slug }}">{{ $post->title }}</a>
     </h2>
     <div class="post_meta">
+      @if(isset($post->author->profile))
       <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}')"></div>
+      @endif
       <div class="post_details">
         <a
           class="author_name"
