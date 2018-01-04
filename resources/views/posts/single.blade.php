@@ -3,7 +3,9 @@
       <h2 class="post_title"><a href="{{ $post->slug }}">{{ $post->title }}</a></h2>
 
       <div class="post_meta">
+        @if (isset($post->author))
         <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}');"></div>
+        @endif
         @if (isset($post->author))
         <div class="post_details"><a class="author_name" href="/profile/{{ $post->author->profile->slug }}" title="{{ $post->author->name }}">{{ $post->author->name }}</a> in <a class="category_name" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></div>
         @endif

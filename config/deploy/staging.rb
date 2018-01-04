@@ -1,3 +1,9 @@
+server 'digital.doe1915.com', user: 'doe', roles: %w{ app web composer }
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :deploy_to, '/opt/sites/digital.doe1915.com'
+set :keep_releases, 2
+
+set :laravel_dotenv_file, '/opt/sites/digital.doe1915.com/shared/.env'
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
