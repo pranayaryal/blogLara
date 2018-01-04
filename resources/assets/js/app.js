@@ -11,7 +11,6 @@ $('.search-button, .search-overlay').click(function() {
   $('body').toggleClass('site-search-open');
   $('.search-form input').focus();
 });
-  
 
 window.Vue = require('vue');
 

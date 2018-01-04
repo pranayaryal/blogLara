@@ -47,5 +47,3 @@
   </div>
   @endif
 </article>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/prism.min.js"></script>
