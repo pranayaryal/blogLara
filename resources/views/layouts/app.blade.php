@@ -13,6 +13,8 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
+  @include('open-graph')
+
   @if(isset($post->canonical))
     <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
   @endif
