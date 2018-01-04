@@ -13,6 +13,14 @@ profile:username - string - A short unique string to identify them.
   <meta property="og:url" content="{{ isset($post->featured_image) ? request()->root() . $post->featured_image : request()->root() }}" />
   <meta property="og:site_name" content="Doe-Anderson Advertising" />
 
+  {{--  Twitter card OpenGraph data (indented to make HMTL output line up properly)  --}}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}" />
+  <meta name="twitter:title" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}" />
+  <meta name="twitter:site" content="@Doeanderson" />
+  <meta name="twitter:creator" content="@Doeanderson" />
+
+
   {{--  Article specific OpenGraph data (indented to make HMTL output line up properly)  --}}
 @if(isset($post->id))
 <meta property="og:type" content="article" />
