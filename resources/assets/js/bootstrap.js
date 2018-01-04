@@ -7,6 +7,7 @@ window._ = require('lodash');
 require('./fontawesome/fontawesome.min');
 require('./fontawesome/fa-solid.min');
 require('./fontawesome/fa-brands.min');
+require('./prism.min.js')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
