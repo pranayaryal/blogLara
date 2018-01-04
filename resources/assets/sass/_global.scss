@@ -582,6 +582,10 @@ label {
 		max-width: calc(40% + 10vw);
 		margin-right: 2rem;
 		margin-left: 2rem;
+
+		&:not(:first-child) {
+			margin-top: 0.55rem;
+		}
 	}
 
 	.image-left {
