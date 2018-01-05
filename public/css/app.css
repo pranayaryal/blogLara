@@ -11774,7 +11774,7 @@ label {
 .content h4:not(:last-child),
 .content h5:not(:last-child),
 .content h6:not(:last-child) {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .content h1:not(:first-child),
