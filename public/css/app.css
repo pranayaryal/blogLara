@@ -11796,8 +11796,7 @@ label {
 }
 
 .content strong {
-  color: #bbb900;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .content div {
