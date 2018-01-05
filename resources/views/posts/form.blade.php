@@ -14,12 +14,11 @@
         {{ method_field('PUT') }}
         <input class="input" type="hidden" name="id" value="{{ $post->id }}">
       @endif
-      <input class="input" type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
       <!-- Title -->
       <div class="field">
         <div class="control">
-          <input class="input is-large" id="create-post-title" type="text" name="title" value="{{ $post->title }}" placeholder="Title">
+          <input class="input is-large" id="create-post-title" type="text" name="title" value="{!! old('title', optional($post)->title) !!}" placeholder="Title">
         </div>
       </div>
 
@@ -32,7 +31,7 @@
         </div>
         <div class="field">
           <div class="control">
-            <textarea class="textarea tiny-mce" name="content" rows="15">{{ htmlentities($post->content) }}</textarea>
+            <textarea class="textarea tiny-mce" name="content" rows="15">{!! old('content', optional($post)->content) !!}</textarea>
           </div>
         </div>
       </div>
@@ -46,7 +45,7 @@
         </div>
         <div class="field">
           <div class="control">
-            <textarea class="textarea tiny-mce" name="excerpt" rows="5">{{ htmlentities($post->excerpt) }}</textarea>
+            <textarea class="textarea tiny-mce" name="excerpt" rows="5">{!! old('excerpt', htmlentities($post->excerpt)) !!}</textarea>
           </div>
         </div>
       </div>
@@ -61,14 +60,14 @@
           <div class="field">
             <label class="label control-label">Title</label>
             <div class="control">
-              <input class="input" type="text" name="seo_title" placeholder="CTA | Title | Doe-Anderson" value="{{ !empty(old('seo_title')) ? old('seo_title') : $post->seo_title }}">
+              <input class="input" type="text" name="seo_title" placeholder="CTA | Title | Doe-Anderson" value="{!! old('seo_title', optional($post)->seo_title) !!}">
             </div>
           </div>
 
           <div class="field">
             <label class="label control-label">Description</label>
             <div class="control">
-              <textarea class="textarea" type="text" name="seo_description" placeholder="This is your SEO description. Try to keep it between 50-300 characters.">{{ !empty(old('seo_description')) ? old('seo_description') : $post->seo_description }}</textarea>
+              <textarea class="textarea" type="text" name="seo_description" placeholder="This is your SEO description. Try to keep it between 50-300 characters.">{!! old('seo_description', optional($post)->seo_description) !!}</textarea>
             </div>
           </div>
         </div>
@@ -133,6 +132,22 @@
               <img src="{{ $post->featured_image }}">
             @endif
           </div>
+
+          <!-- Author -->
+          <div class="field">
+              <label class="label control-label">Author</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select name="user_id">
+                    @foreach ($authors as $author)
+                    <option value="{{ $author->id }}" @if (isset($post->user_id) && !empty($post->user_id)) {{ $post->user_id === $author->id ? 'selected' : '' }} @endif>{{ $author->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          
         </div>
       </div>
 

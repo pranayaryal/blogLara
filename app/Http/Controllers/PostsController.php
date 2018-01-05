@@ -13,13 +13,14 @@ class PostsController extends Controller
     {
         $categoryOptions = \App\Category::all();
         $statusOptions = \App\Status::all();
+        $authors = \App\User::all();
         $action = '/post';
-        return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions'));
+        return view('posts.form', compact('action', 'authors', 'categoryOptions', 'post', 'statusOptions'));
     }
 
     public function index()
     {
-        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->orderBy('created_at')->get();
+        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->orderBy('created_at', 'DESC')->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -39,7 +40,8 @@ class PostsController extends Controller
         $action = '/posts/' . $post->id . '/edit';
         $categoryOptions = \App\Category::all();
         $statusOptions = \App\Status::all();
-        return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions'));
+        $authors = \App\User::all();
+        return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions', 'authors'));
     }
 
     public function store(Post $post)
@@ -95,7 +97,7 @@ class PostsController extends Controller
     // Views
     public function admin()
     {
-        $posts = Post::where('user_id', auth()->user()->id)->with(['author', 'category', 'status'])->get();
+        $posts = Post::with(['author', 'category', 'status'])->get();
         return view('posts.admin', compact('posts'));
     }
 

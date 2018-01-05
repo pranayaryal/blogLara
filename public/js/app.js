@@ -994,9 +994,13 @@ window.Vue = __webpack_require__(38);
 
 Vue.component('subscriber', __webpack_require__(41));
 
-var app = new Vue({
-  el: '#mailing_list'
-});
+var mailingList = document.getElementById('mailing_list');
+
+if (mailingList !== null) {
+  var app = new Vue({
+    el: '#mailing_list'
+  });
+}
 
 // require('./bulma-extensions');
 

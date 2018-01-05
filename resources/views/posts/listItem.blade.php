@@ -1,7 +1,7 @@
 <article class="post post--list">
   <header class="post_header">
     <h2 class="post_title">
-      <a href="{{ $post->slug }}">{{ $post->title }}</a>
+      <a href="{{ request()->root() . '/' . $post->slug }}">{{ $post->title }}</a>
     </h2>
     <div class="post_meta">
       @if(isset($post->author->profile))
