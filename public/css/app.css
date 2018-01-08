@@ -11779,7 +11779,7 @@ label {
 .content h4:not(:last-child),
 .content h5:not(:last-child),
 .content h6:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .content h1:not(:first-child),
@@ -11788,7 +11788,7 @@ label {
 .content h4:not(:first-child),
 .content h5:not(:first-child),
 .content h6:not(:first-child) {
-  margin-top: 3.5rem;
+  margin-top: 2.5rem;
 }
 
 .content ul li,
