@@ -549,7 +549,6 @@ label {
 	}
 
 	.image-left, .image-right, .image-full {
-		display: inline-block;
 		margin-bottom: 1.8rem;
 		max-width: none;
 		width: 100%;
@@ -583,6 +582,7 @@ label {
 	}
 
 	.image-left, .image-right {
+		display: inline-block;
 		max-width: calc(40% + 10vw);
 		margin-right: 2rem;
 		margin-left: 2rem;
@@ -603,6 +603,7 @@ label {
 	}
 
 	.image-full {
+		display: block;
 		width: calc(100% + 12vw);
 		margin-left: -6vw;
 
