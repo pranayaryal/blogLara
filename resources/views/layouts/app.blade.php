@@ -5,21 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
-  <meta name="description" content="{{ !empty($description) ? $description : 'Interested in the latest practices in the digital realm? Look no further' }}">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-
-  @include('open-graph')
+  @include('meta')
 
   @if(isset($post->canonical))
     <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
   @endif
 
-  <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
