@@ -540,6 +540,9 @@ label {
 
 	blockquote {
 		font-size: 1.8rem;
+		border-width: 0 0 0 5px;
+		border-color: color(green);
+		border-style: solid;
 	}
 
 	img {
@@ -594,12 +597,12 @@ label {
 	}
 
 	.image-left {
-		margin-left: -6vw;
+		margin-left: -5vw;
 		float: left;
 	}
 
 	.image-right {
-		margin-right: -6vw;
+		margin-right: -5vw;
 		float: right;
 	}
 
@@ -639,6 +642,58 @@ label {
 
 		small {
 			padding: 0;
+		}
+	}
+
+	.blockquote-left, .blockquote-right {
+		margin-bottom: 1.5rem;
+		max-width: none;
+		width: 100%;
+
+		@media (max-width: 54.5rem) {
+			display: block;
+		}
+	}
+
+	.blockquote-left, .blockquote-right {
+		display: inline-block;
+		max-width: calc(40% + 10vw);
+		margin-right: 2rem;
+		margin-left: 2rem;
+
+		&:not(:first-child) {
+			margin-top: 0.55rem;
+		}
+
+		@media (max-width: 54.5rem) {
+			width: 100%;
+			max-width: none;
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	.blockquote-left {
+		margin-left: -5vw;
+		float: left;
+		border-width: 0 5px 0 0;
+		padding-left: 0;
+	}
+
+	.blockquote-right {
+		margin-right: -5vw;
+		float: right;
+		padding-right: 0;
+	}
+
+	.blockquote-left, .blockquote-right {
+		@media (max-width: 54.5rem) {
+			width: 100%;
+			max-width: none;
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 }
