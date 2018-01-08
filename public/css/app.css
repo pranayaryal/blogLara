@@ -11945,6 +11945,13 @@ label {
   width: 100%;
 }
 
+@media (min-width: 54.5625rem) {
+  .content .blockquote-left,
+  .content .blockquote-right {
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 54.5rem) {
   .content .blockquote-left,
   .content .blockquote-right {

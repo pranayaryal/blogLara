@@ -647,6 +647,10 @@ label {
 		max-width: none;
 		width: 100%;
 
+		@media (min-width: 54.5625rem) {
+			margin-bottom: 0;
+		}
+
 		@media (max-width: 54.5rem) {
 			display: block;
 		}
