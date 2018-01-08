@@ -11626,6 +11626,11 @@ body.site-search-open .search-overlay {
   width: 100%;
 }
 
+.post_image a:hover {
+  background-color: transparent;
+  border: none;
+}
+
 .post_control {
   position: absolute;
   top: 0;

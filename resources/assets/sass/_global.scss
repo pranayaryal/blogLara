@@ -348,7 +348,12 @@ a {
 			max-width: 100%;
 			width: 100%;
 		}
-	}
+  }
+  
+  a:hover {
+    background-color: transparent;
+    border: none;
+  }
 }
 
 .post_control {
