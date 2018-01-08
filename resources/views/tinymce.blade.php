@@ -34,19 +34,19 @@
     contentEditable: true,
     // Add containers to formats
     style_formats: [
-      { title: 'Containers', 
+      { title: 'Containers',
         items: [
           { title: 'section', block: 'section', wrapper: true, merge_siblings: false },
           { title: 'article', block: 'article', wrapper: true, merge_siblings: false },
           { title: 'blockquote', block: 'blockquote', wrapper: true },
           { title: 'aside', block: 'aside', wrapper: true },
           { title: 'figure', block: 'figure', wrapper: false },
-        ] 
+        ]
       },
     ],
     style_formats_merge: true,
     templates: [
-      { title: 'Pull Right',
+      { title: 'Image Right',
         content: `
           <div class="image-right">
             <div class="image-photo">
@@ -56,7 +56,7 @@
           </div>
         `
       },
-      { title: 'Pull Left',
+      { title: 'Image Left',
         content: `
           <div class="image-left">
             <div class="image-photo">
@@ -66,7 +66,7 @@
           </div>
         `
       },
-      { title: 'Full Width',
+      { title: 'Image Full',
         content: `
           <div class="image-full">
             <div class="image-photo">
@@ -74,6 +74,20 @@
             </div>
             <small class="image-caption">This is a caption.</small>
           </div>
+        `
+      },
+      { title: 'Blockquote Right',
+        content: `
+          <blockquote class="blockquote-right">
+            This is some placeholder copy.
+          </blockquote>
+        `
+      },
+      { title: 'Blockquote Left',
+        content: `
+          <blockquote class="blockquote-left">
+            This is some placeholder copy.
+          </blockquote>
         `
       },
     ],

@@ -11817,6 +11817,9 @@ label {
 
 .content blockquote {
   font-size: 1.8rem;
+  border-width: 0 0 0 5px;
+  border-color: #bbb900;
+  border-style: solid;
 }
 
 .content img.img_round {
@@ -11886,12 +11889,12 @@ label {
 }
 
 .content .image-left {
-  margin-left: -6vw;
+  margin-left: -5vw;
   float: left;
 }
 
 .content .image-right {
-  margin-right: -6vw;
+  margin-right: -5vw;
   float: right;
 }
 
@@ -11936,6 +11939,68 @@ label {
 .content .image-left small,
 .content .image-right small {
   padding: 0;
+}
+
+.content .blockquote-left,
+.content .blockquote-right {
+  margin-bottom: 1.5rem;
+  max-width: none;
+  width: 100%;
+}
+
+@media (max-width: 54.5rem) {
+  .content .blockquote-left,
+  .content .blockquote-right {
+    display: block;
+  }
+}
+
+.content .blockquote-left,
+.content .blockquote-right {
+  display: inline-block;
+  max-width: calc(40% + 10vw);
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.content .blockquote-left:not(:first-child),
+.content .blockquote-right:not(:first-child) {
+  margin-top: 0.55rem;
+}
+
+@media (max-width: 54.5rem) {
+  .content .blockquote-left,
+  .content .blockquote-right {
+    width: 100%;
+    max-width: none;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.content .blockquote-left {
+  margin-left: -5vw;
+  float: left;
+  border-width: 0 5px 0 0;
+  padding-left: 0;
+}
+
+.content .blockquote-right {
+  margin-right: -5vw;
+  float: right;
+  padding-right: 0;
+}
+
+@media (max-width: 54.5rem) {
+  .content .blockquote-left,
+  .content .blockquote-right {
+    width: 100%;
+    max-width: none;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .subscribe {
