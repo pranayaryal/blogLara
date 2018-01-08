@@ -11950,6 +11950,11 @@ label {
   .content .blockquote-right {
     margin-bottom: 0;
   }
+
+  .content .blockquote-left:not(:last-child),
+  .content .blockquote-right:not(:last-child) {
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 54.5rem) {
