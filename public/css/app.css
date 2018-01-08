@@ -11626,7 +11626,8 @@ body.site-search-open .search-overlay {
   width: 100%;
 }
 
-.post_image a:hover {
+.post_image a:hover,
+.post_video a:hover {
   background-color: transparent;
   border: none;
 }

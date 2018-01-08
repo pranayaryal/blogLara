@@ -133,21 +133,28 @@
             @endif
           </div>
 
+          <!-- Featured Video -->
+          <div class="field">
+            <label class="label control-label">Vimeo ID</label>
+
+            <div class="control">
+              <input class="input" id="create-post-title" name="vimeo_id" value="{{ $post->vimeo_id }}">
+            </div>
+          </div>
+
           <!-- Author -->
           <div class="field">
-              <label class="label control-label">Author</label>
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select name="user_id">
-                    @foreach ($authors as $author)
-                    <option value="{{ $author->id }}" @if (isset($post->user_id) && !empty($post->user_id)) {{ $post->user_id === $author->id ? 'selected' : '' }} @endif>{{ $author->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
+            <label class="label control-label">Author</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select name="user_id">
+                  @foreach ($authors as $author)
+                  <option value="{{ $author->id }}" @if (isset($post->user_id) && !empty($post->user_id)) {{ $post->user_id === $author->id ? 'selected' : '' }} @endif>{{ $author->name }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
-
-          
+          </div>          
         </div>
       </div>
 
