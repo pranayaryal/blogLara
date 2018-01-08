@@ -644,7 +644,6 @@ label {
 	}
 
 	.blockquote-left, .blockquote-right {
-		margin-bottom: 1.5rem;
 		max-width: none;
 		width: 100%;
 
@@ -664,19 +663,18 @@ label {
 		margin-left: -5vw;
 		float: left;
 		padding-left: 0;
+
+		@media (min-width: 54.5625rem) {
+			padding-left: 0;
+		}
 	}
 
 	.blockquote-right {
 		margin-right: -5vw;
 		float: right;
-		padding-right: 0;
 
-		@media (max-width: 54.5rem) {
-			width: 100%;
-			max-width: none;
-			float: none;
-			margin-left: 0;
-			margin-right: 0;
+		@media (min-width: 54.5625rem) {
+			padding-right: 0;
 		}
 	}
 
