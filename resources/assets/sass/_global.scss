@@ -539,10 +539,8 @@ label {
 	}
 
 	blockquote {
+		padding: 3rem 2.5rem;
 		font-size: 1.8rem;
-		border-width: 0 0 0 5px;
-		border-color: color(green);
-		border-style: solid;
 	}
 
 	img {
@@ -660,10 +658,18 @@ label {
 		max-width: calc(40% + 10vw);
 		margin-right: 2rem;
 		margin-left: 2rem;
+	}
 
-		&:not(:first-child) {
-			margin-top: 0.55rem;
-		}
+	.blockquote-left {
+		margin-left: -5vw;
+		float: left;
+		padding-left: 0;
+	}
+
+	.blockquote-right {
+		margin-right: -5vw;
+		float: right;
+		padding-right: 0;
 
 		@media (max-width: 54.5rem) {
 			width: 100%;
@@ -672,19 +678,6 @@ label {
 			margin-left: 0;
 			margin-right: 0;
 		}
-	}
-
-	.blockquote-left {
-		margin-left: -5vw;
-		float: left;
-		border-width: 0 5px 0 0;
-		padding-left: 0;
-	}
-
-	.blockquote-right {
-		margin-right: -5vw;
-		float: right;
-		padding-right: 0;
 	}
 
 	.blockquote-left, .blockquote-right {
