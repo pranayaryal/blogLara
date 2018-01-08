@@ -25,6 +25,12 @@
   </div>
   @endif
 
+  @if(!empty($post->vimeo_id))
+  <div class="post_video">
+    <iframe src="https://player.vimeo.com/video/{{ $post->vimeo_id }}" frameborder="0" width="982px" height="571px"></iframe>
+  </div>
+  @endif
+
   <div class="post_content">
     <div class="content">
       @if(!empty($full_content) && $full_content)

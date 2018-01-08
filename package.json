@@ -19,6 +19,7 @@
         "lodash": "^4.17.4",
         "moment": "^2.20.1",
         "prismjs": "^1.9.0",
+        "reframe.js": "^2.1.18",
         "vue": "^2.5.7"
     },
     "dependencies": {}
