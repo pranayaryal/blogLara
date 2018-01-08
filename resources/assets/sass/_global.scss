@@ -50,7 +50,7 @@ a {
 }
 
 #app {
-  padding: 0 1.2em;
+  padding: 0 5vw;
 }
 
 .site-search {
@@ -338,9 +338,10 @@ a {
 	}
 }
 
-.post_image {
-  margin-left: -6vw;
-	width: calc(100% + 12vw);
+.post_image,
+.post_video {
+  margin-left: -5vw;
+	width: calc(100% + 10vw);
 
 	picture {
 
@@ -348,11 +349,8 @@ a {
 			max-width: 100%;
 			width: 100%;
 		}
-  }
-}
+	}
 
-.post_image,
-.post_video {
   a:hover {
     background-color: transparent;
     border: none;
@@ -607,8 +605,8 @@ label {
 
 	.image-full {
 		display: block;
-		width: calc(100% + 12vw);
-		margin-left: -6vw;
+		width: calc(100% + 10vw);
+		margin-left: -5vw;
 
 		small {
 			padding: 0 1.2em;

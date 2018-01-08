@@ -11315,7 +11315,7 @@ a:not(.button):hover {
 }
 
 #app {
-  padding: 0 1.2em;
+  padding: 0 5vw;
 }
 
 .site-search {
@@ -11616,12 +11616,14 @@ body.site-search-open .search-overlay {
   font-size: 0.8125rem;
 }
 
-.post_image {
-  margin-left: -6vw;
-  width: calc(100% + 12vw);
+.post_image,
+.post_video {
+  margin-left: -5vw;
+  width: calc(100% + 10vw);
 }
 
-.post_image picture img {
+.post_image picture img,
+.post_video picture img {
   max-width: 100%;
   width: 100%;
 }
@@ -11895,8 +11897,8 @@ label {
 
 .content .image-full {
   display: block;
-  width: calc(100% + 12vw);
-  margin-left: -6vw;
+  width: calc(100% + 10vw);
+  margin-left: -5vw;
 }
 
 .content .image-full small {
