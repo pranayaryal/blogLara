@@ -41836,7 +41836,7 @@ var render = function() {
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas."
+          "Tell us where to go. That is, tell us where to email you if you’d like to read more."
         )
       ]),
       _vm._v(" "),
