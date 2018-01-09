@@ -6,7 +6,7 @@
   <div>
     <h3>subscriberForm()</h3>
 
-    <p>Habitasse venenatis viverra rutrum odio leo varius lacinia turpis, pretium ut maecenas.</p>
+    <p>Tell us where to go. That is, tell us where to email you if you’d like to read more.</p>
 
     <transition name="fade" mode="out-in">
       <div v-if="notification.isSuccess === false" class="form" role="form" key="form">
