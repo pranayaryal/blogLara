@@ -197,4 +197,4 @@
   {{ csrf_field() }}
 </form>
 @endsection
-@include('tinymce');
+@include('tinymce')
