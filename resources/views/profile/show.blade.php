@@ -26,7 +26,7 @@
     @endif
     </div>
 
-    <div class="user_bio">
+    <div class="user_bio content">
     {!! $profile->bio !!}
     </div>
   </div>
