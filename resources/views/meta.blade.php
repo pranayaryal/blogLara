@@ -44,9 +44,9 @@ profile:username - string - A short unique string to identify them.
     <meta property="og:image:secure_url" content="{{ request()->root() . $post->featured_image }}" />
     <meta name="twitter:image" content="{{ request()->root() . $post->featured_image }}" />
   @else
-    <meta property="og:image" content="/public/images/app/og-image.png" />
-    <meta property="og:image:secure_url" content="/public/images/app/og-image.png" />
-    <meta name="twitter:image" content="/public/images/app/og-image.png" />
+    <meta property="og:image" content="/images/app/og-image.png" />
+    <meta property="og:image:secure_url" content="/images/app/og-image.png" />
+    <meta name="twitter:image" content="/images/app/og-image.png" />
   @endif
 
   {{--  Profile specific OpenGraph data (indented to make HMTL output line up properly)  --}}
@@ -57,7 +57,7 @@ profile:username - string - A short unique string to identify them.
   @endif
 
   {{--  Icons  --}}
-  <link rel="icon" href="/public/images/app/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" href="/public/images/app/favicon-192x192" sizes="192x192">
-  <link rel="apple-touch-icon-precomposed" href="/public/images/app/apple-touch-180x180.png">
-  <meta name="msapplication-TileImage" content="/public/images/app/ms-tile-270x270.png">
+  <link rel="icon" href="/images/app/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" href="/images/app/favicon-192x192" sizes="192x192">
+  <link rel="apple-touch-icon-precomposed" href="/images/app/apple-touch-180x180.png">
+  <meta name="msapplication-TileImage" content="/images/app/ms-tile-270x270.png">

@@ -11644,7 +11644,6 @@ body.site-search-open .search-overlay {
   position: relative;
   padding-left: 8.75rem;
   min-height: 7.5rem;
-  line-height: 1.8em;
 }
 
 @media (max-width: 29.5rem) {
@@ -11743,7 +11742,7 @@ body.site-search-open .search-overlay {
 
 .user_bio {
   margin: 1.25rem 0 0;
-  font-size: 1.0625rem;
+  font-size: 1.1rem;
 }
 
 label {
