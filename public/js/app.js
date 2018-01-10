@@ -30580,7 +30580,7 @@ var render = function() {
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Tell us where to go. That is, tell us where to email you if you’d like to read more."
+          "Don’t just sit there hitting refresh. Get new posts sent to your inbox."
         )
       ]),
       _vm._v(" "),
