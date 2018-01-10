@@ -12,8 +12,8 @@
           class="author_name"
           href="/profile/{{ $post->author->profile->slug }}"
           title="{{ $post->author->name }}">
-            {{ $post->author->name }}
-        </a> in <a class="category_name" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a><time class="post_date">{{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}</time>
+            {{ $post->author->name }}</a> in
+          <a class="category_name" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a><time class="post_date">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</time>
         </div>
     </div>
   </header>
