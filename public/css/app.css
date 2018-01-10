@@ -11346,6 +11346,12 @@ body.site-search-open .search-form {
   visibility: visible;
 }
 
+@media (max-width: 29.5rem) {
+  .site-search .search-form {
+    padding: 0 1rem;
+  }
+}
+
 .site-search .search-form button,
 .site-search .search-form input {
   height: 80px;

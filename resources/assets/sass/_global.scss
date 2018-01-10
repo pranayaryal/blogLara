@@ -79,6 +79,10 @@ a {
 			}
 		}
 
+		@media (max-width: 29.5rem) {
+			padding: 0 1rem;
+		}
+
 		button, input {
 			height: 80px;
 			border: 0;
