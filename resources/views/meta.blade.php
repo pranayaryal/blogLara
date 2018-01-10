@@ -58,6 +58,6 @@ profile:username - string - A short unique string to identify them.
 
   {{--  Icons  --}}
   <link rel="icon" href="/images/app/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" href="/images/app/favicon-192x192" sizes="192x192">
+  <link rel="icon" href="/images/app/favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon-precomposed" href="/images/app/apple-touch-180x180.png">
   <meta name="msapplication-TileImage" content="/images/app/ms-tile-270x270.png">
