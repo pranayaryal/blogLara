@@ -48,7 +48,7 @@ class CategoriesController extends Controller
     public function show($slug)
     {
         $cateogry = Category::whereSlug($slug)->firstOrFail();
-        $posts = Post::where('category_id', $cateogry->id)->get();
+        $posts = Post::where('category_id', $cateogry->id)->orderBy('created_at', 'DESC')->get();
         $category_name = $cateogry->name;
         $title = 'Posts in category: ' . $category_name . ' | Doe-Anderson';
         return view('posts.category', compact('posts', 'by_category', 'category_name', 'title'));
