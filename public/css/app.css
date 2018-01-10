@@ -11652,13 +11652,7 @@ body.site-search-open .search-overlay {
   min-height: 7.5rem;
 }
 
-@media (max-width: 29.5rem) {
-  .user {
-    padding-left: 6.75rem;
-  }
-}
-
-@media (max-width: 25rem) {
+@media (max-width: 35rem) {
   .user {
     padding-left: 0;
   }
@@ -11691,14 +11685,7 @@ body.site-search-open .search-overlay {
   height: 7.5rem;
 }
 
-@media (max-width: 29.5rem) {
-  .user_avatar {
-    width: 5.5rem;
-    height: 5.5rem;
-  }
-}
-
-@media (max-width: 25rem) {
+@media (max-width: 35rem) {
   .user_avatar {
     position: relative;
     top: auto;
