@@ -20,7 +20,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(0,0,0,0.004);
   color: rgba(0,0,0,.84);
-  line-height: 1.7;
+	line-height: 1.7;
+	overflow: hidden;
 
 	@media (max-width: 37.5rem) {
 		font-size: 1.1em;
@@ -127,6 +128,7 @@ a {
 
 	> .container {
 		display: flex;
+		justify-content: space-between;
 	}
 
 	.navbar-acorn {
@@ -141,13 +143,12 @@ a {
         fill: color(green);
       }
 		}
-  }
+	}
 
 	.navbar-end {
 		display: flex;
 		align-items: stretch;
 		justify-content: flex-end;
-    margin-left: auto;
 
 		.navbar-item {
 			padding-left: 9.6px;
