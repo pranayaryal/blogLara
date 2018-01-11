@@ -3,7 +3,7 @@
 @section('content')
 <article class="post">
   <header class="post_header">
-      <h2 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h2>
+    <h2 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h2>
   </header>
 
   <div class="post_content">
@@ -35,7 +35,7 @@
 
       <p>Doe-Anderson may use heat-mapping and click-tracking tools to determine user behavior on the Site and serve the best experience possible to our users.
 
-      Automatically Collected Information</h3>
+      <h3>Automatically Collected Information</h3>
 
       <p>Information about your computer hardware and software may be automatically collected by Doe-Anderson. This information can include: your IP address, browser type, domain names, access times and referring website addresses. This information is used for the operation of the service, to maintain quality of the service and to provide general statistics regarding use of the Doe-Anderson website.</p>
 
