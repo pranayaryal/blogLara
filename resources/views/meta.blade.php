@@ -6,19 +6,19 @@ profile:last_name - string - A name inherited from a family or marriage and by w
 profile:username - string - A short unique string to identify them.
 
   {{--  Site Description  --}}
-  <meta name="description" content="{{ !empty($description) ? $description : 'Did someone say 'useful advertising'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}">
+  <meta name="description" content="{{ !empty($description) ? $description : 'Did someone say \'useful advertising\'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}">
 
   {{--  General OpenGraph data (indented to make HMTL output line up properly)  --}}
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="{{ !empty($title) ? $title : 'Really Useful Thoughts | Doe-Anderson | Louisville, KY' }}" />
-  <meta property="og:description" content="{{ !empty($description) ? $description : 'Did someone say 'useful advertising'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
+  <meta property="og:description" content="{{ !empty($description) ? $description : 'Did someone say \'useful advertising\'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
   <meta property="og:url" content="{{ isset($post->featured_image) ? request()->root() . $post->featured_image : request()->root() }}" />
   <meta property="og:site_name" content="Doe-Anderson Advertising" />
 
   {{--  Twitter card OpenGraph data (indented to make HMTL output line up properly)  --}}
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:description" content="{{ !empty($description) ? $description : 'Did someone say 'useful advertising'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
-  <meta name="twitter:title" content="{{ !empty($description) ? $description : 'Did someone say 'useful advertising'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
+  <meta name="twitter:description" content="{{ !empty($description) ? $description : 'Did someone say \'useful advertising\'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
+  <meta name="twitter:title" content="{{ !empty($description) ? $description : 'Did someone say \'useful advertising\'? It does exist. Interested in the latest digital and traditional practices? Look no further.' }}" />
   <meta name="twitter:site" content="@Doeanderson" />
   <meta name="twitter:creator" content="@Doeanderson" />
 
