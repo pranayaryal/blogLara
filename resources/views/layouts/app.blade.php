@@ -7,7 +7,7 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ !empty($title) ? $title : 'Digital Marketing | Doe-Anderson | Louisville, KY' }}</title>
+  <title>{{ !empty($title) ? $title : 'Really Useful Thoughts | Doe-Anderson | Louisville, KY' }}</title>
 
   @include('meta')
 
