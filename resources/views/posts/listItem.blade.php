@@ -4,8 +4,10 @@
       <a href="{{ request()->root() . '/' . $post->slug }}">{{ $post->title }}</a>
     </h2>
     <div class="post_meta">
-      @if(isset($post->author->profile))
+      @if(!empty($post->author->profile->avatar))
       <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}')"></div>
+      @else
+      <div class="author_avatar"></div>
       @endif
       <div class="post_details">
         <a
