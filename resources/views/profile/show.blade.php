@@ -2,7 +2,11 @@
 @section('content')
 <div class="author">
   <div class="user">
+    @if(!empty($profile->avatar))
     <div class="user_avatar" style="background-image: url( '{{ $profile->avatar }}' )"></div>
+    @else
+    <div class="user_avatar"></div>
+    @endif
 
     <div class="user_details">
     <h2 class="user_name">{{ $profile->user->name }}</h2>

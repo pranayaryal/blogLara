@@ -3,8 +3,12 @@
     <h2 class="post_title"><a href="{{ $post->slug }}">{{ $post->title }}</a></h2>
 
     <div class="post_meta">
-      @if (!empty($post->author))
+      @if(!empty($post->author->profile->avatar))
       <div class="author_avatar" style="background-image:url('{{ $post->author->profile->avatar }}');"></div>
+      @else
+      <div class="author_avatar"></div>
+      @endif
+      @if (!empty($post->author))
       <div class="post_details"><a class="author_name" href="/profile/{{ $post->author->profile->slug }}" title="{{ $post->author->name }}">{{ $post->author->name }}</a> in <a class="category_name" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></div>
       @endif
       <time class="post_date">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</time>

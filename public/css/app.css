@@ -11543,8 +11543,8 @@ body.site-search-open .search-overlay {
 }
 
 .post.post--list .post_meta .author_avatar {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .post.post--list .post_meta .author_name {
@@ -11595,6 +11595,7 @@ body.site-search-open .search-overlay {
 
 .post_meta .author_avatar {
   background-color: #bbb900;
+  background-image: url("/images/app/default-avatar.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -11674,6 +11675,7 @@ body.site-search-open .search-overlay {
 
 .user_avatar {
   background-color: #bbb900;
+  background-image: url("/images/app/default-avatar.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
