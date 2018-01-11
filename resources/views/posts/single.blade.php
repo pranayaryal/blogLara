@@ -1,6 +1,6 @@
 <article class="post">
   <header class="post_header">
-    <h2 class="post_title"><a href="{{ $post->slug }}">{{ $post->title }}</a></h2>
+    <h2 class="post_title"><a href="{{ request()->root() . '/' . $post->slug }}">{{ $post->title }}</a></h2>
 
     <div class="post_meta">
       @if(!empty($post->author->profile->avatar))
