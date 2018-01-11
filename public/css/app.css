@@ -11281,6 +11281,7 @@ body {
   text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.004);
   color: rgba(0, 0, 0, 0.84);
   line-height: 1.7;
+  overflow: hidden;
 }
 
 @media (max-width: 37.5rem) {
@@ -11395,6 +11396,9 @@ body.site-search-open .search-overlay {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .navbar .navbar-acorn svg {
@@ -11419,7 +11423,6 @@ body.site-search-open .search-overlay {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-left: auto;
 }
 
 .navbar .navbar-end .navbar-item {
