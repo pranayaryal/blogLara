@@ -563,8 +563,9 @@ label {
 
 		small {
 			font-family: font(serif);
-			font-size: 1rem;
+			font-size: 0.85rem;
 			margin-top: 0.5rem;
+			opacity: 0.7;
 
 			@media (max-width: 54.5rem) {
 				display: block;
