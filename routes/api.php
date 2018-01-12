@@ -52,7 +52,7 @@ Route::post('/subscriber', function () {
 
         if ($sub->save()) {
             return response()->json([
-                'message' => 'You have successfully registered.',
+                'message' => 'Success! The latest from Really Useful Thoughts will be on its way shortly.',
                 'error' => false
             ]);
         }
