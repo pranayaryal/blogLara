@@ -1,3 +1,11 @@
+server "www.doeanderson.com", user: "doe", roles: %w{app db web composer laravel}
+set :url, 'www.doeanderson.com'
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :application, "reallyusefulthoughts"
+set :deploy_to, '/opt/sites/reallyusefulthoughts.com'
+set :keep_releases, 5
+set :laravel_dotenv_file, '/opt/sites/reallyusefulthoughts.com/shared/.env'
+SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
