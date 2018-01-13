@@ -58,6 +58,9 @@ Route::post('/subscriber', function () {
         }
 
     } catch (Exception $e) {
-        return response()->json('There was an error.');
+      return response()->json([
+        'message' => 'This email is already subscribed, thanks for the enthusiasm though.',
+        'error' => true
+      ]); 
     }
 });
