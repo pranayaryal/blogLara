@@ -18,7 +18,7 @@ append :linked_dirs,
 namespace :deploy do
 #   after :updated, "composer:images_copy"
   after :updated, "composer:vendor_copy"
-  # after :updated, "composer:install"
-  after :finished, "laravel:migrate"
+  # # after :updated, "composer:install"
+  # after :finished, "laravel:migrate"
 #   before 'deploy:symlink:release', "composer:images_owner"
 end
