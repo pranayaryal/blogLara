@@ -23,7 +23,7 @@
     <a href="{{ request()->root() . '/' . $post->slug }}">
       <picture>
         <source srcset="{{ $post->featured_image }}" media="(min-width: 1280px)">
-        <img srcset="{{ $post->featured_image }}" alt="">
+        <img srcset="{{ $post->featured_image }}" alt="{{ $post->title }} featured image">
       </picture>
     </a>
   </div>
@@ -31,7 +31,7 @@
 
   @if(!empty($post->vimeo_id))
   <div class="post_video">
-    <iframe src="https://player.vimeo.com/video/{{ $post->vimeo_id }}" frameborder="0" width="982px" height="571px"></iframe>
+    <iframe src="https://player.vimeo.com/video/{{ $post->vimeo_id }}" title="{{ $post->title }} featured video" frameborder="0" width="982px" height="571px"></iframe>
   </div>
   @endif
 

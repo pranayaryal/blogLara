@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{{ !empty($title) ? $title : 'Really Useful Thoughts | Doe-Anderson | Louisville, KY' }}</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <title>{{ !empty($title) ? $title : 'Really Useful Thoughts | Doe-Anderson | Louisville, KY' }}</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
 
   @include('meta')
 
@@ -35,25 +37,27 @@
         {{ csrf_field() }}
         <div class="field has-addons">
           <div class="control">
-            <button class="button is-white  is-large">
+            <button class="button is-white is-large" aria-label="Search icon">
               <span class="icon">
                 <i class="fas fa-md fa-search"></i>
               </span>
             </button>
           </div>
           <div class="control is-expanded">
-            <input class="input is-large" type="text" name="query" placeholder="Search">
+            <label for="query" class="screen-reader-only">Search</label>
+            <input id="query" class="input is-large" type="text" name="query" placeholder="Search">
           </div>
         </div>
       </form>
 
       <div class="search-overlay"></div>
     </div>
-
+  
     <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item navbar-acorn" href="/">
+            <span class="screen-reader-only">Home</span>
             <svg pointer-events="all" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="30" viewBox="0 0 29 30" enable-background="new 0 0 29 30" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
               <path d="M28.1,17.6c-0.2,1.4-1.9,2.8-1.9,2.8c-0.6,1-2.3,1.7-2.3,1.7c-1.6,1.4-2.9,1-2.9,1s-0.9,0.7-1.7,1.3
               c-0.8,0.7-1.7,1.9-2.5,2.6c-2.2,1.9-3.8,2.6-5.5,2.9s-3.5,0-5.6-0.6c-2.1-0.6-3.5,0-3.5,0c-0.2-0.3-0.8-0.7-0.8-0.7
@@ -92,16 +96,19 @@
 
         <div class="navbar-end">
           <a class="navbar-item search-button">
+            <span class="screen-reader-only">Search Icon</span>
             <span class="icon">
               <i class="fas fa-md fa-search"></i>
             </span>
           </a>
-          <a class="navbar-item" href="https://github.com/doeanderson" target="_blank">
+          <a class="navbar-item" href="https://github.com/doeanderson" rel="noopener">
+            <span class="screen-reader-only">Github Icon</span>
             <span class="icon">
               <i class="fab fa-md fa-github"></i>
             </span>
           </a>
-          <a class="navbar-item" href="https://twitter.com/doeanderson" target="_blank">
+          <a class="navbar-item" href="https://twitter.com/doeanderson" rel="noopener">
+            <span class="screen-reader-only">Twitter Icon</span>
             <span class="icon">
               <i class="fab fa-md fa-twitter"></i>
             </span>
@@ -109,13 +116,13 @@
         </div>
       </div>
     </nav>
-
+  
     <div class="contents">
       <div class="container">
         @yield('content')
       </div>
     </div>
-
+  
     <footer class="site-footer">
       <div class="container">
         <p class="copyright">&copy;{{ (\Carbon\Carbon::now())->year }} Doe-Anderson.</p>
@@ -123,7 +130,7 @@
         <nav class="nav-utility">
           <ul>
             <li><a href="/privacy-policy/">Privacy Policy</a></li>
-            <li><a href="http://www.doeanderson.com/">doeanderson.com</a></li>
+            <li><a href="http://www.doeanderson.com/" rel="noopener">doeanderson.com</a></li>
           </ul>
         </nav>
       </div>
@@ -131,8 +138,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/manifest.js') }}"></script>
-  <script src="{{ asset('js/vendor.js') }}"></script>
+  
   <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

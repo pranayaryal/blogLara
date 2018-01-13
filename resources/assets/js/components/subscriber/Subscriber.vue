@@ -11,8 +11,8 @@
     <transition name="fade" mode="out-in">
       <div v-if="notification.isSuccess === false" class="form" role="form" key="form">
         <div class="field">
-          <label class="sr-only">Email address</label>
           <div class="control">
+            <label class="screen-reader-only">Email address</label>
             <input type="email" class="input is-medium" v-model="subscriberForm.email" v-bind:class="{ 'is-danger' : notification.isError }" @keyup.enter="store" placeholder="Email address">
             <p v-if="notification.isError" class="help is-danger">{{ notification.message }}</p>
           </div>
