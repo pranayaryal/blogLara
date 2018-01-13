@@ -17,7 +17,7 @@
     <link rel="canonical" href="{{ env('APP_URL') }}/{{ $post->slug }}">
   @endif
 
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -139,6 +139,6 @@
 
   <!-- Scripts -->
   
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

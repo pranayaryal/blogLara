@@ -1,17 +1,15 @@
 @if ($paginator->hasPages())
-    <ul class="pagination">
-        {{-- Previous Page Link --}}
-        @if ($paginator->onFirstPage())
-            <li class="disabled"><span>@lang('pagination.previous')</span></li>
-        @else
-            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
-        @endif
+  {{-- Previous Page Link --}}
+  @if ($paginator->onFirstPage())
+      <span class="disabled pagination-previous">@lang('pagination.previous')</span>
+  @else
+      <a class="pagination-previous" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a>
+  @endif
 
-        {{-- Next Page Link --}}
-        @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a></li>
-        @else
-            <li class="disabled"><span>@lang('pagination.next')</span></li>
-        @endif
-    </ul>
+  {{-- Next Page Link --}}
+  @if ($paginator->hasMorePages())
+      <a class="pagination-next" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
+  @else
+      <span class="disabled pagination-next">@lang('pagination.next')</span>
+  @endif
 @endif
