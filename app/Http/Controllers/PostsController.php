@@ -20,7 +20,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->orderBy('created_at', 'DESC')->simplePaginate(4);;
+        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->orderBy('created_at', 'DESC');
         return view('posts.index', compact('posts'));
     }
 

@@ -8,9 +8,9 @@
 
   @each('posts.single', $posts, 'post')
   
-  <nav class="pagination is-medium" role="navigation" aria-label="pagination">
+  {{--  <nav class="pagination is-medium" role="navigation" aria-label="pagination">
     {{ $posts->links() }}
-  </nav>
+  </nav>  --}}
 </div>
 
 <div class="subscribe" id="mailing_list">
