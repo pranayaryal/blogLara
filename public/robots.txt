@@ -1,2 +1,6 @@
-User-agent: *
-Disallow:
+User-Agent: *
+Disallow: 
+Disallow: /register
+Disallow: /images
+Disallow: /login
+Disallow: /password-reset
