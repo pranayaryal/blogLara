@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@php $title = 'Privacy Policy | Doe-Anderson | Louisville'; @endphp
 <article class="post">
   <header class="post_header">
     <h2 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h2>
