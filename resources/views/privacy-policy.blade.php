@@ -7,7 +7,7 @@ $description = 'The privacy policy of Doe-Anderson for https://reallyusefulthoug
 @endphp
 <article class="post">
   <header class="post_header">
-    <h2 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h2>
+    <h1 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h1>
   </header>
 
   <div class="post_content">
