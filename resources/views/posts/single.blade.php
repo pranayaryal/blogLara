@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  @if(auth::check())
+  @if(Auth::check())
   <div class="post_control">
     <a class="button is-small" href="/posts/{{ $post->id }}/edit">Edit</a>
     <a href="/posts/{{ $post->id }}/delete"
