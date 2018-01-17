@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-@php $title = 'Privacy Policy | Doe-Anderson | Louisville'; @endphp
+@php 
+$title = 'Privacy Policy | Doe-Anderson | Louisville'; 
+$description = 'The privacy policy of Doe-Anderson for https://reallyusefulthoughts.com.';
+@endphp
 <article class="post">
   <header class="post_header">
     <h2 class="post_title"><a href="/privacy-policy">Privacy Policy</a></h2>
