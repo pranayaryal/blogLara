@@ -65,7 +65,7 @@
       620 W Main St<br>
       Louisville, Kentucky 40202</p>
 
-      <p>Email Address: <a href="info@doeanderson.com">info@doeanderson.com</a><br>
+      <p>Email Address: <a href="mailto:info@doeanderson.com">info@doeanderson.com</a><br>
       Telephone number: <a href="tel:502-589-1700">502-589-1700</a></p>
 
       <p>Effective as of October 27, 2017.</p>
