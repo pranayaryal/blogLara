@@ -129,7 +129,7 @@
 
         <nav class="nav-utility">
           <ul>
-            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="http://www.doeanderson.com/" rel="noopener">doeanderson.com</a></li>
           </ul>
         </nav>
