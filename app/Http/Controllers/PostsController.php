@@ -31,7 +31,8 @@ class PostsController extends Controller
         $post = Post::whereSlug($slug)->with(['category', 'author'])->firstOrFail();
         $description = !empty($post->seo_description) ? $post->seo_description : strip_tags($post->excerpt);
         $title = !empty($post->seo_title) ? $post->seo_title : $post->title . ' | Posted in ' . $post->category->name . ' | Doe-Anderson';
-        return view('posts.show', compact('post', 'full_content', 'description', 'title'));
+        $useH1 = true;
+        return view('posts.show', compact('post', 'full_content', 'description', 'title', 'useH1'));
     }
 
     public function edit(Post $post)

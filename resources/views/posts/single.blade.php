@@ -1,6 +1,10 @@
 <article class="post">
   <header class="post_header">
+    @if(isset($useH1) && $useH1 === true)
+    <h1 class="post_title"><a href="{{ request()->root() . '/' . $post->slug }}">{{ $post->title }}</a></h1>
+    @else
     <h2 class="post_title"><a href="{{ request()->root() . '/' . $post->slug }}">{{ $post->title }}</a></h2>
+    @endif
 
     <div class="post_meta">
       @if(!empty($post->author->profile->avatar))
