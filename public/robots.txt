@@ -4,3 +4,4 @@ Disallow: /register
 Disallow: /images
 Disallow: /login
 Disallow: /password-reset
+Sitemap: https://reallyusefulthoughts.com/sitemap.xml
