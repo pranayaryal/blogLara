@@ -11,7 +11,7 @@
     <div class="columns">
         <div class="column is-one-quarter">
             <div class="field">
-                <label class="label control-label" for="name">Name</label>
+                <label class="label control-label" for="first_name">First Name</label>
 
                 <div class="control">
                     <input type="text" class="input" name="first_name" value="{{ $profile->first_name }}">
@@ -20,7 +20,7 @@
         </div>
         <div class="column is-one-quarter">
             <div class="field">
-                <label class="label control-label" for="name">Name</label>
+                <label class="label control-label" for="last_name">Last Name</label>
 
                 <div class="control">
                     <input type="text" class="input" name="last_name" value="{{ $profile->last_name }}">

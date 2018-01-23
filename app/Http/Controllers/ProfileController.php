@@ -32,24 +32,18 @@ class ProfileController extends Controller
     public function store(Profile $profile)
     {
         $this->validate(request(), [
-            'bio' => 'required',
-            'title' => 'required',
+          'first_name' => 'required',
+          'last_name' => 'required',
+          'bio' => 'required',
+          'title' => 'required',
         ]);
-
-        $user = auth()->user();
-        $user->name = request('name');
-
-
-        if (!empty(request('user_id'))) {
-            $profile = $profile->where('user_id', request('user_id'))->first();
-        }
 
         if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
             $image = request()->all()['avatar'];
         }
 
-        $profile->user()->associate($user);
-
+        $profile->first_name = request('first_name');
+        $profile->last_name = request('last_name');
         $profile->title = request('title');
         $profile->bio = request('bio');
         $profile->twitter = request('twitter');
@@ -58,14 +52,19 @@ class ProfileController extends Controller
         $profile->github = request('github');
 
         try {
-            if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
-                $path = '/images/profile/' . $profile->slug . '/avatar';
-                $image->move(public_path() . $path, $image->getClientOriginalName());
-                $profile->avatar = $path . '/' . $image->getClientOriginalName();
-            }
+          if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar']) && !empty($profile->id)) {
+            $path = '/images/profile/' . $profile->slug . '/avatar';
+            $image->move(public_path() . $path, $image->getClientOriginalName());
+            $profile->avatar = $path . '/' . $image->getClientOriginalName();
+          } else {
+            $profile->save();
+            $profile = $profile->orderBy('created_at', 'desc')->first();
+            $path = '/images/profile/' . $profile->slug . '/avatar';
+            $image->move(public_path() . $path, $image->getClientOriginalName());
+            $profile->avatar = $path . '/' . $image->getClientOriginalName();
+          }
 
             $profile->save();
-            $user->save();
         } catch (Exception $e) {
             dd($e);
         }

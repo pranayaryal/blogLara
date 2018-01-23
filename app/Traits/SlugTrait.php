@@ -9,22 +9,21 @@ trait SlugTrait
         parent::boot();
 
         static::creating(function ($model) {
-            if (isset($model->title)) {
-                $model->slug = str_slug($model->title);
-            }
+          $model->slug = str_slug($model->title);
 
-            if (isset($model->user->name)) {
-                $model->slug = str_slug($model->user->name);
-            }
+          // Override slug for profiles
+          if (isset($model->first_name) && isset($model->last_name)) {
+            $model->slug = str_slug($model->first_name) . '-' . str_slug($model->last_name);
+          }
 
-            $latestSlug =
-                static::whereRaw("slug RLIKE '^{$model->slug}(-[0-9]*)?$'")
-                    ->latest('id')
-                    ->pluck('slug');
+          $latestSlug =
+            static::whereRaw("slug RLIKE '^{$model->slug}(-[0-9]*)?$'")
+                ->latest('id')
+                ->pluck('slug');
 
-            $pieces = explode('-', $latestSlug);
-            $number = intval(end($pieces));
-            $number > 0 ? $model->slug .= '-' . ($number + 1) : '';
+          $pieces = explode('-', $latestSlug);
+          $number = intval(end($pieces));
+          $number > 0 ? $model->slug .= '-' . ($number + 1) : '';
         });
     }
 }

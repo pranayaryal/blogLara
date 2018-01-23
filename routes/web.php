@@ -32,6 +32,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('profile', 'ProfileController@create')->middleware('auth');
 Route::match(['put', 'post'], 'profile', 'ProfileController@store')->middleware('auth');
 Route::get('profile/{slug}', 'ProfileController@show');
+Route::get('profiles/{profile}/edit', 'ProfileController@edit')->middleware('auth');
 
 // Categories
 Route::resource('category', 'CategoriesController')->middleware('auth')->except('show');

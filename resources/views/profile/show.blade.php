@@ -9,7 +9,7 @@
     @endif
 
     <div class="user_details">
-    <h1 class="user_name">{{ $profile->user->name }}</h1>
+    <h1 class="user_name">{{ $profile->full_name }}</h1>
     <p class="user_title">{{ $profile->title }}</p>
 
     @if(!empty($profile->instagram) || !empty($profile->twitter) || !empty($profile->github) || !empty($profile->dribbble))
