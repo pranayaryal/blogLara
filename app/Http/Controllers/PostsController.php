@@ -15,14 +15,14 @@ class PostsController extends Controller
     {
         $categoryOptions = \App\Category::all();
         $statusOptions = \App\Status::all();
-        $authors = \App\User::all();
+        $authors = \App\Profile::all();
         $action = '/post';
         return view('posts.form', compact('action', 'authors', 'categoryOptions', 'post', 'statusOptions'));
     }
 
     public function index()
     {
-        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author.profile'])->orderBy('created_at', 'DESC')->get();
+        $posts = Post::where('status_id', Status::PUBLISHED)->with(['category', 'author'])->orderBy('created_at', 'DESC')->get();
         return view('posts.index', compact('posts'));
     }
 
