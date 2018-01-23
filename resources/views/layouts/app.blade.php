@@ -82,8 +82,7 @@
               <a class="navbar-item" href="/post">New Post</a>
               <a class="navbar-item" href="/profile">New Profile</a>
               <hr class="navbar-divider">
-              <a class="navbar-item" href="/admin">Manage Posts</a>
-              <a class="navbar-item" href="/profile">Edit Profile</a>
+              <a class="navbar-item" href="/admin">Manage</a>
               <hr class="navbar-divider">
               <a class="navbar-item" href="{{ url('/logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

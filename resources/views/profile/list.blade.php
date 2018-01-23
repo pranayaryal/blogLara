@@ -8,7 +8,7 @@
         <div class="author_avatar"></div>
         @endif
       </div>
-      <a href="{{ request()->root() . '/' . $profile->slug }}">{{ $profile->user->name }}</a>
+      <a href="{{ request()->root() . '/' . $profile->slug }}">{{ $profile->full_name }}</a>
     </h2>
   </header>
 

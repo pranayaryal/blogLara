@@ -97,25 +97,25 @@ class PostsController extends Controller
 
     public function delete(Post $post)
     {
-        if (!$post->delete()) {
-            return redirect()->back();
-        }
+      if (!$post->delete()) {
+          return redirect()->back();
+      }
 
-        return redirect('/');
+      return redirect('/');
     }
 
     // Views
     public function admin(Post $post, Profile $profile)
     {
-        return view('posts.admin')
-          ->withPosts($post->with(['author', 'category', 'status'])->get())
-          ->withProfiles($profile->with(['user'])->get());
+      return view('posts.admin')
+        ->withPosts($post->with(['author', 'category', 'status'])->get())
+        ->withProfiles($profile->all());
     }
 
     // Api Section
     public function allPosts()
     {
-        return $this->Post->allPosts();
+      return $this->Post->allPosts();
     }
 
     public function publishedPosts()
