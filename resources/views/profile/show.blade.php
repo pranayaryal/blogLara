@@ -11,6 +11,21 @@
     <div class="user_details">
     <h1 class="user_name">{{ $profile->full_name }}</h1>
     <p class="user_title">{{ $profile->title }}</p>
+    @if(Auth::check())
+    <div class="post_control">
+      <a class="button is-small" href="/profiles/{{ $profile->id }}/edit">Edit</a>
+      <a href="/profiles/{{ $profile->id }}/delete"
+          onclick="event.preventDefault();
+          document.getElementById('delete-form-{{ $profile->id }}').submit();"
+          class="button is-danger is-small">
+          Delete
+      </a>
+      <form id="delete-form-{{ $profile->id }}" action="/profiles/{{ $profile->id }}/delete" method="POST" style="display: none;">
+        {{ method_field('DELETE') }}
+        {{ csrf_field() }}
+      </form>
+    </div>
+    @endif
 
     @if(!empty($profile->instagram) || !empty($profile->twitter) || !empty($profile->github) || !empty($profile->dribbble))
       <ul class="user_social">

@@ -10,11 +10,20 @@ class ProfileController extends Controller
 {
     public function show($slug)
     {
-      $profile = Profile::whereSlug($slug)->firstOrFail();
-      $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->orderBy('created_at', 'DESC')->get();
-      $description = !empty($profile->bio) ? strip_tags($profile->bio) : $profile->user->name . ' - ' . $profile->title;
-      $title = $profile->full_name . ' | ' . $profile->title . ' | ' . 'Doe-Anderson';
-      return view('profile.show', compact(['profile', 'posts', 'description', 'title']));
+      $profile = Profile::whereSlug($slug)
+        ->firstOrFail();
+        
+      return view('profile.show')
+        ->withProfile($profile)
+        ->withPosts(
+          \App\Post::where('user_id', $profile->id)
+            ->where('status_id', \App\Status::PUBLISHED)
+            ->with(['category', 'author'])
+            ->orderBy('created_at', 'DESC')
+            ->get()
+        )
+        ->withDescription(!empty($profile->bio) ? strip_tags($profile->bio) : $profile->full_name . ' - ' . $profile->title)
+        ->withTitle($profile->full_name . ' | ' . $profile->title . ' | ' . 'Doe-Anderson');
     }
 
     public function create(Profile $profile)
