@@ -7,15 +7,23 @@
 
     @if (isset($profile->id) && !empty($profile->id))
         {{ method_field('PUT') }}
-        <input type="hidden" name="user_id" value="{{ $profile->user->id }}">
     @endif
     <div class="columns">
-        <div class="column is-one-half">
+        <div class="column is-one-quarter">
             <div class="field">
                 <label class="label control-label" for="name">Name</label>
 
                 <div class="control">
-                    <input type="text" class="input" name="name" value="{{ $profile->user->name }}">
+                    <input type="text" class="input" name="first_name" value="{{ $profile->first_name }}">
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-quarter">
+            <div class="field">
+                <label class="label control-label" for="name">Name</label>
+
+                <div class="control">
+                    <input type="text" class="input" name="last_name" value="{{ $profile->last_name }}">
                 </div>
             </div>
         </div>
