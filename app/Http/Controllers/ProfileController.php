@@ -10,23 +10,23 @@ class ProfileController extends Controller
 {
     public function show($slug)
     {
-            $profile = Profile::whereSlug($slug)->with('user')->firstOrFail();
-            $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->orderBy('created_at', 'DESC')->get();
-            $description = !empty($profile->bio) ? strip_tags($profile->bio) : $profile->user->name . ' - ' . $profile->title;
-            $title = $profile->user->name . ' | ' . $profile->title . ' | ' . 'Doe-Anderson';
-            return view('profile.show', compact(['profile', 'posts', 'description', 'title']));
+      $profile = Profile::whereSlug($slug)->firstOrFail();
+      $posts = \App\Post::where('user_id', $profile->user_id)->where('status_id', \App\Status::PUBLISHED)->with(['category', 'author'])->orderBy('created_at', 'DESC')->get();
+      $description = !empty($profile->bio) ? strip_tags($profile->bio) : $profile->user->name . ' - ' . $profile->title;
+      $title = $profile->full_name . ' | ' . $profile->title . ' | ' . 'Doe-Anderson';
+      return view('profile.show', compact(['profile', 'posts', 'description', 'title']));
     }
 
     public function create(Profile $profile)
     {
-        try {
-            $user = auth()->user();
-            $profile = $profile->firstOrNew(['user_id' => auth()->user()->id]);
-            $profile->user()->associate($user);
-            return view('profile.form', compact('profile'));
-        } catch (Exception $e) {
-            dd($e);
-        }
+      return view('profile.form')
+        ->withProfile($profile);
+    }
+
+    public function edit(Profile $profile)
+    {
+      return view('profile.form')
+        ->withProfile($profile);
     }
 
     public function store(Profile $profile)
