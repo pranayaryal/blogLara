@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Status;
+use App\Profile;
+
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -103,10 +105,11 @@ class PostsController extends Controller
     }
 
     // Views
-    public function admin()
+    public function admin(Post $post, Profile $profile)
     {
-        $posts = Post::with(['author', 'category', 'status'])->get();
-        return view('posts.admin', compact('posts'));
+        return view('posts.admin')
+          ->withPosts($post->with(['author', 'category', 'status'])->get())
+          ->withProfiles($profile->with(['user'])->get());
     }
 
     // Api Section
