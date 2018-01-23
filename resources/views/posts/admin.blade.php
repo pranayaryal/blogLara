@@ -2,7 +2,14 @@
 
 @section('content')
 <div class="container">
-  <h2>Edit Posts</h2>
-  @each('posts.listItem', $posts, 'post', 'posts.empty')
+  <div class="column">
+    <h2>Edit Posts</h2>
+    @each('posts.listItem', $posts, 'post', 'posts.empty')
+  </div>
+
+  <aside class="column">
+    <h2>Edit Profiles</h2>
+    @each('profile.list', $profiles, 'profile', 'profile.empty')
+  </aside>
 </div>
 @endsection
