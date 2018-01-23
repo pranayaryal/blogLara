@@ -6,7 +6,8 @@
     {{ csrf_field() }}
 
     @if (isset($profile->id) && !empty($profile->id))
-        {{ method_field('PUT') }}
+      <input type="hidden" name="id" value="{{ $profile->id }}">
+      {{ method_field('PUT') }}
     @endif
     <div class="columns">
         <div class="column is-one-quarter">

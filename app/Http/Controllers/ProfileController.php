@@ -12,7 +12,7 @@ class ProfileController extends Controller
     {
       $profile = Profile::whereSlug($slug)
         ->firstOrFail();
-        
+
       return view('profile.show')
         ->withProfile($profile)
         ->withPosts(
@@ -47,6 +47,8 @@ class ProfileController extends Controller
           'title' => 'required',
         ]);
 
+        $profile = $profile->firstOrNew(['id' => request('id')]);
+
         if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar'])) {
             $image = request()->all()['avatar'];
         }
@@ -61,19 +63,23 @@ class ProfileController extends Controller
         $profile->github = request('github');
 
         try {
-          if (isset(request()->all()['avatar']) && !empty(request()->all()['avatar']) && !empty($profile->id)) {
+          if (isset($image) && !empty($image) && !empty($profile->id)) {
             $path = '/images/profile/' . $profile->slug . '/avatar';
             $image->move(public_path() . $path, $image->getClientOriginalName());
             $profile->avatar = $path . '/' . $image->getClientOriginalName();
           } else {
             $profile->save();
-            $profile = $profile->orderBy('created_at', 'desc')->first();
-            $path = '/images/profile/' . $profile->slug . '/avatar';
-            $image->move(public_path() . $path, $image->getClientOriginalName());
-            $profile->avatar = $path . '/' . $image->getClientOriginalName();
+
+            if (isset($image) && !empty($image)) {
+              $profile = $profile->orderBy('created_at', 'desc')->first();
+              $path = '/images/profile/' . $profile->slug . '/avatar';
+              $image->move(public_path() . $path, $image->getClientOriginalName());
+              $profile->avatar = $path . '/' . $image->getClientOriginalName();
+            }
           }
 
-            $profile->save();
+          $profile->save();
+          
         } catch (Exception $e) {
             dd($e);
         }
