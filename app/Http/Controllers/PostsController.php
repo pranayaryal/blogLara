@@ -73,10 +73,16 @@ class PostsController extends Controller
         }
 
         try {
-            if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image'])) {
+            if (isset(request()->all()['featured_image']) && !empty(request()->all()['featured_image']) && !empty($post->id)) {
                 $path = '/images/posts/' . $post->id . '/featured';
                 $image->move(public_path() . $path, $image->getClientOriginalName());
                 $post->featured_image = $path . '/' . $image->getClientOriginalName();
+            } else {
+              $post->save();
+              $post = $post->orderBy('created_at', 'desc')->first();
+              $path = '/images/posts/' . $post->id . '/featured';
+              $image->move(public_path() . $path, $image->getClientOriginalName());
+              $post->featured_image = $path . '/' . $image->getClientOriginalName();
             }
 
             $post->save();
