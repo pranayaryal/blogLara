@@ -17,32 +17,6 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'avatar', 'bio', 'twitter', 'instagram', 'github', 'dribbble', 'title'
+        'avatar', 'bio', 'twitter', 'instagram', 'github', 'dribbble', 'title', 'first_name', 'last_name'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'user_id'
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function getFirstNameAttribute()
-    {
-        $pieces = explode(' ', $this->user->name, 2);
-        return $pieces[0];
-    }
-
-    public function getLastNameAttribute()
-    {
-        $pieces = explode(' ', $this->user->name, 2);
-        return $pieces[1];
-    }
 }
