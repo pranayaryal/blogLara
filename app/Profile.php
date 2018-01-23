@@ -19,4 +19,9 @@ class Profile extends Model
     protected $fillable = [
         'avatar', 'bio', 'twitter', 'instagram', 'github', 'dribbble', 'title', 'first_name', 'last_name'
     ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
