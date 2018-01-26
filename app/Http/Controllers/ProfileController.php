@@ -6,6 +6,8 @@ use Auth;
 use App\Profile;
 use Illuminate\Http\Request;
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 class ProfileController extends Controller
 {
     public function show($slug)
@@ -67,9 +69,10 @@ class ProfileController extends Controller
             $path = '/images/profile/' . $profile->slug . '/avatar';
             $image->move(public_path() . $path, $image->getClientOriginalName());
             $profile->avatar = $path . '/' . $image->getClientOriginalName();
+            
           } else {
             $profile->save();
-
+            
             if (isset($image) && !empty($image)) {
               $profile = $profile->orderBy('created_at', 'desc')->first();
               $path = '/images/profile/' . $profile->slug . '/avatar';
@@ -77,8 +80,24 @@ class ProfileController extends Controller
               $profile->avatar = $path . '/' . $image->getClientOriginalName();
             }
           }
-
+          
           $profile->save();
+          
+          if (isset($image) && !empty($image) && isset($path) && !empty($path)) {
+            $pieces = explode('.', $image->getClientOriginalName());
+            $name = $pieces[0];
+            $extension = $pieces[1];
+
+            Image::make(public_path() . $path . '/' . $image->getClientOriginalName())
+              ->resize(120, 120)
+              ->save(public_path() . $path . '/' . $name . '-120.' . $extension)
+              ->resize(72,72)
+              ->save(public_path() . $path . '/' . $name . '-72.' . $extension)
+              ->resize(40,40)
+              ->save(public_path() . $path . '/' . $name . '-40.' . $extension)
+              ->resize(36,36)
+              ->save(public_path() . $path . '/' . $name . '-36.' . $extension);
+          }
           
         } catch (Exception $e) {
             dd($e);

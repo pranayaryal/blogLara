@@ -1,11 +1,4 @@
 <?php return array (
-  'laravel/tinker' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
@@ -35,6 +28,27 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'laravel-frontend-presets/bulma' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelFrontendPresets\\BulmaPreset\\BulmaPresetServiceProvider',
+    ),
+  ),
+  'laravel/scout' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Scout\\ScoutServiceProvider',
+    ),
+  ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
   'unisharp/laravel-filemanager' => 
   array (
     'providers' => 
@@ -45,20 +59,6 @@
     'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
-    ),
-  ),
-  'laravel/scout' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Scout\\ScoutServiceProvider',
-    ),
-  ),
-  'laravel-frontend-presets/bulma' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelFrontendPresets\\BulmaPreset\\BulmaPresetServiceProvider',
     ),
   ),
 );
