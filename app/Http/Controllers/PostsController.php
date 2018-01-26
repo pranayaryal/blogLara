@@ -8,6 +8,7 @@ use App\Status;
 use App\Profile;
 
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostsController extends Controller
 {
@@ -88,6 +89,30 @@ class PostsController extends Controller
             }
 
             $post->save();
+
+            if (isset($image) && !empty($image) && isset($path) && !empty($path)) {
+              $pieces = explode('.', $image->getClientOriginalName());
+              $name = $pieces[0];
+              $extension = $pieces[1];
+  
+              Image::make(public_path() . $path . '/' . $image->getClientOriginalName())
+                ->resize(1560, null, function ($constraint) {
+                      $constraint->aspectRatio();
+                  })
+                ->save(public_path() . $path . '/' . $name . '-1560.' . $extension)
+                ->resize(840, null, function ($constraint) {
+                      $constraint->aspectRatio();
+                  })
+                ->save(public_path() . $path . '/' . $name . '-840.' . $extension)
+                ->resize(780, null, function ($constraint) {
+                      $constraint->aspectRatio();
+                  })
+                ->save(public_path() . $path . '/' . $name . '-780.' . $extension)
+                ->resize(420, null, function ($constraint) {
+                      $constraint->aspectRatio();
+                  })
+                ->save(public_path() . $path . '/' . $name . '-420.' . $extension);
+            }
 
             return redirect('/');
         } catch (Expression $e) {
