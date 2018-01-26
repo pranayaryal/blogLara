@@ -34,7 +34,7 @@ profile:username - string - A short unique string to identify them.
     @endif
 
     @if(isset($post->author))
-      <meta property="article:author" content="{{ request()->root() . '/' . $post->author->profile->slug }}" />
+      <meta property="article:author" content="{{ request()->root() . '/' . $post->author->slug }}" />
     @endif
   @endif
 
