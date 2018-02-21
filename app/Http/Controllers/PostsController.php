@@ -100,7 +100,7 @@ class PostsController extends Controller
           return redirect()->back();
       }
 
-      return redirect()->back();
+      return redirect('/admin');
     }
 
     public function processFeaturedImage($post, $image)
