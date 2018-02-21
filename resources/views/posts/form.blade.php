@@ -149,7 +149,8 @@
               <div class="select is-fullwidth">
                 <select name="user_id">
                   @foreach ($authors as $author)
-                  <option value="{{ $author->id }}" @if (isset($post->user_id) && !empty($post->user_id)) {{ $post->user_id === $author->id ? 'selected' : '' }} @endif>{{ $author->name }}</option>
+                  {{ $author }}
+                  <option value="{{ $author->id }}" @if (isset($post->user_id) && !empty($post->user_id)) {{ $post->user_id === $author->id ? 'selected' : '' }} @endif>{{ $author->first_name . ' ' . $author->last_name}}</option>
                   @endforeach
                 </select>
               </div>

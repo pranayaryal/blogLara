@@ -44,7 +44,7 @@ class PostsController extends Controller
         $action = '/posts/' . $post->id . '/edit';
         $categoryOptions = \App\Category::all();
         $statusOptions = \App\Status::all();
-        $authors = \App\User::all();
+        $authors = \App\Profile::all();
         return view('posts.form', compact('action', 'categoryOptions', 'post', 'statusOptions', 'authors'));
     }
 
