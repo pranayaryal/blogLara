@@ -114,4 +114,18 @@ class Post extends Model
 
         return response()->json('Post deleted');
     }
+
+    public function createSlug($title)
+    {
+      $slug = str_slug($title);
+      
+      $latestSlug =
+        static::whereRaw("slug RLIKE '^{$slug}(-[0-9]*)?$'")
+            ->latest('id')
+            ->pluck('slug');
+
+      $pieces = explode('-', $latestSlug);
+      $number = intval(end($pieces));
+      return $number > 0 ? $slug .= '-' . ($number + 1) : '';
+    }
 }
